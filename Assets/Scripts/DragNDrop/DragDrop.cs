@@ -10,6 +10,8 @@ IDragHandler, IEndDragHandler {
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
 
+    public int choice_id = 0;
+
     private CanvasGroup canvasGroup;
 
     private void Awake()
