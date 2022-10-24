@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Text;
 
 //TODO
 /*
@@ -19,7 +20,7 @@ same was the scrollbar but with image and smaller changes
     Most birds dont care about color, except birds of pray will attack
     Could include video of birds attack drone or something during testing! or just a picture
      multi-colored reflective tape/ or lights discourage bird attacks, aswell as loud sounds(or maybe cat?xd)
-    //Googly eyes seem to work aswell..
+    //Googly eyes seem to work aswell..juju
 */
 
 //TODO use the choices enum instead of ints
@@ -38,6 +39,15 @@ public class GameControler : MonoBehaviour
     public int max_num_choices = 5; //TODO MAX WILL BE DETERMINED BY BUDGET
     public int budget = 10000; 
     private const int NUM_CARDS = 5;
+    public TextMeshProUGUI droneSpecsText;
+    public string droneColor = "white";
+    public string droneSize = "30cm";
+    public string droneWeight = "1kg";
+    public int droneDevelopmentCost = 0;
+    public int droneManufacturingCost = 0;
+    public int droneProductionCost = 0;
+    public int dronePrice = 0;
+    public string droneMaterial = "carbon fiber composites";
     public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
     public int choice_index = 0; //how many choices have been made
@@ -48,6 +58,7 @@ public class GameControler : MonoBehaviour
 
     void Start()
     {
+        refreshDroneSpecs();
     }
 
     // Update is called once per frame
@@ -72,7 +83,9 @@ public class GameControler : MonoBehaviour
         Debug.Log(result);
     
         updateScrollBarText(locked_choice);
+        refreshDroneSpecs();
         //TODO launch text belonging to that choice
+        //Debit cost of choice
         //IF choice is final choice then launch logic
         //to calculate final outcome.
     }
@@ -84,5 +97,15 @@ public class GameControler : MonoBehaviour
         scrollBarText.text = choiceFeedbackTexts[locked_choice];
     }
 
+    //updates the interface showing teh drone specs 
+    private void refreshDroneSpecs(){
+        StringBuilder sb = new StringBuilder("", 200);
+        sb.AppendFormat("Color: {0}\nWeight :{1}\nSize: {2}\nMaterial: {3}\nPrice: {4}\n" + 
+            "Development Cost: {5}\nManufacturing Cost: {6}\nProduction Cost: {7}", 
+            droneColor, droneWeight, droneSize, droneMaterial, dronePrice.ToString(),
+            droneDevelopmentCost.ToString(), droneManufacturingCost.ToString(), droneProductionCost.ToString());
+
+        droneSpecsText.text = sb.ToString();
+    }
     //TODO private void endingOfGameLogic(){}
 }
