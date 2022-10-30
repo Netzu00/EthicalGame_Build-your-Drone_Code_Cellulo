@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using System.Text;
 
 public class TabController : MonoBehaviour
 {
     [SerializeField] private GameObject[] tabs;
-    public GameObject spawnPrefab;
+    public GameObject spawnButtonPrefab;
+
+    public TextMeshProUGUI spawnTextPrefab;
     public GameObject parentOfSpawn;
-    private GameObject spawnedtab;
-    public void Start()
-    {
-        spawnedtab = GameObject.Instantiate(spawnPrefab);
-        Debug.Log(spawnedtab);
-        spawnedtab.transform.SetParent(parentOfSpawn.transform, false);
-        //spawnedtab.SetActive(true); NICE
-    }
+    private GameObject spawnedTab;
+    private TextMeshProUGUI spawnedText;
+    private int choiceId = 0;
 
     public void onTabSwitch(GameObject tab) {
         tab.SetActive(true);
@@ -24,5 +23,15 @@ public class TabController : MonoBehaviour
                 tabs[i].SetActive(false);
             }
         }
+    }
+
+    public void spawnTab(string buttonText, string tabContent) {
+        //Spawn a button for the tab
+        spawnedTab = GameObject.Instantiate(spawnButtonPrefab);
+        spawnedTab.GetComponentInChildren<TextMeshProUGUI>().text = buttonText;
+        spawnedTab.name = "Tab_"+ choiceId.ToString();
+        spawnedTab.transform.SetParent(parentOfSpawn.transform, false);
+
+        //Spawn new tab with contents
     }
 }

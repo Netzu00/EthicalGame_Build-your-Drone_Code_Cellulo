@@ -53,6 +53,9 @@ public class GameControler : MonoBehaviour
     public int choice_index = 0; //how many choices have been made
     public DropSlot slot; //slot where choice is dropped into
 
+
+    //Tabs
+    public TabController tabController;
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
     "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
 
@@ -73,8 +76,13 @@ public class GameControler : MonoBehaviour
         locked_choices.Add(locked_choice);
         //Check if valid choice i.e first must be investor
         //Last must be "go foward with production/finalize"
-
-
+        ////TODO Create The tabs Content aswell and link the button to it
+        //Spawn new tab 
+        //TODO get text from locked in choice and use that to update here
+        //Or maybe easier, just use choiceID to get text to use here like did with he texts
+        tabController.spawnTab(locked_choice.ToString(), "Placeholder Text");
+        
+        //Print list contents for debugging
         string result = "List contents: ";
         foreach (var item in locked_choices)
         {
