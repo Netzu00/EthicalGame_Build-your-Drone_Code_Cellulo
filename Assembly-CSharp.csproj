@@ -90,6 +90,7 @@
      <Compile Include="Assets\MaterialUI\Scripts\CheckBoxToggler.cs" />
      <Compile Include="Assets\Scripts\DragNDrop\DropSlot.cs" />
      <Compile Include="Assets\MaterialUI\Scripts\ShadowGen.cs" />
+     <Compile Include="Assets\Scripts\SemesterProject\GameControler.cs" />
      <Compile Include="Assets\MaterialUI\Scripts\ButtonInteractableControl.cs" />
      <Compile Include="Assets\Scripts\Game\RingTrigger.cs" />
      <Compile Include="Assets\Scripts\UI\ControlPanel.cs" />
@@ -109,7 +110,7 @@
      <Compile Include="Assets\MaterialUI\Scripts\MaterialUIVersion.cs" />
      <Compile Include="Assets\MaterialUI\Scripts\ShadowSnap.cs" />
      <Compile Include="Assets\Scripts\Menu\MainMenu.cs" />
-     <Compile Include="Assets\Scripts\SemesterProject\GameControler.cs" />
+     <Compile Include="Assets\Scripts\Menu\TabController.cs" />
      <None Include="Assets\Art\Particlecollection_Free samples\Plugins\Effect\Shader\Toon Blended Premmultiply.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />

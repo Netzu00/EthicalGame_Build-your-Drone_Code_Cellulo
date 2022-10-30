@@ -8,11 +8,11 @@ public class DropSlot : MonoBehaviour, IDropHandler
    public int current_choice = -1;
    public void OnDrop(PointerEventData eventData){
         Debug.Log("OnDrop");
-        if(eventData.pointerDrag != null) {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-        }  
         
-        DragDrop droppedObject = eventData.pointerDrag.GetComponent<DragDrop>();
-        current_choice = droppedObject.choice_id;
+        if(eventData.pointerDrag != null) {
+            eventData.pointerDrag.GetComponent<RectTransform>().position = GetComponent<RectTransform>().position;
+            DragDrop droppedObject = eventData.pointerDrag.GetComponent<DragDrop>();
+            current_choice = droppedObject.choice_id;
+        }  
    }
 }
