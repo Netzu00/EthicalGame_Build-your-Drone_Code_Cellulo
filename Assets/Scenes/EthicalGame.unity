@@ -4788,6 +4788,8 @@ MonoBehaviour:
   - {fileID: 1507250750}
   - {fileID: 963680841}
   - {fileID: 1716673594}
+  spawnPrefab: {fileID: 890649854}
+  parentOfSpawn: {fileID: 464471218}
 --- !u!1 &2147380294
 GameObject:
   m_ObjectHideFlags: 0
