@@ -8,10 +8,8 @@ public class TabController : MonoBehaviour
 {
     [SerializeField] private GameObject[] tabs;
     public GameObject spawnButtonPrefab;
-
-    public TextMeshProUGUI spawnTextPrefab;
     public GameObject parentOfSpawn;
-    private GameObject spawnedTab;
+    private GameObject spawnedTabButton;
     private TextMeshProUGUI spawnedText;
     private int choiceId = 0;
 
@@ -27,11 +25,12 @@ public class TabController : MonoBehaviour
 
     public void spawnTab(string buttonText, string tabContent) {
         //Spawn a button for the tab
-        spawnedTab = GameObject.Instantiate(spawnButtonPrefab);
-        spawnedTab.GetComponentInChildren<TextMeshProUGUI>().text = buttonText;
-        spawnedTab.name = "Tab_"+ choiceId.ToString();
-        spawnedTab.transform.SetParent(parentOfSpawn.transform, false);
+        spawnedTabButton = GameObject.Instantiate(spawnButtonPrefab);
+        spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = buttonText;
+        spawnedTabButton.name = "Tab_"+ choiceId.ToString();
+        spawnedTabButton.transform.SetParent(parentOfSpawn.transform, false);
 
         //Spawn new tab with contents
+        
     }
 }
