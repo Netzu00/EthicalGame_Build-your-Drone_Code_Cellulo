@@ -20,7 +20,7 @@ public class TabController : MonoBehaviour
     //--
     private int choiceId = 0; //used to give spawnedTab a name
 
-    //Called by the pressed button, with as tabBody the body associated with the button
+    //Called by the pressed button(with onClick() method), using as argument "tabBody" the body associated with the button
     public void onTabSwitch(GameObject tabBody) {
         tabBody.SetActive(true);  
 
@@ -40,9 +40,11 @@ public class TabController : MonoBehaviour
         spawnedTabButton.transform.SetParent(parentOfSpawn.transform, false);
 
         //Spawn new tab with 
+        //Basically for custom content need to make a prefab, with a text field i can modify.. thats it. not soo hard.
         spawnedTabBody = GameObject.Instantiate(spawnTabBodyPrefab);
         spawnedTabBody.name = "spawnedTabBody_"+ choiceId.ToString();
         spawnedTabBody.transform.SetParent(parentOfBodySpawn.transform, false);
+        //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>().text = tabContent; This should do it.
 
         //Set content of new spawnedTab
         //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>().text = tabContent; //oh yeah.. obvvv
