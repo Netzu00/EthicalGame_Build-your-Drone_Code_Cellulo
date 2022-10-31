@@ -4620,8 +4620,10 @@ MonoBehaviour:
   - {fileID: 1507250750}
   - {fileID: 963680841}
   - {fileID: 1716673594}
-  spawnButtonPrefab: {fileID: 1950405661}
+  spawnButtonPrefab: {fileID: 1950405663}
   parentOfSpawn: {fileID: 464471218}
+  parentOfBodySpawn: {fileID: 86983874}
+  spawnTabBodyPrefab: {fileID: 1507250750}
 --- !u!1 &2143089995
 GameObject:
   m_ObjectHideFlags: 0
