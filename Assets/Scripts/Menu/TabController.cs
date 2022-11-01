@@ -46,7 +46,15 @@ public class TabController : MonoBehaviour
         spawnedTabBody.transform.SetParent(parentOfBodySpawn.transform, false);
         //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>().text = tabContent; This should do it.
 
+        //Need to start the conversation in spawnedTabBody!!
+        //TODO make the tab have a dialogue and call dialogueManager.StartDialogue with this dialogue!
+        //last pb: need to change the textmeshprougui in dialoguemanager to text in current tab
+        //FindObjectOfType<DialogueManager>().dialogue = tabContent; THIS WONT WORK, need to preserve content of ALL TABS!
+        //could use an array in dialogueManager and StartDialogue takes index or name of tab!
+        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+
         //Set content of new spawnedTab
+
         //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>().text = tabContent; //oh yeah.. obvvv
 
         //Modify the tab body that the spawned Button will call

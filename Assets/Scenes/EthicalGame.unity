@@ -1946,8 +1946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98c73d7ac7b9547a019eddbbf7eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeAnimationWaitTime: 0.8
-  nameText: {fileID: 0}
   dialogueText: {fileID: 1921655727}
 --- !u!4 &734369576
 Transform:
@@ -4321,7 +4319,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1449037695}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.20000002
+  m_Size: 0.2
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
