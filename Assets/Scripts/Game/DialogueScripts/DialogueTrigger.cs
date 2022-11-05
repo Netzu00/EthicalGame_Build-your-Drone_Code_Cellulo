@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DialogueTrigger : MonoBehaviour
 {
     public Dialogue dialogue;
+    public TextMeshProUGUI dialogueTextBox;
 
     public void TriggerDialogue () {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
     }
   
 }

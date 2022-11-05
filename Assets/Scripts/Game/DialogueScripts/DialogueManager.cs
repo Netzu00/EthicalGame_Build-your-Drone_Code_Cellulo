@@ -7,19 +7,19 @@ using TMPro;
 public class DialogueManager : MonoBehaviour
 {
     //public TextMeshProUGUI nameText; //Not using for now
-    public TextMeshProUGUI dialogueText;
+    private TextMeshProUGUI dialogueText;
     private Queue<string> sentences; //Load sentences as read through dialog
    
     void Start() {
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue){
+    public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
         //Debug.Log("Starting dialogue :" + dialogue.name);
         //nameText.text = dialogue.name;
 
         sentences.Clear(); //clear previous 
-
+        dialogueText = dialogueTextBox;
         foreach(string sentence in dialogue.sentences) {
             sentences.Enqueue(sentence);
         }

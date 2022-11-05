@@ -18,6 +18,9 @@ public class TabController : MonoBehaviour
     public GameObject spawnTabBodyPrefab;
     private GameObject spawnedTabBody; //new obj for spawned body
     //--
+    //Now need to map button text to an index here...
+    private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
+    "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
     private int choiceId = 0; //used to give spawnedTab a name
 
     //Called by the pressed button(with onClick() method), using as argument "tabBody" the body associated with the button
@@ -43,8 +46,18 @@ public class TabController : MonoBehaviour
         //Basically for custom content need to make a prefab, with a text field i can modify.. thats it. not soo hard.
         spawnedTabBody = GameObject.Instantiate(spawnTabBodyPrefab);
         spawnedTabBody.name = "spawnedTabBody_"+ choiceId.ToString();
+        //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>();
         spawnedTabBody.transform.SetParent(parentOfBodySpawn.transform, false);
         //spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>().text = tabContent; This should do it.
+
+        //Trigger dialogue in textbox
+        Dialogue dialogue = new Dialogue();
+        //set dialogue text to tabContent
+        string[] s = {tabContent};
+        dialogue.sentences = s; //This wont work!! dialoguetext must remain stored somewhere, permanently
+        //so dialogue manager must get dialogue depending on tab that is OPEN!! not tab spwaned!!
+        //Sol would be to make the spwaned tab a trigger with given dialogue! and immedialty trigger without needing push again!
+        //FindObjectOfType<DialogueManager>().StartDialogue(dialogue, spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>());
 
         //Need to start the conversation in spawnedTabBody!!
         //TODO make the tab have a dialogue and call dialogueManager.StartDialogue with this dialogue!
@@ -59,6 +72,7 @@ public class TabController : MonoBehaviour
 
         //Modify the tab body that the spawned Button will call
         //override previous onTabSwitch call from onClick method
+        //spawnedTabButton.onClick.AddListener(delegate { onTabSwitch(spawnedTabBody); }); //Need to give it ability open spawnedTabBody
         spawnedTabButton.onClick.AddListener(delegate { onTabSwitch(spawnedTabBody); });
 
         //Add new spawned tab to tabs array
