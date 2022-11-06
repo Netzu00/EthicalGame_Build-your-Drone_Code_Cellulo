@@ -10,7 +10,7 @@ IDragHandler, IEndDragHandler {
     [SerializeField] private Canvas canvas;
     private RectTransform rectTransform;
 
-    public int choice_id = 0;
+    public int choice_id = 0; //ID to identify choice, This ID is used to and index for dialogue texts
 
     private CanvasGroup canvasGroup;
 

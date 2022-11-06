@@ -53,7 +53,6 @@ public class GameControler : MonoBehaviour
     public int choice_index = 0; //how many choices have been made
     public DropSlot slot; //slot where choice is dropped into
 
-
     //Tabs
     public TabController tabController;
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
@@ -63,13 +62,7 @@ public class GameControler : MonoBehaviour
     {
         refreshDroneSpecs();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void lockInChoice() {
         Debug.Log("lockInChoice");
         int locked_choice = slot.current_choice;
@@ -80,7 +73,7 @@ public class GameControler : MonoBehaviour
         //Spawn new tab 
         //TODO get text from locked in choice and use that to update here
         //Or maybe easier, just use choiceID to get text to use here like did with he texts
-        tabController.spawnTab(locked_choice.ToString(), "Placeholder Text");
+        tabController.spawnTab(locked_choice.ToString(), "Placeholder spawn text");
         
         //Print list contents for debugging
         string result = "List contents: ";

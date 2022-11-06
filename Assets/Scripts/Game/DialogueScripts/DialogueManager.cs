@@ -9,11 +9,15 @@ public class DialogueManager : MonoBehaviour
     //public TextMeshProUGUI nameText; //Not using for now
     private TextMeshProUGUI dialogueText;
     private Queue<string> sentences; //Load sentences as read through dialog
+
+    
    
     void Start() {
         sentences = new Queue<string>();
     }
 
+    //Here could pass index or something and calc dialogue based on that.. can see if there is any other sol, prob many
+    //could adapt store dialogue in buttons aswell instead of here in the dialogue manager!
     public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
         //Debug.Log("Starting dialogue :" + dialogue.name);
         //nameText.text = dialogue.name;
