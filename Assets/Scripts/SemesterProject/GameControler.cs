@@ -49,34 +49,52 @@ public class GameControler : MonoBehaviour
     public int choice_index = 0; //how many choices have been made
     public DropSlot slot; //slot where choice is dropped into
 
-    //Tabs
+    /* Tabs and dialogues -------------------------------------------------------*/
     public TabController tabController;
-
     //Create array of dialogues that can fill out directly on unity!!! very very pog indeed i know.
-
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;
-
     //TODO modify main tab to use dialogues also!!!
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
     "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
 
+    /*Money System ---------------------------------------------------------------*/
+    public TextMeshProUGUI availableBalanceText;
+    public int availableBalance;
+    public int[] costs = {100, 100, 100, 100, 100, 100, 100};
+
+    // -----------------------------------------------------------------------------
     void Start()
-    {
+    {   availableBalance = 10000;
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
     
     public void lockInChoice() {
         Debug.Log("lockInChoice");
-        int locked_choice = slot.current_choice;
-        locked_choices.Add(locked_choice);
-        //Check if valid choice i.e first must be investor
-        //Last must be "go foward with production/finalize"
-        ////TODO Create The tabs Content aswell and link the button to it
-        //Spawn new tab 
-        //TODO get text from locked in choice and use that to update here
-        //Or maybe easier, just use choiceID to get text to use here like did with he texts
-        tabController.spawnTab(locked_choice.ToString(), choiceFeedbackDialogues[locked_choice]);
+        int locked_choice_id = slot.current_choice;
+        locked_choices.Add(locked_choice_id); // to List of locked choices 
+        //spawn new tab (button and body along with its content)
+        tabController.spawnTab(locked_choice_id.ToString(), choiceFeedbackDialogues[locked_choice_id]);
+        debug_print_list_content();
         
+    
+        updateScrollBarText(locked_choice_id); //update text in main tab
+        refreshDroneSpecs();
+        updateAvailableBalance(locked_choice_id);
+        //TODO launch text belonging to that choice
+        //Debit cost of choice
+        //IF choice is final choice then launch logic
+        //to calculate final outcome.
+    }
+
+    private void updateAvailableBalance(int locked_choice_id) {
+        availableBalance -= costs[locked_choice_id];
+        //availableBalanceText.text = "";
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        //put a END button with no cost.
+    }
+
+    private void debug_print_list_content() {
         //Print list contents for debugging
         string result = "List contents: ";
         foreach (var item in locked_choices)
@@ -84,13 +102,6 @@ public class GameControler : MonoBehaviour
             result += item.ToString() + ", ";
         }
         Debug.Log(result);
-    
-        updateScrollBarText(locked_choice);
-        refreshDroneSpecs();
-        //TODO launch text belonging to that choice
-        //Debit cost of choice
-        //IF choice is final choice then launch logic
-        //to calculate final outcome.
     }
 
     //Contains logic calculate the next text to display in scrollBar
