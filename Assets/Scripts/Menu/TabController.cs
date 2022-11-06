@@ -35,7 +35,7 @@ public class TabController : MonoBehaviour
         }
     }
 
-    public void spawnTab(string locked_choice_text, string tabContent) {
+    public void spawnTab(string locked_choice_text, Dialogue spawned_dialogue) {
         //Spawn a button for the tab
         spawnedTabButton = GameObject.Instantiate(spawnButtonPrefab);
         spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = locked_choice_text;
@@ -51,10 +51,10 @@ public class TabController : MonoBehaviour
 
 
         //Set dialogue triggered by this button with tabContent
-        Dialogue tabDialogue = new Dialogue();
+        /*Dialogue tabDialogue = new Dialogue();
         string[] spawned_sentences = {tabContent};
         Dialogue spawned_dialogue = new Dialogue();
-        spawned_dialogue.sentences = spawned_sentences;
+        spawned_dialogue.sentences = spawned_sentences;*/
         spawnedTabButton.dialogue = spawned_dialogue;
         spawnedTabButton.dialogueTextBox = spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>();
 

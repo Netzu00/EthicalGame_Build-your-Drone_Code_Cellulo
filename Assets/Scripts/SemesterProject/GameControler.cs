@@ -5,12 +5,8 @@ using TMPro;
 using System.Text;
 
 //TODO
-/*
-2) work on the drone info interface, probably will work
-same was the scrollbar but with image and smaller changes
-(more modular)
 
-3)Then pick together a selection method, if use cellulo or not ect..
+/*
 4)Work on Story and make interface much nicer. Thats it..
 5)Writte report and document code
 */
@@ -55,6 +51,12 @@ public class GameControler : MonoBehaviour
 
     //Tabs
     public TabController tabController;
+
+    //Create array of dialogues that can fill out directly on unity!!! very very pog indeed i know.
+
+    [SerializeField] private List<Dialogue> choiceFeedbackDialogues;
+
+    //TODO modify main tab to use dialogues also!!!
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
     "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
 
@@ -73,7 +75,7 @@ public class GameControler : MonoBehaviour
         //Spawn new tab 
         //TODO get text from locked in choice and use that to update here
         //Or maybe easier, just use choiceID to get text to use here like did with he texts
-        tabController.spawnTab(locked_choice.ToString(), "Placeholder spawn text");
+        tabController.spawnTab(locked_choice.ToString(), choiceFeedbackDialogues[locked_choice]);
         
         //Print list contents for debugging
         string result = "List contents: ";

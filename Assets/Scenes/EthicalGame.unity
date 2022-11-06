@@ -4394,6 +4394,28 @@ MonoBehaviour:
   choice_index: 0
   slot: {fileID: 2147380296}
   tabController: {fileID: 2108076385}
+  choiceFeedbackDialogues:
+  - sentences:
+    - choice_id = 0,  Sentence 1
+    - choice_id = 0,  Sentence 1
+  - sentences:
+    - choice_id = 1,  Sentence 1
+    - choice_id = 1,  Sentence 2
+  - sentences:
+    - choice_id = 2,  Sentence 1
+    - choice_id = 2,  Sentence 2
+  - sentences:
+    - choice_id = 3,  Sentence 1
+    - choice_id = 3  Sentence 1
+  - sentences:
+    - choice_id = 1,  Sentence 1
+    - choice_id = 4,  Sentence 2
+  - sentences:
+    - choice_id = 5,  Sentence 1
+    - choice_id = 5,  Sentence 2
+  - sentences:
+    - choice_id = 6,  Sentence 1
+    - choice_id = 6,  Sentence 2
 --- !u!114 &2108076385
 MonoBehaviour:
   m_ObjectHideFlags: 0
