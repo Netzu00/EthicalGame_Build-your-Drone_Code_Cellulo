@@ -4442,6 +4442,7 @@ MonoBehaviour:
   scrollBarText: {fileID: 247523021}
   choice_index: 0
   slot: {fileID: 2147380296}
+  mainTab: {fileID: 1950405663}
   tabController: {fileID: 2108076385}
   choiceFeedbackDialogues:
   - sentences:

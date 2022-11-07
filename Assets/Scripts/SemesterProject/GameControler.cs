@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text;
+using UnityEngine.UI;
 
 //TODO
 
@@ -50,6 +51,8 @@ public class GameControler : MonoBehaviour
     public DropSlot slot; //slot where choice is dropped into
 
     /* Tabs and dialogues -------------------------------------------------------*/
+    public Button mainTab;
+    private int mainTabIndexInLayout;
     public TabController tabController;
     //Array of dialogues 
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
@@ -66,14 +69,13 @@ public class GameControler : MonoBehaviour
     // -----------------------------------------------------------------------------
     void Start()
     {   
+        mainTabIndexInLayout = 1;
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
     
     public void lockInChoice() {
         //reset choice to its original location
-         
-
         DragDrop lastChoice = slot.droppedChoice;
         int locked_choice_id = lastChoice.choice_id;
         string choiceText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
@@ -84,7 +86,10 @@ public class GameControler : MonoBehaviour
         locked_choices.Add(locked_choice_id); // Add to List of locked choices 
         tabController.spawnTab(locked_choice_id, choiceText, choiceFeedbackDialogues[locked_choice_id]);
         debug_print_list_content();
-        
+
+        //Main Tab always displayed the to the right of all other tabs
+        mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
+
         //Update game paramaters and UI
         updateScrollBarText(locked_choice_id); //update text in main tab
         refreshDroneSpecs();
@@ -96,15 +101,15 @@ public class GameControler : MonoBehaviour
     }
 
     private void updateAvailableBalance(int locked_choice_id) {
-        Debug.Log("avaialableBalance choice" + locked_choice_id.ToString());
+        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
         Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
         availableBalance -= costs[locked_choice_id];
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         //put a END button with no cost.
     }
 
+    //Prints list contents for debugging
     private void debug_print_list_content() {
-        //Print list contents for debugging
         string result = "List contents: ";
         foreach (var item in locked_choices)
         {
