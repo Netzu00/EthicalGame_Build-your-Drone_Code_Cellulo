@@ -82,8 +82,8 @@ public class GameControler : MonoBehaviour
         lastChoice.transform.position = lastChoice.original_position;
 
         locked_choices.Add(locked_choice_id); // Add to List of locked choices 
-        tabController.spawnTab(choiceText, choiceFeedbackDialogues[locked_choice_id]);
-        //debug_print_list_content();
+        tabController.spawnTab(locked_choice_id, choiceText, choiceFeedbackDialogues[locked_choice_id]);
+        debug_print_list_content();
         
         //Update game paramaters and UI
         updateScrollBarText(locked_choice_id); //update text in main tab

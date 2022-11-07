@@ -4457,7 +4457,7 @@ MonoBehaviour:
     - choice_id = 3,  Sentence 1
     - choice_id = 3  Sentence 1
   - sentences:
-    - choice_id = 1,  Sentence 1
+    - choice_id = 4,  Sentence 1
     - choice_id = 4,  Sentence 2
   - sentences:
     - choice_id = 5,  Sentence 1
@@ -4465,6 +4465,9 @@ MonoBehaviour:
   - sentences:
     - choice_id = 6,  Sentence 1
     - choice_id = 6,  Sentence 2
+  - sentences:
+    - choice_id = 7,  Sentence 1
+    - choice_id = 7,  Sentence 2
   availableBalanceText: {fileID: 1461679144}
   availableBalance: 5000
   costs: 00000000c8000000c800000064000000e80300000000000000000000

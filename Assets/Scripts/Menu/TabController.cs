@@ -21,7 +21,6 @@ public class TabController : MonoBehaviour
     //Now need to map button text to an index here...
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
     "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
-    private int choiceId = 0; //used to give spawnedTab a name
 
     //Called by the pressed button(with onClick() method), using as argument "tabBody" the body associated with the button
 
@@ -36,7 +35,7 @@ public class TabController : MonoBehaviour
     }
 
     //spawn new tab (button and body along with its content)
-    public void spawnTab(string locked_choice_text, Dialogue spawned_dialogue) {
+    public void spawnTab(int choiceId, string locked_choice_text, Dialogue spawned_dialogue) {
         //Spawn a button for the tab
         spawnedTabButton = GameObject.Instantiate(spawnButtonPrefab);
         spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = locked_choice_text;
@@ -50,10 +49,12 @@ public class TabController : MonoBehaviour
         spawnedTabBody.name = "spawnedTabBody_"+ choiceId.ToString();
         spawnedTabBody.transform.SetParent(parentOfBodySpawn.transform, false);
 
+        //set dialogue and dialogueTextBox that the button will trigger
         spawnedTabButton.dialogue = spawned_dialogue;
-        spawnedTabButton.dialogueTextBox = spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>();
+        spawnedTabButton.dialogueTextBox = spawnedTabBody.GetComponentInChildren<TextMeshProUGUI>(); 
 
         //set spawnedButton to trigger dialogue upon click
+        //might be called with new spawnedTabButton everytime.... so only latest is accessible... idk...
         spawnedTabButton.onClick.AddListener(delegate { spawnedTabButton.TriggerDialogue(); });
         //Modify Button to call correct tab body
         spawnedTabButton.onClick.AddListener(delegate { onTabSwitch(spawnedTabBody); });
