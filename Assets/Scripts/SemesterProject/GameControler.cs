@@ -71,11 +71,16 @@ public class GameControler : MonoBehaviour
     }
     
     public void lockInChoice() {
-        Debug.Log("lockInChoice");
+        //reset choice to its original location
+         
+
         DragDrop lastChoice = slot.droppedChoice;
         int locked_choice_id = lastChoice.choice_id;
         string choiceText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
+        //reset choice card to its original location
+        lastChoice.transform.position = lastChoice.original_position;
+
         locked_choices.Add(locked_choice_id); // Add to List of locked choices 
         tabController.spawnTab(choiceText, choiceFeedbackDialogues[locked_choice_id]);
         //debug_print_list_content();

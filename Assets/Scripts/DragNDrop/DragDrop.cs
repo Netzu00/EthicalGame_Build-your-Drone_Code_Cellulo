@@ -8,15 +8,18 @@ IDragHandler, IEndDragHandler {
 
 
     [SerializeField] private Canvas canvas;
-    private RectTransform rectTransform;
+    public RectTransform rectTransform;
 
     public int choice_id = 0; //ID to identify choice, This ID is used to and index for dialogue texts
 
+    public Vector3 original_position;
     private CanvasGroup canvasGroup;
 
-    private void Awake()
+    private void Start()
     {
+
       rectTransform = GetComponent<RectTransform>();
+      original_position = this.transform.position;
       canvasGroup = GetComponent<CanvasGroup>();
     }
 
