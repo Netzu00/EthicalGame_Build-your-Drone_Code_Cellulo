@@ -51,8 +51,9 @@ public class GameControler : MonoBehaviour
 
     /* Tabs and dialogues -------------------------------------------------------*/
     public TabController tabController;
-    //Create array of dialogues that can fill out directly on unity!!! very very pog indeed i know.
-    [SerializeField] private List<Dialogue> choiceFeedbackDialogues;
+    //Array of dialogues 
+    [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
+    
     //TODO modify main tab to use dialogues also!!!
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
     "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
@@ -71,17 +72,20 @@ public class GameControler : MonoBehaviour
     
     public void lockInChoice() {
         Debug.Log("lockInChoice");
-        int locked_choice_id = slot.current_choice;
-        locked_choices.Add(locked_choice_id); // to List of locked choices 
-        //spawn new tab (button and body along with its content)
-        tabController.spawnTab(locked_choice_id.ToString(), choiceFeedbackDialogues[locked_choice_id]);
-        debug_print_list_content();
+        DragDrop lastChoice = slot.droppedChoice;
+        int locked_choice_id = lastChoice.choice_id;
+        string choiceText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
-    
+        locked_choices.Add(locked_choice_id); // Add to List of locked choices 
+        tabController.spawnTab(choiceText, choiceFeedbackDialogues[locked_choice_id]);
+        //debug_print_list_content();
+        
+        //Update game paramaters and UI
         updateScrollBarText(locked_choice_id); //update text in main tab
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
 
+        //Check if game ended and calculate final outcome
         //IF choice is final choice then launch logic
         //to calculate final outcome.
     }
