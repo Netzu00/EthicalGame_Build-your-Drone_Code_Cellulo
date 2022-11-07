@@ -59,12 +59,12 @@ public class GameControler : MonoBehaviour
 
     /*Money System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
-    public int availableBalance;
-    public int[] costs = {100, 100, 100, 100, 100, 100, 100};
+    public int availableBalance; //set in unity and updated through code
+    public int[] costs; //Costs of each choice, set in unity
 
     // -----------------------------------------------------------------------------
     void Start()
-    {   availableBalance = 10000;
+    {   
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
@@ -81,15 +81,15 @@ public class GameControler : MonoBehaviour
         updateScrollBarText(locked_choice_id); //update text in main tab
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
-        //TODO launch text belonging to that choice
-        //Debit cost of choice
+
         //IF choice is final choice then launch logic
         //to calculate final outcome.
     }
 
     private void updateAvailableBalance(int locked_choice_id) {
+        Debug.Log("avaialableBalance choice" + locked_choice_id.ToString());
+        Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
         availableBalance -= costs[locked_choice_id];
-        //availableBalanceText.text = "";
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         //put a END button with no cost.
     }
