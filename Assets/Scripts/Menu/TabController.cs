@@ -11,12 +11,11 @@ public class TabController : MonoBehaviour
     //For spawning of tab button
     public DialogueTrigger spawnButtonPrefab;
     public GameObject parentOfSpawn;
-    private DialogueTrigger spawnedTabButton;
 
     //For spawning for tab body
     public GameObject parentOfBodySpawn; //to know where to place the tab in the hierarchy
     public GameObject spawnTabBodyPrefab;
-    private GameObject spawnedTabBody; //new obj for spawned body
+ 
     //--
     //Now need to map button text to an index here...
     private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
@@ -36,6 +35,8 @@ public class TabController : MonoBehaviour
 
     //spawn new tab (button and body along with its content)
     public void spawnTab(int choiceId, string locked_choice_text, Dialogue spawned_dialogue) {
+        DialogueTrigger spawnedTabButton;
+        GameObject spawnedTabBody; //new obj for spawned body
         //Spawn a button for the tab
         spawnedTabButton = GameObject.Instantiate(spawnButtonPrefab);
         spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = locked_choice_text;

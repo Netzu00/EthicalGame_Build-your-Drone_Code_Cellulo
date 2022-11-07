@@ -4455,7 +4455,7 @@ MonoBehaviour:
     - choice_id = 2,  Sentence 2
   - sentences:
     - choice_id = 3,  Sentence 1
-    - choice_id = 3  Sentence 1
+    - choice_id = 3  Sentence 2
   - sentences:
     - choice_id = 4,  Sentence 1
     - choice_id = 4,  Sentence 2

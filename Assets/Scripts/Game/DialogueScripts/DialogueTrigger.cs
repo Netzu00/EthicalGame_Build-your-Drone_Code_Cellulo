@@ -11,6 +11,7 @@ public class DialogueTrigger : Button
 
     public void TriggerDialogue () {
         FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
+        Debug.Log("trigger Dialogue of buttom with name: " + this.name);
     }
   
 }
