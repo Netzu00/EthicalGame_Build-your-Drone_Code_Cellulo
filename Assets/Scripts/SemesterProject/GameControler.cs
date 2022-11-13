@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //TODO
 
@@ -21,7 +22,7 @@ using UnityEngine.UI;
 */
 
 //TODO use the choices enum instead of ints
-public enum Choices
+public enum choices
 {
 	None, 
 	DroneExpert,
@@ -29,13 +30,11 @@ public enum Choices
     OnSiteVisit, //nothern ireland lots of rain and WIND! in winter for example
     OnFieldTesting, 
     macroTesting,
+    shipIt,
 }
 public class GameControler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public int max_num_choices = 5; //TODO MAX WILL BE DETERMINED BY BUDGET
     public int budget = 10000; 
-    private const int NUM_CARDS = 5;
     public TextMeshProUGUI droneSpecsText;
     public string droneColor = "white";
     public string droneSize = "30cm";
@@ -63,7 +62,7 @@ public class GameControler : MonoBehaviour
 
     /*Money System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
-    public int availableBalance; //set in unity and updated through code
+    static public int availableBalance = 10000; //set in unity and updated through code
     public int[] costs; //Costs of each choice, set in unity
 
     // -----------------------------------------------------------------------------
@@ -95,9 +94,11 @@ public class GameControler : MonoBehaviour
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
 
-        //Check if game ended and calculate final outcome
-        //IF choice is final choice then launch logic
-        //to calculate final outcome.
+        //Check if game ended, then activate final scene.
+        //TODO HOW TO PASS PARAMS FROM ONE SCENE TO THE NEXT??
+        if(locked_choice_id == (int)choices.shipIt){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
+        }
     }
 
     private void updateAvailableBalance(int locked_choice_id) {
@@ -135,5 +136,4 @@ public class GameControler : MonoBehaviour
 
         droneSpecsText.text = sb.ToString();
     }
-    //TODO private void endingOfGameLogic(){}
 }
