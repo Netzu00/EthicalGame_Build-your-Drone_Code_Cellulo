@@ -36,6 +36,10 @@ public class GameControler : MonoBehaviour
 {
     public int budget = 10000; 
     public TextMeshProUGUI droneSpecsText;
+    public List<string> colorList = new List<string>{"white", "purple", "blue"};
+    public List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
+    public int[] droneSizeRange = {20, 100}; //min and max size range
+    public int[] droneWeightRange = {500, 5000};
     public string droneColor = "white";
     public string droneSize = "30cm";
     public string droneWeight = "1kg";
@@ -128,11 +132,35 @@ public class GameControler : MonoBehaviour
 
     //updates the interface showing teh drone specs 
     private void refreshDroneSpecs(){
-        StringBuilder sb = new StringBuilder("", 200);
-        sb.AppendFormat("Color: {0}\nWeight :{1}\nSize: {2}\nMaterial: {3}\nPrice: {4}\n" + 
-            "Development Cost: {5}\nManufacturing Cost: {6}\nProduction Cost: {7}", 
-            droneColor, droneWeight, droneSize, droneMaterial, dronePrice.ToString(),
-            droneDevelopmentCost.ToString(), droneManufacturingCost.ToString(), droneProductionCost.ToString());
+        StringBuilder sb = new StringBuilder("", 400);
+        sb.AppendFormat("Potential Drone specs: \n");
+        
+        //COLOR RANGE
+        sb.AppendFormat("Color: [");
+        for(int i = 0; i < colorList.Count; i++) {
+            sb.AppendFormat(colorList[i]);
+            if(i < colorList.Count -1) {
+                sb.AppendFormat(", ");
+            }
+        }
+        sb.AppendFormat("]\n");
+
+        //SIZE RANGE
+        sb.AppendFormat("Size [cm]: [" + droneSizeRange[0].ToString() + " " + droneSizeRange[1].ToString() + "]\n");
+        sb.AppendFormat("Weight [g]: [" + droneWeightRange[0].ToString() + " " + droneWeightRange[1].ToString() + "]\n");
+        sb.AppendFormat("Material: ");
+        for(int i = 0; i < materialList.Count; i++) {
+            sb.AppendFormat(materialList[i]);
+            if(i < materialList.Count -1) {
+                sb.AppendFormat(", ");
+            }
+        }
+        sb.AppendFormat("]\n");
+
+        /*sb.AppendFormat("Weight :{1}\nSize: {2}\nMaterial: {3}\nPrice: {4}\n" + 
+            "Development Cost: {5}\nManufacturing Cost: {6}\nProduction Cost: {7}", droneColor, 
+            droneWeight, droneSize, droneMaterial, dronePrice.ToString(),
+            droneDevelopmentCost.ToString(), droneManufacturingCost.ToString(), droneProductionCost.ToString());*/
 
         droneSpecsText.text = sb.ToString();
     }
