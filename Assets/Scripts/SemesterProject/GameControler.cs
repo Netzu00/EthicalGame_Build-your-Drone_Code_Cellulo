@@ -88,6 +88,8 @@ public class GameControler : MonoBehaviour
         //reset choice card to its original location
         lastChoice.transform.position = lastChoice.original_position;
 
+        Debug.Log(locked_choice_id);
+
         locked_choices.Add(locked_choice_id); // Add to List of locked choices 
         tabController.spawnTab(locked_choice_id, choiceCardText, choiceFeedbackDialogues[locked_choice_id]);
         //Main Tab always displayed the to the right of all other tabs
@@ -110,10 +112,18 @@ public class GameControler : MonoBehaviour
         //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
         if(choice_id == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
-            colorList.RemoveAt(0); // 0 white color index
+            for(int i = 0; i < colorList.Count; i++) {
+                if(colorList[i] == "white"){
+                    colorList.RemoveAt(i);
+                }
+            }
         }
         if(choice_id == (int)choices.DroneExpert){
-            colorList.RemoveAt(2); // 0 blue color index
+             for(int i = 0; i < colorList.Count; i++) {
+                if(colorList[i] == "blue"){
+                    colorList.RemoveAt(i);
+                }
+            }
         }
         if(choice_id == (int)choices.OnSiteVisit){
             droneSizeRange[0] = 30;
