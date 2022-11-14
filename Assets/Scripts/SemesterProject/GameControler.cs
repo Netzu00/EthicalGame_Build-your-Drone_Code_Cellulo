@@ -34,7 +34,7 @@ public enum choices
 }
 public class GameControler : MonoBehaviour
 {
-    public int budget = 10000; 
+    //Drone Specs
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
@@ -44,7 +44,13 @@ public class GameControler : MonoBehaviour
     //public int droneManufacturingCost = 0;
     //public int droneProductionCost = 0;
     //public int dronePrice = 0;
+
+    //Main Tab Feedback text
+    public DialogueTrigger EnterButton;
+    public TextMeshProUGUI dialogueTextBox;
     public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
+
+    //Array of locked choice and choice selection objects
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
     public int choice_index = 0; //how many choices have been made
     public DropSlot slot; //slot where choice is dropped into
@@ -77,20 +83,18 @@ public class GameControler : MonoBehaviour
         //reset choice to its original location
         DragDrop lastChoice = slot.droppedChoice;
         int locked_choice_id = lastChoice.choice_id;
-        string choiceText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
+        string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
         //reset choice card to its original location
         lastChoice.transform.position = lastChoice.original_position;
 
         locked_choices.Add(locked_choice_id); // Add to List of locked choices 
-        tabController.spawnTab(locked_choice_id, choiceText, choiceFeedbackDialogues[locked_choice_id]);
-        debug_print_list_content();
-
+        tabController.spawnTab(locked_choice_id, choiceCardText, choiceFeedbackDialogues[locked_choice_id]);
         //Main Tab always displayed the to the right of all other tabs
         mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
 
         //Update game paramaters and UI
-        updateScrollBarText(locked_choice_id); //update text in main tab
+        updateScrollBarText(choiceFeedbackDialogues[locked_choice_id]); //update text in main tab
         updateDroneRanges(locked_choice_id);
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
@@ -141,9 +145,10 @@ public class GameControler : MonoBehaviour
 
     //Contains logic calculate the next text to display in scrollBar
     //Each choice locked in has a according display text
-    private void updateScrollBarText(int locked_choice){
-        Debug.Log(locked_choice);
-        scrollBarText.text = choiceFeedbackTexts[locked_choice];
+    private void updateScrollBarText(Dialogue new_dialogue){
+        EnterButton.dialogueTextBox = this.dialogueTextBox;
+        EnterButton.dialogue = new_dialogue;
+        //scrollBarText.text = choiceFeedbackTexts[locked_choice];
     }
 
     //updates the interface showing teh drone specs 
