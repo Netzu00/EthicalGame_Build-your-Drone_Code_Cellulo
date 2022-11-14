@@ -17,7 +17,7 @@ using UnityEngine.SceneManagement;
 /*
     Most birds dont care about color, except birds of pray will attack
     Could include video of birds attack drone or something during testing! or just a picture
-     multi-colored reflective tape/ or lights discourage bird attacks, aswell as loud sounds(or maybe cat?xd)
+    multi-colored reflective tape/ or lights discourage bird attacks, aswell as loud sounds(or maybe cat?xd)
     //Googly eyes seem to work aswell..juju
 */
 
@@ -36,18 +36,14 @@ public class GameControler : MonoBehaviour
 {
     public int budget = 10000; 
     public TextMeshProUGUI droneSpecsText;
-    public List<string> colorList = new List<string>{"white", "purple", "blue"};
-    public List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
-    public int[] droneSizeRange = {20, 100}; //min and max size range
-    public int[] droneWeightRange = {500, 5000};
-    public string droneColor = "white";
-    public string droneSize = "30cm";
-    public string droneWeight = "1kg";
-    public int droneDevelopmentCost = 0;
-    public int droneManufacturingCost = 0;
-    public int droneProductionCost = 0;
-    public int dronePrice = 0;
-    public string droneMaterial = "carbon fiber composites";
+    public static List<string> colorList = new List<string>{"white", "purple", "blue"};
+    public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
+    public static int[] droneSizeRange = {20, 150}; //min and max size range
+    public static int[] droneWeightRange = {500, 5000};
+    //public int droneDevelopmentCost = 0;
+    //public int droneManufacturingCost = 0;
+    //public int droneProductionCost = 0;
+    //public int dronePrice = 0;
     public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
     public int choice_index = 0; //how many choices have been made
@@ -95,14 +91,34 @@ public class GameControler : MonoBehaviour
 
         //Update game paramaters and UI
         updateScrollBarText(locked_choice_id); //update text in main tab
+        updateDroneRanges(locked_choice_id);
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
 
         //Check if game ended, then activate final scene.
-        //TODO HOW TO PASS PARAMS FROM ONE SCENE TO THE NEXT??
         if(locked_choice_id == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
         }
+    }
+    //Contains all game loics
+    //current ranges: Color/Material, Weight/Size/ Camera
+    private void updateDroneRanges(int choice_id){
+        //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
+        if(choice_id == (int)choices.BirdExpert){
+            //Bird expert ultimately suggest not to make it white
+            colorList.RemoveAt(0); // 0 white color index
+        }
+        if(choice_id == (int)choices.DroneExpert){
+            colorList.RemoveAt(2); // 0 blue color index
+        }
+        if(choice_id == (int)choices.OnSiteVisit){
+            droneSizeRange[0] = 30;
+            droneSizeRange[1] = 60;
+        }
+        if(choice_id == (int)choices.OnFieldTesting){
+            
+        }
+
     }
 
     private void updateAvailableBalance(int locked_choice_id) {
