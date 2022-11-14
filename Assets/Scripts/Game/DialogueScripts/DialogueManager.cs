@@ -8,6 +8,8 @@ public class DialogueManager : MonoBehaviour
 {
     //public TextMeshProUGUI nameText; //Not using for now
     private TextMeshProUGUI dialogueText;
+    private int currentSentence = 0;
+    public bool finishedDialogue = false;
     private Queue<string> sentences; //Load sentences as read through dialog
 
     void Start() {
@@ -17,7 +19,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue, TextMeshProUGUI dialogueTextBox){
         //Debug.Log("Starting dialogue :" + dialogue.name);
         //nameText.text = dialogue.name;
-
+        finishedDialogue = false;
         sentences.Clear(); //clear previous 
         dialogueText = dialogueTextBox;
         foreach(string sentence in dialogue.sentences) {
@@ -29,11 +31,12 @@ public class DialogueManager : MonoBehaviour
     public void DisplayNextSentence() {
         //reach end of queue
         if(sentences.Count == 0) {
+            finishedDialogue = true;
             EndDialogue();
+            
             return;
         } 
         string sentence = sentences.Dequeue();
-
         //Debug.Log(sentence);
         StopAllCoroutines();//Stop if click continue before last coroutine ended
         StartCoroutine(TypeSentence(sentence));
@@ -44,7 +47,7 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         foreach(char letter in sentence.ToCharArray()) {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(0.08f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

@@ -25,15 +25,22 @@ using UnityEngine.SceneManagement;
 public enum choices
 {
 	None, 
-	DroneExpert,
-    BirdExpert, //expert on specific bird
-    OnSiteVisit, //nothern ireland lots of rain and WIND! in winter for example
-    OnFieldTesting, 
-    macroTesting,
-    shipIt,
+	DroneExpert, //1
+    BirdExpert, //expert on specific bird (choice2)
+    TestLocally, //test in backyard (choice id: 3)
+    //OnSiteVisit, //nothern ireland lots of rain and WIND! in winter for example
+    OnFieldTesting, //choice id: 4
+    macroTesting, //choice id: 5
+    shipIt, //choice id: 6
 }
 public class GameControler : MonoBehaviour
 {
+    //TODO perhaps make new script for missionStatementScene so its less cluttered
+    //Intro page 
+    public DialogueTrigger MissionStatementTriggerButton; //TODO try to trigger on awake using text for now try with button
+    public Dialogue MissionStatementDialogue;
+    public TextMeshProUGUI MissionStatementDialogueTextBox;
+
     //Drone Specs
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
@@ -48,6 +55,7 @@ public class GameControler : MonoBehaviour
     //Main Tab Feedback text
     public DialogueTrigger EnterButton;
     public TextMeshProUGUI dialogueTextBox;
+    public Dialogue introDialogue;
     public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
 
     //Array of locked choice and choice selection objects
@@ -73,7 +81,16 @@ public class GameControler : MonoBehaviour
 
     // -----------------------------------------------------------------------------
     void Start()
-    {   
+    {   //Set MissionStatementDialogue
+        if(MissionStatementTriggerButton!= null) {
+              MissionStatementTriggerButton.dialogueTextBox = MissionStatementDialogueTextBox;
+            MissionStatementTriggerButton.dialogue = MissionStatementDialogue;
+            MissionStatementTriggerButton.allowRestart = false;
+        }
+      
+        //Set button to trigger mission statement dialogue
+        //Find a way to load mission statement dialogue open scene loading
+        //Trigger intro dialogue, 
         mainTabIndexInLayout = 1;
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
@@ -96,7 +113,7 @@ public class GameControler : MonoBehaviour
         mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
 
         //Update game paramaters and UI
-        updateScrollBarText(choiceFeedbackDialogues[locked_choice_id]); //update text in main tab
+        updateMainTabText(choiceFeedbackDialogues[locked_choice_id]); //update text in main tab
         updateDroneRanges(locked_choice_id);
         refreshDroneSpecs();
         updateAvailableBalance(locked_choice_id);
@@ -125,14 +142,13 @@ public class GameControler : MonoBehaviour
                 }
             }
         }
-        if(choice_id == (int)choices.OnSiteVisit){
-            droneSizeRange[0] = 30;
-            droneSizeRange[1] = 60;
-        }
         if(choice_id == (int)choices.OnFieldTesting){
             
         }
-
+        if(choice_id == (int)choices.OnFieldTesting){
+            droneSizeRange[0] = 30;
+            droneSizeRange[1] = 60;
+        }
     }
 
     private void updateAvailableBalance(int locked_choice_id) {
@@ -155,10 +171,9 @@ public class GameControler : MonoBehaviour
 
     //Contains logic calculate the next text to display in scrollBar
     //Each choice locked in has a according display text
-    private void updateScrollBarText(Dialogue new_dialogue){
+    private void updateMainTabText(Dialogue new_dialogue){
         EnterButton.dialogueTextBox = this.dialogueTextBox;
         EnterButton.dialogue = new_dialogue;
-        //scrollBarText.text = choiceFeedbackTexts[locked_choice];
     }
 
     //updates the interface showing teh drone specs 
@@ -187,12 +202,6 @@ public class GameControler : MonoBehaviour
             }
         }
         sb.AppendFormat("]\n");
-
-        /*sb.AppendFormat("Weight :{1}\nSize: {2}\nMaterial: {3}\nPrice: {4}\n" + 
-            "Development Cost: {5}\nManufacturing Cost: {6}\nProduction Cost: {7}", droneColor, 
-            droneWeight, droneSize, droneMaterial, dronePrice.ToString(),
-            droneDevelopmentCost.ToString(), droneManufacturingCost.ToString(), droneProductionCost.ToString());*/
-
         droneSpecsText.text = sb.ToString();
     }
 }

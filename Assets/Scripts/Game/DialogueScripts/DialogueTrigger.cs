@@ -9,9 +9,17 @@ public class DialogueTrigger : Button
     public Dialogue dialogue;
     public TextMeshProUGUI dialogueTextBox;
 
+    //dont allow same button to trigger dialogue several times
+    //This fix was implemented to avoid the missionStatementScene continue button to restart dialogue on even click
+    public bool allowRestart = true; //default behavior
+    private bool hasBeenTriggered = false;
+
     public void TriggerDialogue () {
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
-        Debug.Log("trigger Dialogue of buttom with name: " + this.name);
+        if(!hasBeenTriggered || allowRestart) {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
+            hasBeenTriggered = true;
+            Debug.Log("trigger Dialogue of buttom with name: " + this.name);
+        }
     }
   
 }
