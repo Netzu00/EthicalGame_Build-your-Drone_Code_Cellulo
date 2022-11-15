@@ -1146,22 +1146,21 @@ MonoBehaviour:
   MissionStatementTriggerButton: {fileID: 7965487334893722320}
   MissionStatementDialogue:
     sentences:
-    - 'Surveying bird populations allow governmants to take action more accurately
-      and protect bird populations aswell as monitor some effects of larger phenomenon
-      such as climat change.
+    - 'Surveying bird populations allows governments to take action more accurately
+      and protect bird populations as well as monitor some effects of larger phenomenon
+      such as climate change.
 
+      
 
-      As an engineering student you are tasked to
-      create a drone geared towards solving a particular task.
+      As an engineering student, you are
+      tasked to create a drone geared towards solving a particular task.
 
-      It so happens
-      that monitoring bird populations is one of the key applications of drones,
-      as drone''s allow to reduce human disturbance, and also allow to observe birds
-      at a distance and in hard to access areas.
-
-'
-    - "You are thus very excited of the idea of developing this drone, however you
-      are not sure yet on what steps would be necessary for the project and your
+      It
+      so happens that monitoring bird populations is one of the key applications
+      of the drones, as the drone''s allow to reduce human disturbance, and also
+      allow to observe birds at a distance and in hard to access areas.'
+    - "You are thus very excited of the idea about developing this drone, however
+      you are not sure yet on what steps would be necessary for the project and your
       current knowledge about birds and drones is still quite limited. \n\nIn this
       game you will attempt to put together the pieces of the puzzle and make the
       correct design choices to complete the project!."
@@ -1174,10 +1173,10 @@ MonoBehaviour:
 
 
       You are also presented
-      with an drone prototype with potential specificiation ranges which will change
+      with a drone prototype with potential specification ranges which will change
       depending on the choices you make.'
     - 'After each choice you will receive textual feedback on the outcome of your
-      choice and you will see the current specificiation ranges for your drone be
+      choice and you will see the current specification ranges for your drone be
       reduced(on the right hand side of the screen).
 
 
