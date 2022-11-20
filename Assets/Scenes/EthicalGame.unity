@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98c73d7ac7b9547a019eddbbf7eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishedDialogue: 0
 --- !u!4 &734369576
 Transform:
   m_ObjectHideFlags: 0
@@ -393,6 +394,53 @@ PrefabInstance:
     - target: {fileID: 8897274682390054346, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[0]
+      value: Knowing not much about drones you decide to meed with an ornithologist.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[1]
+      value: You have a great conversation about birds.... you says you look like
+        a bird infact and in low key sus ngl fr fr.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[0]
+      value: "You pack your bag and head on a trip to Scotland!. \n\nOnce you arrive
+        you get a good night sleep and prepare to meet with a local birdwatcher the
+        next day to test out your drone."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[1]
+      value: 'The next day has arrive and you head out eager to test our your drone
+        on real seabirds, however you notice the weather forcast predicts some light
+        rain might fall, and you are worried your drone might not withstand it.
+
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[2]
+      value: 'Today you got lucky and the rain was very light, the local birdwatcher
+        informs you that indeed in northern scotland it rains 250 days per year.
+
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[3]
+      value: "Outcome: \nReturning from your trip you decide to learn from this experience
+        and build a wetsuit for your drone, however this will cost your to loose
+        another week of your development time but you believe if you have the time
+        then this wetsuit is definitely worth it.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682973103603, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 222.8013
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682977277776, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

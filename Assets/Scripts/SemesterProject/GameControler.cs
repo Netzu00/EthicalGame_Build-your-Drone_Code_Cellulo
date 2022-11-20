@@ -46,6 +46,7 @@ public class GameControler : MonoBehaviour
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
 
     //Drone Specs
+    private static bool has_wetsuit = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
@@ -159,27 +160,10 @@ public class GameControler : MonoBehaviour
         if(choice_id == (int)choices.OnFieldTesting){
             droneSizeRange[0] = 30;
             droneSizeRange[1] = 60;
+            has_wetsuit = true;
         }
+        
     }
-
-    private void updateAvailableBalance(int locked_choice_id) {
-        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
-        Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
-        availableBalance -= costs[locked_choice_id];
-        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
-        //put a END button with no cost.
-    }
-
-    //Prints list contents for debugging
-    private void debug_print_list_content() {
-        string result = "List contents: ";
-        foreach (var item in locked_choices)
-        {
-            result += item.ToString() + ", ";
-        }
-        Debug.Log(result);
-    }
-
     //Contains logic calculate the next text to display in scrollBar
     //Each choice locked in has a according display text
     private void updateMainTabText(Dialogue new_dialogue){
@@ -213,6 +197,19 @@ public class GameControler : MonoBehaviour
             }
         }
         sb.AppendFormat("]\n");
+        if(has_wetsuit){
+            sb.AppendFormat("Wet suit available\n"); //Surpirse this taxed you an extra week or 2.
+        }
+       
         droneSpecsText.text = sb.ToString();
     }
+
+    private void updateAvailableBalance(int locked_choice_id) {
+        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
+        Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
+        availableBalance -= costs[locked_choice_id];
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        //put a END button with no cost.
+    }
+
 }

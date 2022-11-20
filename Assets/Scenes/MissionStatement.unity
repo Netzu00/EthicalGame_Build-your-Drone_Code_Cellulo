@@ -1150,15 +1150,15 @@ MonoBehaviour:
       and protect bird populations as well as monitor some effects of larger phenomenon
       such as climate change.
 
-      
 
-      As an engineering student, you are
-      tasked to create a drone geared towards solving a particular task.
 
-      It
-      so happens that monitoring bird populations is one of the key applications
-      of the drones, as the drone''s allow to reduce human disturbance, and also
-      allow to observe birds at a distance and in hard to access areas.'
+      As an engineering student, you are tasked
+      to create a drone geared towards solving a particular task.
+
+      It so happens
+      that monitoring bird populations is one of the key applications of the drones,
+      as the drone''s allow to reduce human disturbance, and also allow to observe
+      birds at a distance and in hard to access areas.'
     - "You are thus very excited of the idea about developing this drone, however
       you are not sure yet on what steps would be necessary for the project and your
       current knowledge about birds and drones is still quite limited. \n\nIn this
@@ -1181,17 +1181,20 @@ MonoBehaviour:
 
 
       Once you feel your drone
-      specifications are good you can lock in the "Ship it" choice to receive the
-      final evaluation of your drone!!
+      specifications are good you can lock in the "Ship it" choice to finalize your
+      drone and donate it for real world use on the field!.
 
 
-      Here we go! please enjoy.'
+      Here we go! please
+      enjoy.'
   MissionStatementDialogueTextBox: {fileID: 7965487335813916936}
+  finalDialogueTriggerButton: {fileID: 0}
+  finalOutcomeDialogue:
+    sentences: []
+  finalOutcomeDialogueTextBox: {fileID: 0}
   droneSpecsText: {fileID: 7965487334730594080}
   EnterButton: {fileID: 0}
   dialogueTextBox: {fileID: 7965487335813916936}
-  introDialogue:
-    sentences: []
   scrollBarText: {fileID: 0}
   choice_index: 0
   slot: {fileID: 0}
