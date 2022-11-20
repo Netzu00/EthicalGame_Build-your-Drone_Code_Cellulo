@@ -40,6 +40,10 @@ public class GameControler : MonoBehaviour
     public DialogueTrigger MissionStatementTriggerButton; //TODO try to trigger on awake using text for now try with button
     public Dialogue MissionStatementDialogue;
     public TextMeshProUGUI MissionStatementDialogueTextBox;
+    //Final outcome dialogue box
+    public DialogueTrigger finalDialogueTriggerButton; 
+    public Dialogue finalOutcomeDialogue;
+    public TextMeshProUGUI finalOutcomeDialogueTextBox;
 
     //Drone Specs
     public TextMeshProUGUI droneSpecsText;
@@ -55,7 +59,6 @@ public class GameControler : MonoBehaviour
     //Main Tab Feedback text
     public DialogueTrigger EnterButton;
     public TextMeshProUGUI dialogueTextBox;
-    public Dialogue introDialogue;
     public TextMeshProUGUI scrollBarText; //Contains text currently displayed in scrollBar
 
     //Array of locked choice and choice selection objects
@@ -83,9 +86,17 @@ public class GameControler : MonoBehaviour
     void Start()
     {   //Set MissionStatementDialogue
         if(MissionStatementTriggerButton!= null) {
-              MissionStatementTriggerButton.dialogueTextBox = MissionStatementDialogueTextBox;
+            MissionStatementTriggerButton.dialogueTextBox = MissionStatementDialogueTextBox;
             MissionStatementTriggerButton.dialogue = MissionStatementDialogue;
             MissionStatementTriggerButton.allowRestart = false;
+        }
+
+        //If on final scene setup final trigger with its dialogue
+        if(finalDialogueTriggerButton!= null) {
+            finalDialogueTriggerButton.dialogueTextBox = finalOutcomeDialogueTextBox;
+            //TODO: Compute final dialogue in functions here!!!!!!!!!
+            finalDialogueTriggerButton.dialogue = finalOutcomeDialogue;
+            finalDialogueTriggerButton.allowRestart = false;
         }
       
         //Set button to trigger mission statement dialogue
