@@ -396,17 +396,66 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[1].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[0]
-      value: Knowing not much about drones you decide to meed with an ornithologist.
+      value: Knowing not much about birds you decide to meed with an ornithologist.
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[1]
-      value: You have a great conversation about birds.... you says you look like
-        a bird infact and in low key sus ngl fr fr.
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[1].sentences.Array.data[0]
+      value: As you embark on your project to build your first drone you decide to
+        consult a drone expert who has spent many years building drone's.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[1].sentences.Array.data[1]
+      value: You discuss many aspects about the processes and technicalities of building
+        your own drone. In particular one thing stands out, the expert says to definitely
+        not make your drone blue as he has learnt from experience that blue drones
+        easily get lost in the sky.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[1].sentences.Array.data[2]
+      value: "Outcome: \nAfter the meeting you decide to take the advice, and thus
+        decide to remove the color blue from the considered choices for your drone."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[0]
+      value: Not knowing much about birds you decide to meet with an ornithologist.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[1]
+      value: Upon learning about your drone project the ornithologist suggests that
+        perhaps making the drone white as many drones currently on the market may
+        not be the best idea, since some birds perceive white as an aggressive color
+        and might feel threatened and even attack!
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[2]
+      value: "Outcome: \nAfter the meeting you decide to take the ornithologist's
+        advice, and thus decide to remove the color white from the considered choices
+        for your drone."
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[0]
@@ -416,7 +465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[1]
-      value: 'The next day has arrive and you head out eager to test our your drone
+      value: 'The next day has arrived and you head out eager to test our your drone
         on real seabirds, however you notice the weather forcast predicts some light
         rain might fall, and you are worried your drone might not withstand it.
 
@@ -437,6 +486,22 @@ PrefabInstance:
         and build a wetsuit for your drone, however this will cost your to loose
         another week of your development time but you believe if you have the time
         then this wetsuit is definitely worth it.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682705015865, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 398.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682705015865, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00071183
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682705015866, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_margin.w
+      value: 38.4577
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682705015866, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_margin.z
+      value: 14.127319
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682973103603, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_AnchoredPosition.x
