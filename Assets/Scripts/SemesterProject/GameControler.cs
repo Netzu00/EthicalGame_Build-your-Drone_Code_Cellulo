@@ -51,7 +51,7 @@ public class GameControler : MonoBehaviour
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
     public static int[] droneSizeRange = {20, 150}; //min and max size range
-    public static int[] droneWeightRange = {500, 5000};
+    public static double[] droneWeightRange = {0.5, 10};
     //public int droneDevelopmentCost = 0;
     //public int droneManufacturingCost = 0;
     //public int droneProductionCost = 0;
@@ -188,7 +188,8 @@ public class GameControler : MonoBehaviour
 
         //SIZE RANGE
         sb.AppendFormat("Size [cm]: [" + droneSizeRange[0].ToString() + " " + droneSizeRange[1].ToString() + "]\n");
-        sb.AppendFormat("Weight [g]: [" + droneWeightRange[0].ToString() + " " + droneWeightRange[1].ToString() + "]\n");
+        sb.AppendFormat("Weight [kg]: [" + string.Format("{0:F1}",droneWeightRange[0]) + " - " + 
+                                        string.Format("{0:F1}",droneWeightRange[1]) + "]\n");
         sb.AppendFormat("Material: ");
         for(int i = 0; i < materialList.Count; i++) {
             sb.AppendFormat(materialList[i]);
