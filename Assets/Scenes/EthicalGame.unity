@@ -450,16 +450,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[1]
-      value: Upon learning about your drone project the ornithologist suggests that
+      value: 'Upon learning about your drone project the ornithologist suggests that
         perhaps making the drone white as many drones currently on the market may
         not be the best idea, since some birds perceive white as an aggressive color
         and might feel threatened and even attack!
+
+
+        He also suggest not
+        making the drone too big, because as that might also increase the chance
+        of frightening birds and inciting aggressive or abnormal behaviors.'
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[2]
       value: "Outcome: \nAfter the meeting you decide to take the ornithologist's
         advice, and thus decide to remove the color white from the considered choices
-        for your drone."
+        for your drone, aswell as reduce the maximum size that were you were considering
+        for the final drone.\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[0]

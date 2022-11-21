@@ -9,8 +9,18 @@ using UnityEngine.SceneManagement;
 //TODO
 
 /*
-4)Work on Story and make interface much nicer. Thats it..
-5)Writte report and document code
+W10-11
+4)Work on Story, thats it..
+=> Make more choices and (tweak) how they affect drone specs
+=> Map drone specs to final outcome text, maybe each var gets 1 small paragraph + 1 overall evaluation
+W12
+5)Test with a few players and take notes(1 week) + tweak game a little more
+W13-14
+6)
+=> Program cellulo's to make choices
+=> Make cellulo map and extend cellulo's with light effects
+Xmas holidays
+7)Write report and document code
 */
 
 //General ideas: 
@@ -146,6 +156,7 @@ public class GameControler : MonoBehaviour
                     colorList.RemoveAt(i);
                 }
             }
+             droneSizeRange[1] -= 30;
         }
         if(choice_id == (int)choices.DroneExpert){
              for(int i = 0; i < colorList.Count; i++) {
@@ -154,12 +165,15 @@ public class GameControler : MonoBehaviour
                 }
             }
         }
-        if(choice_id == (int)choices.OnFieldTesting){
+        if(choice_id == (int)choices.TestLocally){
+            droneWeightRange[0] = 1;
+            droneWeightRange[1] = 10;
+            droneSizeRange[0] += 10;
+            //droneSizeRange[1] -= 20;
             
         }
         if(choice_id == (int)choices.OnFieldTesting){
-            droneSizeRange[0] = 30;
-            droneSizeRange[1] = 60;
+            droneSizeRange[0] += 10;
             has_wetsuit = true;
         }
         
