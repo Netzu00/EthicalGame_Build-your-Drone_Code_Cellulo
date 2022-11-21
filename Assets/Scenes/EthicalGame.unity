@@ -323,6 +323,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8897274682147561449, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_text
+      value: 'Test Drone on Location: 500$
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 8897274682161312934, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_Name
       value: Game
@@ -371,6 +377,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8897274682182240059, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_text
+      value: 'Consult Drone Expert: 100$
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 8897274682390054346, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -396,6 +408,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: costs.Array.data[1]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: costs.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: costs.Array.data[4]
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -405,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.size
@@ -413,7 +437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[0].sentences.Array.data[0]
@@ -455,16 +479,21 @@ PrefabInstance:
         not be the best idea, since some birds perceive white as an aggressive color
         and might feel threatened and even attack!
 
-
-        He also suggest not
-        making the drone too big, because as that might also increase the chance
-        of frightening birds and inciting aggressive or abnormal behaviors.'
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[2]
+      value: '
+
+        He also suggest not making the drone too big, because as
+        that might also increase the chance of frightening birds and inciting aggressive
+        or abnormal behaviors.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[2].sentences.Array.data[3]
       value: "Outcome: \nAfter the meeting you decide to take the ornithologist's
         advice, and thus decide to remove the color white from the considered choices
-        for your drone, aswell as reduce the maximum size that were you were considering
+        for your drone, aswell as reduce the maximum size that you were considering
         for the final drone.\n\n\n"
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
@@ -487,7 +516,7 @@ PrefabInstance:
       propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[2]
       value: "Outcome: \nAfter some research you learn that you will have to make
         your drone bigger to accomodate a bigger battery.\n\nThe minimum weight and
-        size of your drone are thus increase in the range specs of your drone"
+        size of your drone are thus increased in the range specs of your drone"
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[0]
@@ -497,8 +526,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[1]
-      value: 'The next day has arrived and you head out eager to test our your drone
-        on real seabirds, however you notice the weather forcast predicts some light
+      value: 'The next day has arrived and you head out eager to test out your drone
+        on real seabirds, however you notice the weather forecast predicts some light
         rain might fall, and you are worried your drone might not withstand it.
 
 
@@ -506,9 +535,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[2]
-      value: 'Today you got lucky and the rain was very light, the local birdwatcher
-        informs you that indeed in northern scotland it rains 250 days per year.
+      value: 'Today you got lucky and the rain was stopped for a couple of hours,
+        the local birdwatcher informs you that indeed in northern scotland it rains
+        250 days per year.
 
+
+        The drone was not able to fly for very long
+        anyway because of its short battery life, and the birdwatcher was dissapointed
+        the experience was soo short.
 
 '
       objectReference: {fileID: 0}
@@ -518,6 +552,14 @@ PrefabInstance:
         and build a wetsuit for your drone, however this will cost your to loose
         another week of your development time but you believe if you have the time
         then this wetsuit is definitely worth it.\n"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[4]
+      value: 'Furthermore, to increase the flight time of your drone, and decide
+        that to further increase its weight and size to accomodate an even bigger
+        battey.
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682705015865, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_SizeDelta.x
@@ -543,6 +585,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 734369575}
+    - target: {fileID: 8897274683251328456, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: m_text
+      value: "Consult Ornytho- \nlogist: 100$"
+      objectReference: {fileID: 0}
     - target: {fileID: 8897274684161935358, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

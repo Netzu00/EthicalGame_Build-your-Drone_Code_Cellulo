@@ -32,6 +32,7 @@ Xmas holidays
 */
 
 //TODO use the choices enum instead of ints
+
 public enum choices
 {
 	None, 
@@ -62,10 +63,6 @@ public class GameControler : MonoBehaviour
     public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
     public static int[] droneSizeRange = {20, 150}; //min and max size range
     public static double[] droneWeightRange = {0.5, 10};
-    //public int droneDevelopmentCost = 0;
-    //public int droneManufacturingCost = 0;
-    //public int droneProductionCost = 0;
-    //public int dronePrice = 0;
 
     //Main Tab Feedback text
     public DialogueTrigger EnterButton;
@@ -83,14 +80,11 @@ public class GameControler : MonoBehaviour
     public TabController tabController;
     //Array of dialogues 
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
-    
-    //TODO modify main tab to use dialogues also!!!
-    private string[] choiceFeedbackTexts = {"None", "Locked in 1", 
-    "locked in 2", "Locked in 3", "Locked in 4", "Locked in 5", "Locked in 6"};
-
+    private string[] finalOutcomeDialogueSentences = {"var 0", "var 1", 
+    "var 2", "var 3", "var 4", "var 5", "var 6", "var 7", "var 8", "var 9", "var 10"};
     /*Money System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
-    static public int availableBalance = 10000; //set in unity and updated through code
+    static public int availableBalance = 1000; //set in unity and updated through code
     public int[] costs; //Costs of each choice, set in unity
 
     // -----------------------------------------------------------------------------
@@ -105,7 +99,7 @@ public class GameControler : MonoBehaviour
         //If on final scene setup final trigger with its dialogue
         if(finalDialogueTriggerButton!= null) {
             finalDialogueTriggerButton.dialogueTextBox = finalOutcomeDialogueTextBox;
-            //TODO: Compute final dialogue in functions here!!!!!!!!!
+            finalOutcomeDialogue = computeOutcomeDialogue();
             finalDialogueTriggerButton.dialogue = finalOutcomeDialogue;
             finalDialogueTriggerButton.allowRestart = false;
         }
@@ -116,6 +110,55 @@ public class GameControler : MonoBehaviour
         mainTabIndexInLayout = 1;
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
+    }
+    //TODO SET SPECS OF FINAL DRONE CHOICES ON THE FINAL DRONE OF THE RIGHT HAND SIDE!!!!!!!!!!!!!!!!!!
+    //TODO THAT NEED TO DECIDE WHICH SPECS WILL KEEP SO CAN DO THAT PROBABLY NEXT WEEK.
+    private Dialogue computeOutcomeDialogue(){
+        Dialogue outcomeDialogue = new Dialogue();
+        //has_wetsuit//colorList = new List<string>{"white", "purple", "blue"};
+        //List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
+        //int[] droneSizeRange = {20, 150}; //min and max size range
+        //double[] droneWeightRange = {0.5, 10};
+        //One if for each var and set 1 of lets say 3 premade texts per var
+        finalOutcomeDialogueSentences[0] =  "Your drone was donated to the the Scottish government go help monitor seabirdshelp\n\n" +
+        "Press continue to receive feedback on your drone.";
+        //IF worse case => program it here
+        if(has_wetsuit) {   
+            finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
+            + " to now be able to conduct our bird observation even in the rough ScottiSsh weather";
+        } else {
+            finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
+            + " to now be able to conduct our bird observation even in the rough Scottish weather";            
+        }
+        //Color: 
+        if(colorList.Contains("blue")) {
+
+        } else if(colorList.Contains("white")) {
+
+        }
+
+        if(droneSizeRange[0] <= 30) {
+            finalOutcomeDialogueSentences[2] = "";
+        }
+        //Weight
+        if(droneWeightRange[0] < 1.0) {
+            finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing the birds however "+
+        "its autonomy is only of 10-15 minutes, it remains a valuable tool but to be used sparingly\n";
+        }else if(droneWeightRange[0] > 1.5) {
+            finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing birds for over 40 minutes\n" +
+            "I am impressed considering other drones usualy die out after about 30 minutes, also its very easy to drive and stable" + 
+            "probably due to its weight being slightly above that of the average drone"; 
+        }
+
+        //
+
+        //Camera
+
+        //Size
+
+        //at final summary (overall) eval paragraph based on all vars
+        outcomeDialogue.sentences = finalOutcomeDialogueSentences;
+        return outcomeDialogue;
     }
     
     public void lockInChoice() {
@@ -136,17 +179,16 @@ public class GameControler : MonoBehaviour
 
         //Update game paramaters and UI
         updateMainTabText(choiceFeedbackDialogues[locked_choice_id]); //update text in main tab
-        updateDroneRanges(locked_choice_id);
-        refreshDroneSpecs();
-        updateAvailableBalance(locked_choice_id);
-
+        if(availableBalance > 0) {
+            updateDroneRanges(locked_choice_id);
+            refreshDroneSpecs();
+            updateAvailableBalance(locked_choice_id);
+        }
         //Check if game ended, then activate final scene.
         if(locked_choice_id == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
         }
     }
-    //Contains all game loics
-    //current ranges: Color/Material, Weight/Size/ Camera
     private void updateDroneRanges(int choice_id){
         //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
         if(choice_id == (int)choices.BirdExpert){
@@ -173,6 +215,7 @@ public class GameControler : MonoBehaviour
             
         }
         if(choice_id == (int)choices.OnFieldTesting){
+            droneWeightRange[0] += 10;
             droneSizeRange[0] += 10;
             has_wetsuit = true;
         }
@@ -204,7 +247,7 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Size [cm]: [" + droneSizeRange[0].ToString() + " " + droneSizeRange[1].ToString() + "]\n");
         sb.AppendFormat("Weight [kg]: [" + string.Format("{0:F1}",droneWeightRange[0]) + " - " + 
                                         string.Format("{0:F1}",droneWeightRange[1]) + "]\n");
-        sb.AppendFormat("Material: ");
+        sb.AppendFormat("Material: [");
         for(int i = 0; i < materialList.Count; i++) {
             sb.AppendFormat(materialList[i]);
             if(i < materialList.Count -1) {
@@ -224,7 +267,6 @@ public class GameControler : MonoBehaviour
         Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
         availableBalance -= costs[locked_choice_id];
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
-        //put a END button with no cost.
     }
 
 }

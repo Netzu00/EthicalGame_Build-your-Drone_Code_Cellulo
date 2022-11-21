@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     public bool finishedDialogue = false;
     private Queue<string> sentences; //Load sentences as read through dialog
 
+    private bool waitTillFinishTyping = false;
+
     void Start() {
         sentences = new Queue<string>();
     }
@@ -36,10 +38,13 @@ public class DialogueManager : MonoBehaviour
             
             return;
         } 
-        string sentence = sentences.Dequeue();
         //Debug.Log(sentence);
-        StopAllCoroutines();//Stop if click continue before last coroutine ended
-        StartCoroutine(TypeSentence(sentence));
+        if(waitTillFinishTyping == false) {
+            waitTillFinishTyping = true;
+            string sentence = sentences.Dequeue();
+            StopAllCoroutines();//Stop if click continue before last coroutine ended
+            StartCoroutine(TypeSentence(sentence));
+        }
     }
 
     //Code for animating the typing of sentence letter by letter
@@ -49,6 +54,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.05f);
         }
+        waitTillFinishTyping = false;
     }
 
     void EndDialogue() {
