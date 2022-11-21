@@ -1164,29 +1164,29 @@ MonoBehaviour:
       current knowledge about birds and drones is still quite limited. \n\nIn this
       game you will attempt to put together the pieces of the puzzle and make the
       correct design choices to complete the project!."
-    - 'Your goal is make a number of choices within your budget until you feel your
-      drone is ready to ship.
+    - 'Your goal is to make a number of choices within your budget until you feel
+      your drone is ready to be used on the field for the purpose of monitoring birds.
 
 
-      You are presented with a budget for the project
-      and several choices, each having a dedicated cost.
+      You
+      are presented with a budget for the project and several choices, each having
+      a dedicated cost.
 
 
-      You are also presented
-      with a drone prototype with potential specification ranges which will change
-      depending on the choices you make.'
-    - 'After each choice you will receive textual feedback on the outcome of your
-      choice and you will see the current specification ranges for your drone be
-      reduced(on the right hand side of the screen).
+      You are also presented with a drone prototype previously
+      develiped by another student, which however is very basic and will need to
+      be modified to fit certain specifications that you must decide upon.
 
 
-      Once you feel your drone
-      specifications are good you can lock in the "Ship it" choice to finalize your
-      drone and donate it for real world use on the field!.
-
-
-      Here we go! please
-      enjoy.'
+      You
+      will be able to see the features, and spec ranges currently being considered
+      for your drone, on the right hand side.'
+    - "After each choice you will receive textual feedback on the outcome of your
+      choice and how it affected your considered drone specifications. \n\nYou will
+      also be able to observe these specification changes on the right hand side
+      of the screen.\n\nOnce you feel your drone specifications are good you can
+      lock in the \"Ship it\" choice to finalize your drone and donate it for real
+      world use on the field!.\n\nHere we go! please enjoy."
   MissionStatementDialogueTextBox: {fileID: 7965487335813916936}
   finalDialogueTriggerButton: {fileID: 0}
   finalOutcomeDialogue:

@@ -408,6 +408,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -456,6 +460,28 @@ PrefabInstance:
       value: "Outcome: \nAfter the meeting you decide to take the ornithologist's
         advice, and thus decide to remove the color white from the considered choices
         for your drone."
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[0]
+      value: 'Its time to test your prototype outside!
+
+        You head to the park
+        and begin calibrating the drone for flight.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[1]
+      value: 'It works! The prototype you have so far is able to fly around however
+        after 10 minutes it begins lacking power and begins its descent.
+
+
+        Unfortunately
+        it seems the battery life is too short.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
+      propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[2]
+      value: "Outcome: \nAfter some research you learn that you will have to make
+        your drone bigger to accomodate a bigger battery.\n\nThe minimum weight and
+        size of your drone are thus increase in the range specs of your drone"
       objectReference: {fileID: 0}
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[4].sentences.Array.data[0]

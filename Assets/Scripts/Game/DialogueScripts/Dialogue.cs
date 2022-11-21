@@ -5,6 +5,6 @@ using UnityEngine;
 //want it show up in inspector
 [System.Serializable]
 public class Dialogue {
-    [TextArea(3,10)] // (min_num_lines, max_num_lines)
+    [TextArea(3,20)] // (min_num_lines, max_num_lines)
     public string[] sentences;
 }
