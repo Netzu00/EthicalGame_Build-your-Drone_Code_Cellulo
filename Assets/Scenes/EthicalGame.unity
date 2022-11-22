@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 8897274682525999284, guid: 531941d4c7e05b344ba0c50cab00bbae, type: 3}
       propertyPath: choiceFeedbackDialogues.Array.data[3].sentences.Array.data[1]
       value: 'It works! The prototype you have so far is able to fly around however
-        after 10 minutes it begins lacking power and begins its descent.
+        after 10 minutes it begins lacking power and starts to descend.
 
 
         Unfortunately

@@ -885,7 +885,8 @@ MonoBehaviour:
     your drone is now ready to be deployed into the real world!
 
 
-
+    Your drone
+    was donated to the the Scottish government go help monitor seabird
 
 
 
@@ -897,7 +898,20 @@ MonoBehaviour:
 
 
     Press
-    continue to see how it performs'
+    continue to receive feedback from the researchers on the performance of your
+    drone.
+
+
+
+
+
+
+
+
+
+
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}
   m_sharedMaterial: {fileID: 9024649423926858605, guid: 0bc1de604b91fb1f4bc8d2beeefe2c74, type: 2}

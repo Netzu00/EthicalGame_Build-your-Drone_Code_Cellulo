@@ -148,6 +148,9 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing birds for over 40 minutes\n" +
             "I am impressed considering other drones usualy die out after about 30 minutes, also its very easy to drive and stable" + 
             "probably due to its weight being slightly above that of the average drone"; 
+        }else {
+            finalOutcomeDialogueSentences[3] = "This drone is capable of flying and observing birds for about 30 minutes, "+
+            "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
         }
 
         //
@@ -208,14 +211,14 @@ public class GameControler : MonoBehaviour
             }
         }
         if(choice_id == (int)choices.TestLocally){
-            droneWeightRange[0] = 1;
+            droneWeightRange[0] += 0.5;
             droneWeightRange[1] = 10;
             droneSizeRange[0] += 10;
             //droneSizeRange[1] -= 20;
             
         }
         if(choice_id == (int)choices.OnFieldTesting){
-            droneWeightRange[0] += 10;
+            droneWeightRange[0] += 0.5;
             droneSizeRange[0] += 10;
             has_wetsuit = true;
         }
