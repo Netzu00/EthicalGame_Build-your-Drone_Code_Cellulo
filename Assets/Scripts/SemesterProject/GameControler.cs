@@ -84,16 +84,22 @@ public class GameControler : MonoBehaviour
     "var 2", "var 3", "var 4", "var 5", "var 6", "var 7", "var 8", "var 9", "var 10"};
 
     /*ACCEPT/REFUSE------------------------------------------------------------------*/
-    int latest_choice_id = 0;
+    public int[] numSubChoices = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; //maps Choices => number of subchoices possible. 
+    //(Necessary to know when to start using accept/refuse buttons)
+    public int latestChoiceId = 0;
+    int subChoiceNum = 0;
     bool accept = false; //record user's choice
     //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
     public Button acceptButton; 
     public Button refuseButton;
 
-    /*Money System ---------------------------------------------------------------*/
+    /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
+    public TextMeshProUGUI remainingTimeText;
+    static public int remainingTime = 14; //number of weeks remaning till project deadline 
     static public int availableBalance = 1000; //set in unity and updated through code
-    public int[] costs; //Costs of each choice, set in unity
+    public int[] subChoiceFinancialCosts; //Costs of each choice, set in unity
+    public int[] subChoiceTimeCosts; //timeCosts of each subchoice, set in Unity
 
     // -----------------------------------------------------------------------------
     void Start()
@@ -114,6 +120,7 @@ public class GameControler : MonoBehaviour
       
         mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
+        remainingTimeText.text = "Remaining time: " + remainingTime.ToString() +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
@@ -175,63 +182,70 @@ public class GameControler : MonoBehaviour
     This is triggered any time a user lock's in a choice by clicking the "enter" button.
     */
     public void lockInChoice() {
+        //TODO cant lock in choice until finished previous choice.
+        subChoiceNum = 0;
         //Get choice locked in choice id and text
         DragDrop lastChoice = slot.droppedChoice;
-        latest_choice_id = lastChoice.choice_id;
+        latestChoiceId = lastChoice.choice_id;
         string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
         //reset choice card to its original location
         lastChoice.transform.position = lastChoice.original_position;
 
-        locked_choices.Add(latest_choice_id); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
+        locked_choices.Add(latestChoiceId); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
 
-        tabController.spawnTab(latest_choice_id, choiceCardText, choiceFeedbackDialogues[latest_choice_id]);
+        tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
         //Main Tab always displayed the to the right of all other tabs
         mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
 
         //Update game paramaters and UI
-        updateMainTabText(choiceFeedbackDialogues[latest_choice_id]); //update text in main tab
+        updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
 
         //Check if game ended, then activate final scene.
-        if(latest_choice_id == (int)choices.shipIt){
+        if(latestChoiceId == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
         }
+    }
+    public void incrementSubChoiceNum() {
+        subChoiceNum++;
     }
     /**
     Updates drone ranges and balance according to latest locked in choice
     Called whenever choice is accepted or refused
     */
     public void updateDroneRangesAndBalance(){
+        //Debug.Log("Calls updateDronRanges");
+        Debug.Log(latestChoiceId);
         if(availableBalance <= 0) {
             return;
         } else{
-            updateAvailableBalance(latest_choice_id);
+            updateAvailableBalanceAndTime(latestChoiceId);
         }
         //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
-        if(latest_choice_id == (int)choices.BirdExpert){
+        if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             for(int i = 0; i < colorList.Count; i++) {
                 if(colorList[i] == "white"){
                     colorList.RemoveAt(i);
                 }
             }
-             droneSizeRange[1] -= 30;
+            droneSizeRange[1] -= 30;
         }
-        if(latest_choice_id == (int)choices.DroneExpert){
+        if(latestChoiceId == (int)choices.DroneExpert){
              for(int i = 0; i < colorList.Count; i++) {
                 if(colorList[i] == "blue"){
                     colorList.RemoveAt(i);
                 }
             }
         }
-        if(latest_choice_id == (int)choices.TestLocally){
+        if(latestChoiceId == (int)choices.TestLocally){
             droneWeightRange[0] += 0.5;
             droneWeightRange[1] = 10;
             droneSizeRange[0] += 10;
             //droneSizeRange[1] -= 20;
             
         }
-        if(latest_choice_id == (int)choices.OnFieldTesting){
+        if(latestChoiceId == (int)choices.OnFieldTesting){
             droneWeightRange[0] += 0.5;
             droneSizeRange[0] += 10;
             has_wetsuit = true;
@@ -282,11 +296,14 @@ public class GameControler : MonoBehaviour
         droneSpecsText.text = sb.ToString();
     }
 
-    private void updateAvailableBalance(int locked_choice_id) {
+    private void updateAvailableBalanceAndTime(int locked_choice_id) {
         Debug.Log("availableBalance choice" + locked_choice_id.ToString());
-        Debug.Log("cost of choice" + costs[locked_choice_id].ToString());
-        availableBalance -= costs[locked_choice_id];
+        Debug.Log("cost of choice" + subChoiceFinancialCosts[locked_choice_id].ToString());
+        remainingTime-= subChoiceTimeCosts[locked_choice_id];
+        availableBalance -= subChoiceFinancialCosts[locked_choice_id];
+        remainingTimeText.text = "Remaining time: " + remainingTime.ToString() +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        
     }
 
 }

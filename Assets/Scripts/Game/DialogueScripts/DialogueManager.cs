@@ -52,7 +52,10 @@ public class DialogueManager : MonoBehaviour
             finishedDialogue = true;
             return;
         } 
-        if(sentences.Count == 1 && isMainTabText) {
+        
+        //If have reached the the texts with possible subchoices and we are in the mainTabText
+        //Then spawn accept and refuse buttons to make the subChoices
+        if(sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] && isMainTabText) {
             spawnRefuseAcceptButtons();
         }
         //Debug.Log(sentence);
@@ -91,16 +94,20 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count > 0){
             continueButton.onClick.Invoke();
             continueButton.gameObject.SetActive(true);
+            gameController.incrementSubChoiceNum();
         }
-        gameController.updateDroneRangesAndBalance();
+         gameController.updateDroneRangesAndBalance();  
+        
     }
 
     public void refuseChanges() {
         if(sentences.Count > 0){
             continueButton.onClick.Invoke();
             continueButton.gameObject.SetActive(true);
+            gameController.incrementSubChoiceNum();
         }
         refuseButton.gameObject.SetActive(false);
         acceptButton.gameObject.SetActive(false);
+        
     }
 }
