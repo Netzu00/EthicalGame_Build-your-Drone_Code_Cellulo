@@ -432,6 +432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98c73d7ac7b9547a019eddbbf7eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  continueButton: {fileID: 7965487334893722320}
+  acceptButton: {fileID: 0}
+  refuseButton: {fileID: 0}
+  gameController: {fileID: 0}
+  isMainTabText: 0
   finishedDialogue: 0
 --- !u!1 &1482558680290629247
 GameObject:
@@ -1196,7 +1201,6 @@ MonoBehaviour:
   EnterButton: {fileID: 0}
   dialogueTextBox: {fileID: 7965487335813916936}
   scrollBarText: {fileID: 0}
-  choice_index: 0
   slot: {fileID: 0}
   mainTab: {fileID: 0}
   tabController: {fileID: 7965487335388429703}
@@ -1225,6 +1229,8 @@ MonoBehaviour:
   - sentences:
     - choice_id = 7,  Sentence 1
     - choice_id = 7,  Sentence 2
+  acceptButton: {fileID: 0}
+  refuseButton: {fileID: 0}
   availableBalanceText: {fileID: 0}
   costs: 00000000c8000000c800000064000000e80300000000000000000000
 --- !u!114 &7965487335388429703
@@ -1342,6 +1348,7 @@ GameObject:
   - component: {fileID: 7965487335388429754}
   - component: {fileID: 7965487335388429702}
   - component: {fileID: 7965487335388429703}
+  - component: {fileID: 7965487335388429758}
   m_Layer: 5
   m_Name: ChoiceSelection
   m_TagString: Untagged
@@ -1349,6 +1356,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7965487335388429758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7965487335388429757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce3b2eea05af2774bb45473991fec140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 1482558680290629246}
 --- !u!114 &7965487335737151110
 MonoBehaviour:
   m_ObjectHideFlags: 0

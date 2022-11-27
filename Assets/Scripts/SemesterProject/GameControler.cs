@@ -71,17 +71,25 @@ public class GameControler : MonoBehaviour
 
     //Array of locked choice and choice selection objects
     List<int> locked_choices = new List<int>(); //List of choices locked in by the players
-    public int choice_index = 0; //how many choices have been made
     public DropSlot slot; //slot where choice is dropped into
 
     /* Tabs and dialogues -------------------------------------------------------*/
+    //public DialogueManager dialogueManager;
     public Button mainTab;
-    private int mainTabIndexInLayout;
+    private int mainTabIndexInLayout; //Used to make sure the "main" tab is always to the right of all tabs
     public TabController tabController;
     //Array of dialogues 
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
     private string[] finalOutcomeDialogueSentences = {"var 0", "var 1", 
     "var 2", "var 3", "var 4", "var 5", "var 6", "var 7", "var 8", "var 9", "var 10"};
+
+    /*ACCEPT/REFUSE------------------------------------------------------------------*/
+    int latest_choice_id = 0;
+    bool accept = false; //record user's choice
+    //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
+    public Button acceptButton; 
+    public Button refuseButton;
+
     /*Money System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     static public int availableBalance = 1000; //set in unity and updated through code
@@ -89,7 +97,7 @@ public class GameControler : MonoBehaviour
 
     // -----------------------------------------------------------------------------
     void Start()
-    {   //Set MissionStatementDialogue
+    {   //Set on MissionStatement scene set up MissionStatementDialogue
         if(MissionStatementTriggerButton!= null) {
             MissionStatementTriggerButton.dialogueTextBox = MissionStatementDialogueTextBox;
             MissionStatementTriggerButton.dialogue = MissionStatementDialogue;
@@ -104,10 +112,8 @@ public class GameControler : MonoBehaviour
             finalDialogueTriggerButton.allowRestart = false;
         }
       
-        //Set button to trigger mission statement dialogue
-        //Find a way to load mission statement dialogue open scene loading
-        //Trigger intro dialogue, 
-        mainTabIndexInLayout = 1;
+        mainTabIndexInLayout = 1; 
+        //Print balance and drone specs 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
@@ -164,37 +170,46 @@ public class GameControler : MonoBehaviour
         return outcomeDialogue;
     }
     
+    /**
+    Manages what happens any time a user lock's in a choice.
+    This is triggered any time a user lock's in a choice by clicking the "enter" button.
+    */
     public void lockInChoice() {
-        //reset choice to its original location
+        //Get choice locked in choice id and text
         DragDrop lastChoice = slot.droppedChoice;
-        int locked_choice_id = lastChoice.choice_id;
+        latest_choice_id = lastChoice.choice_id;
         string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
         //reset choice card to its original location
         lastChoice.transform.position = lastChoice.original_position;
 
-        Debug.Log(locked_choice_id);
+        locked_choices.Add(latest_choice_id); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
 
-        locked_choices.Add(locked_choice_id); // Add to List of locked choices 
-        tabController.spawnTab(locked_choice_id, choiceCardText, choiceFeedbackDialogues[locked_choice_id]);
+        tabController.spawnTab(latest_choice_id, choiceCardText, choiceFeedbackDialogues[latest_choice_id]);
         //Main Tab always displayed the to the right of all other tabs
         mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
 
         //Update game paramaters and UI
-        updateMainTabText(choiceFeedbackDialogues[locked_choice_id]); //update text in main tab
-        if(availableBalance > 0) {
-            updateDroneRanges(locked_choice_id);
-            refreshDroneSpecs();
-            updateAvailableBalance(locked_choice_id);
-        }
+        updateMainTabText(choiceFeedbackDialogues[latest_choice_id]); //update text in main tab
+
+        
         //Check if game ended, then activate final scene.
-        if(locked_choice_id == (int)choices.shipIt){
+        if(latest_choice_id == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
         }
     }
-    private void updateDroneRanges(int choice_id){
+    /**
+    Updates drone ranges and balance according to latest locked in choice
+    Called whenever choice is accepted or refused
+    */
+    public void updateDroneRangesAndBalance(){
+        if(availableBalance <= 0) {
+            return;
+        } else{
+            updateAvailableBalance(latest_choice_id);
+        }
         //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
-        if(choice_id == (int)choices.BirdExpert){
+        if(latest_choice_id == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             for(int i = 0; i < colorList.Count; i++) {
                 if(colorList[i] == "white"){
@@ -203,25 +218,28 @@ public class GameControler : MonoBehaviour
             }
              droneSizeRange[1] -= 30;
         }
-        if(choice_id == (int)choices.DroneExpert){
+        if(latest_choice_id == (int)choices.DroneExpert){
              for(int i = 0; i < colorList.Count; i++) {
                 if(colorList[i] == "blue"){
                     colorList.RemoveAt(i);
                 }
             }
         }
-        if(choice_id == (int)choices.TestLocally){
+        if(latest_choice_id == (int)choices.TestLocally){
             droneWeightRange[0] += 0.5;
             droneWeightRange[1] = 10;
             droneSizeRange[0] += 10;
             //droneSizeRange[1] -= 20;
             
         }
-        if(choice_id == (int)choices.OnFieldTesting){
+        if(latest_choice_id == (int)choices.OnFieldTesting){
             droneWeightRange[0] += 0.5;
             droneSizeRange[0] += 10;
             has_wetsuit = true;
         }
+
+        //display updates
+        refreshDroneSpecs();
         
     }
     //Contains logic calculate the next text to display in scrollBar

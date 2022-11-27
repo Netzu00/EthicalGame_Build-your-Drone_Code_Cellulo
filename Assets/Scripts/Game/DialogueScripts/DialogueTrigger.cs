@@ -16,7 +16,16 @@ public class DialogueTrigger : Button
 
     public void TriggerDialogue () {
         if(!hasBeenTriggered || allowRestart) {
-            FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox);
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox, false);
+            hasBeenTriggered = true;
+            Debug.Log("trigger Dialogue of buttom with name: " + this.name);
+        }
+    }
+
+    //By setting bool to true, we notify that this is the main tab and the spawn accept/refuse feature should be active
+    public void TriggerDialogueMainTab () {
+        if(!hasBeenTriggered || allowRestart) {
+            FindObjectOfType<DialogueManager>().StartDialogue(dialogue, dialogueTextBox, true);
             hasBeenTriggered = true;
             Debug.Log("trigger Dialogue of buttom with name: " + this.name);
         }
