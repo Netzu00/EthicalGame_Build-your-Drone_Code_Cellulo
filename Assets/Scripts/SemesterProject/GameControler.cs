@@ -192,7 +192,6 @@ public class GameControler : MonoBehaviour
         //Update game paramaters and UI
         updateMainTabText(choiceFeedbackDialogues[latest_choice_id]); //update text in main tab
 
-        
         //Check if game ended, then activate final scene.
         if(latest_choice_id == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
