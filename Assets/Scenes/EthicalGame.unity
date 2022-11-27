@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Consult Ornytho- \nlogist: 100$"
+  m_text: "Consult Ornytho- \nlogist: 0.5 Weeks"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3749,7 +3749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 1, y: -12.29937}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1612961519
@@ -3772,7 +3772,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Consult Drone Expert: 100$
+  m_text: 'Consult Drone Expert: 0.5 Weeks
+
 
 '
   m_isRightToLeft: 0
@@ -4425,7 +4426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Test Drone on Location: 500$
+  m_text: 'Test Drone on Location: 1 Week
 
 '
   m_isRightToLeft: 0
@@ -5702,8 +5703,35 @@ MonoBehaviour:
   refuseButton: {fileID: 0}
   availableBalanceText: {fileID: 1461679144}
   remainingTimeText: {fileID: 1822641627}
+  mainChoiceFinancialCosts: 0000000000000000000000000000000000000000000000000000000000000000
+  mainChoiceTimeCosts:
+  - 0
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   subChoiceFinancialCosts: 00000000640000006400000064000000f40100000000000000000000
-  subChoiceTimeCosts: 010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  subChoiceTimeCosts:
+  - 1
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
 --- !u!114 &2108076385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5886,7 +5914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Test drone in backyard: 100$
+  m_text: 'Test drone in backyard: 0.5 Weeks
 
 '
   m_isRightToLeft: 0

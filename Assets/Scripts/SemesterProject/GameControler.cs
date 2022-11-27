@@ -44,6 +44,7 @@ public enum choices
     macroTesting, //choice id: 5
     shipIt, //choice id: 6
 }
+
 public class GameControler : MonoBehaviour
 {
     //TODO perhaps make new script for missionStatementScene so its less cluttered
@@ -84,10 +85,10 @@ public class GameControler : MonoBehaviour
     "var 2", "var 3", "var 4", "var 5", "var 6", "var 7", "var 8", "var 9", "var 10"};
 
     /*ACCEPT/REFUSE------------------------------------------------------------------*/
-    public int[] numSubChoices = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}; //maps Choices => number of subchoices possible. 
+    public int[] numSubChoices; //maps Choices => int representing number of subchoices for this main choice. 
     //(Necessary to know when to start using accept/refuse buttons)
     public int latestChoiceId = 0;
-    int subChoiceNum = 0;
+    int subChoiceNum = 0; //represents the current subchoice withing the main choice
     bool accept = false; //record user's choice
     //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
     public Button acceptButton; 
@@ -96,10 +97,15 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public int remainingTime = 14; //number of weeks remaning till project deadline 
+    static public float remainingTime = 14; //number of weeks remaning till project deadline 
     static public int availableBalance = 1000; //set in unity and updated through code
+    public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
+    public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
+
+    //NOTE can have more then 3 subChoices per choice with this method!!! but that should be more then enough
+    //subChoiceIndex = mainChoiceId * 3 + subChoiceNum
     public int[] subChoiceFinancialCosts; //Costs of each choice, set in unity
-    public int[] subChoiceTimeCosts; //timeCosts of each subchoice, set in Unity
+    public float[] subChoiceTimeCosts; //timeCosts of each subchoice, set in Unity
 
     // -----------------------------------------------------------------------------
     void Start()
@@ -120,7 +126,7 @@ public class GameControler : MonoBehaviour
       
         mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
-        remainingTimeText.text = "Remaining time: " + remainingTime.ToString() +" Weeks"; 
+        remainingTimeText.text = "Remaining time: " +  remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
@@ -183,7 +189,7 @@ public class GameControler : MonoBehaviour
     */
     public void lockInChoice() {
         //TODO cant lock in choice until finished previous choice.
-        subChoiceNum = 0;
+        subChoiceNum = 0; //reset subChoice index
         //Get choice locked in choice id and text
         DragDrop lastChoice = slot.droppedChoice;
         latestChoiceId = lastChoice.choice_id;
@@ -201,11 +207,18 @@ public class GameControler : MonoBehaviour
         //Update game paramaters and UI
         updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
 
+        //update available time and balance due to locking in this main choice
+        updateAvailableBalanceAndTimeForMainChoice(latestChoiceId);
+
         //Check if game ended, then activate final scene.
         if(latestChoiceId == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
         }
     }
+
+    /**
+    Called by DialogueManager when subChoice is accepted or refused
+    */
     public void incrementSubChoiceNum() {
         subChoiceNum++;
     }
@@ -219,7 +232,7 @@ public class GameControler : MonoBehaviour
         if(availableBalance <= 0) {
             return;
         } else{
-            updateAvailableBalanceAndTime(latestChoiceId);
+            updateAvailableBalanceAndTimeForSubChoices(latestChoiceId);
         }
         //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
         if(latestChoiceId == (int)choices.BirdExpert){
@@ -296,14 +309,27 @@ public class GameControler : MonoBehaviour
         droneSpecsText.text = sb.ToString();
     }
 
-    private void updateAvailableBalanceAndTime(int locked_choice_id) {
-        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
-        Debug.Log("cost of choice" + subChoiceFinancialCosts[locked_choice_id].ToString());
-        remainingTime-= subChoiceTimeCosts[locked_choice_id];
-        availableBalance -= subChoiceFinancialCosts[locked_choice_id];
-        remainingTimeText.text = "Remaining time: " + remainingTime.ToString() +" Weeks"; 
+    //Update available time and balance for subchoices
+    private void updateAvailableBalanceAndTimeForSubChoices(int locked_choice_id) {
+        int subChoiceIndex = locked_choice_id * numSubChoices[locked_choice_id] + subChoiceNum;
+        Debug.Log("subChoiceIndex choice" + subChoiceIndex.ToString());
+        Debug.Log("cost of subchoice" + subChoiceFinancialCosts[subChoiceIndex].ToString());
+        remainingTime-= subChoiceTimeCosts[subChoiceIndex];
+        availableBalance -= subChoiceFinancialCosts[subChoiceIndex];
+        remainingTimeText.text = "Remaining time: " + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         
     }
+    //Update available balance and time for main choices
+    private void updateAvailableBalanceAndTimeForMainChoice(int locked_choice_id) {
+        Debug.Log("availableBalance choice" + locked_choice_id.ToString());
+        Debug.Log("cost of choice" + mainChoiceFinancialCosts[locked_choice_id].ToString());
+        remainingTime-= mainChoiceTimeCosts[locked_choice_id];
+        availableBalance -= mainChoiceFinancialCosts[locked_choice_id];
+        remainingTimeText.text = "Remaining time: " + remainingTime.ToString("F1") +" Weeks"; 
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        
+    }
+
 
 }
