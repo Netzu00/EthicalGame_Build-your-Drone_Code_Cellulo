@@ -88,7 +88,7 @@ public class GameControler : MonoBehaviour
     public int[] numSubChoices; //maps Choices => int representing number of subchoices for this main choice. 
     //(Necessary to know when to start using accept/refuse buttons)
     public int latestChoiceId = 0;
-    int subChoiceNum = 0; //represents the current subchoice withing the main choice
+    int acceptedSubChoiceNumber = 0; //represents the current subchoice withing the main choice
     bool accept = false; //record user's choice
     //These buttons spawn when player must make choice of accepting to refusing the proposed changes from the expert
     public Button acceptButton; 
@@ -189,7 +189,7 @@ public class GameControler : MonoBehaviour
     */
     public void lockInChoice() {
         //TODO cant lock in choice until finished previous choice.
-        subChoiceNum = 0; //reset subChoice index
+        acceptedSubChoiceNumber = 0; //reset subChoice index
         //Get choice locked in choice id and text
         DragDrop lastChoice = slot.droppedChoice;
         latestChoiceId = lastChoice.choice_id;
@@ -220,29 +220,34 @@ public class GameControler : MonoBehaviour
     Called by DialogueManager when subChoice is accepted or refused
     */
     public void incrementSubChoiceNum() {
-        subChoiceNum++;
+        acceptedSubChoiceNumber++;
     }
     /**
-    Updates drone ranges and balance according to latest locked in choice
-    Called whenever choice is accepted or refused
+    This method is called whenever a subChoice is accepted
+    Updates drone ranges according to accepted subChoice
+    Called whenever choice is accepted
     */
-    public void updateDroneRangesAndBalance(){
+    public void updateDroneRangesAndResources(){
         //Debug.Log("Calls updateDronRanges");
         Debug.Log(latestChoiceId);
-        if(availableBalance <= 0) {
+        //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice!
+        if(availableBalance <= 0 || remainingTime <= 0) {
             return;
-        } else{
-            updateAvailableBalanceAndTimeForSubChoices(latestChoiceId);
         }
-        //TODO will need to code logic for different "orderings" aswell.... defo need to brainstorm this.
+         
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
-            for(int i = 0; i < colorList.Count; i++) {
-                if(colorList[i] == "white"){
+            if(acceptedSubChoiceNumber == 0) {
+                for(int i = 0; i < colorList.Count; i++) {
+                    if(colorList[i] == "white"){
                     colorList.RemoveAt(i);
+                    }
                 }
+                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+            } else if(acceptedSubChoiceNumber == 1) {
+                droneSizeRange[1] -= 30;
+                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             }
-            droneSizeRange[1] -= 30;
         }
         if(latestChoiceId == (int)choices.DroneExpert){
              for(int i = 0; i < colorList.Count; i++) {
@@ -310,12 +315,9 @@ public class GameControler : MonoBehaviour
     }
 
     //Update available time and balance for subchoices
-    private void updateAvailableBalanceAndTimeForSubChoices(int locked_choice_id) {
-        int subChoiceIndex = locked_choice_id * numSubChoices[locked_choice_id] + subChoiceNum;
-        Debug.Log("subChoiceIndex choice" + subChoiceIndex.ToString());
-        Debug.Log("cost of subchoice" + subChoiceFinancialCosts[subChoiceIndex].ToString());
-        remainingTime-= subChoiceTimeCosts[subChoiceIndex];
-        availableBalance -= subChoiceFinancialCosts[subChoiceIndex];
+    private void updateAvailableBalanceAndTimeForSubChoices(float timeCost, int financialCost) {
+        remainingTime-= timeCost;
+        availableBalance -= financialCost;
         remainingTimeText.text = "Remaining time: " + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         

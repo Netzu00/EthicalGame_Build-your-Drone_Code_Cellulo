@@ -3003,7 +3003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -112.84143, y: -58.04}
+  m_AnchoredPosition: {x: -62, y: -107}
   m_SizeDelta: {x: 104.1665, y: 29.154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1414562994
@@ -5385,7 +5385,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.46511, y: -58.04}
+  m_AnchoredPosition: {x: 73.30655, y: -107.000015}
   m_SizeDelta: {x: 104.1665, y: 29.154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2085017619
@@ -5642,10 +5642,18 @@ MonoBehaviour:
       He also suggest not making the drone too big, because as that might
       also increase the chance of frightening birds and inciting aggressive or abnormal
       behaviors.'
-    - "Outcome: \nAfter the meeting you decide to take the ornithologist's advice,
-      and thus decide to remove the color white from the considered choices for your
-      drone, aswell as reduce the maximum size that you were considering for the
-      final drone.\n\n\n"
+    - "Outcome: \nAfter the meeting with the ornithologist you consider his advice
+      about removing the color white from you considered drone choices.\n\nThis would
+      cost you 25$ and 0.25 weeks of your time to paint the drone.\n\n\n"
+    - "Outcome: \nYou are also considering the ornithologist's advice about the size
+      of your drone. You dont want to scare away the birds.\n\nThis would cost you
+      25$ and 0.25 weeks\n\nDo you accept the advice and reduce the considered size
+      range for your drone?\n\n\n"
+    - 'Please make your next choice.
+
+
+
+'
   - sentences:
     - 'Its time to test your prototype outside!
 
@@ -5715,23 +5723,28 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  subChoiceFinancialCosts: 00000000640000006400000064000000f40100000000000000000000
+  subChoiceFinancialCosts: 0000000000000000000000000000000000000000000000000000000000000000000000001900000019000000000000000000000000000000000000000000000000000000000000000000000000000000
   subChoiceTimeCosts:
-  - 1
-  - 0.5
-  - 0.5
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.25
+  - 0.25
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &2108076385
 MonoBehaviour:
   m_ObjectHideFlags: 0

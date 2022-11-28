@@ -55,8 +55,9 @@ public class DialogueManager : MonoBehaviour
         
         //If have reached the the texts with possible subchoices and we are in the mainTabText
         //Then spawn accept and refuse buttons to make the subChoices
-        if(sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] && isMainTabText) {
-            spawnRefuseAcceptButtons();
+        if(sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1 && isMainTabText) {
+            if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
+                spawnRefuseAcceptButtons();
         }
         //Debug.Log(sentence);
         if(waitTillFinishTyping == false) {
@@ -92,11 +93,11 @@ public class DialogueManager : MonoBehaviour
         refuseButton.gameObject.SetActive(false);
         acceptButton.gameObject.SetActive(false);
         if(sentences.Count > 0){
-            continueButton.onClick.Invoke();
-            continueButton.gameObject.SetActive(true);
-            gameController.incrementSubChoiceNum();
+            continueButton.onClick.Invoke(); //move to next sentence
+            //No need to make continueButton visible again.
         }
-         gameController.updateDroneRangesAndBalance();  
+        gameController.updateDroneRangesAndResources();  //update display of drone Ranges and balance
+        gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
         
     }
 
