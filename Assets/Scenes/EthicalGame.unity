@@ -5637,11 +5637,8 @@ MonoBehaviour:
       feel threatened and even attack!
 
 '
-    - '
-
-      He also suggest not making the drone too big, because as that might
-      also increase the chance of frightening birds and inciting aggressive or abnormal
-      behaviors.'
+    - He also suggest not making the drone too big, because as that might also increase
+      the chance of frightening birds and inciting aggressive or abnormal behaviors.
     - "Outcome: \nAfter the meeting with the ornithologist you consider his advice
       about removing the color white from you considered drone choices.\n\nThis would
       cost you 25$ and 0.25 weeks of your time to paint the drone.\n\n\n"
@@ -5734,28 +5731,6 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  subChoiceFinancialCosts: 0000000000000000000000000000000000000000000000000000000000000000000000001900000019000000000000000000000000000000000000000000000000000000000000000000000000000000
-  subChoiceTimeCosts:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0.25
-  - 0.25
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
 --- !u!114 &2108076385
 MonoBehaviour:
   m_ObjectHideFlags: 0

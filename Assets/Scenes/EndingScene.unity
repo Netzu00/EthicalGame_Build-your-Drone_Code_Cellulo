@@ -306,8 +306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 228.39336, y: 152.21986}
-  m_SizeDelta: {x: 308.5244, y: 25.4501}
+  m_AnchoredPosition: {x: 226.36542, y: 152.21986}
+  m_SizeDelta: {x: 325.2551, y: 25.4501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946840170
 MonoBehaviour:
@@ -556,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 228.39336, y: 120.93022}
+  m_AnchoredPosition: {x: 217.99992, y: 120.93022}
   m_SizeDelta: {x: 308.5244, y: 25.4501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1015980104081612389
@@ -1343,8 +1343,8 @@ MonoBehaviour:
   refuseButton: {fileID: 0}
   availableBalanceText: {fileID: 1015980104081612395}
   remainingTimeText: {fileID: 1946840170}
-  subChoiceFinancialCosts: 
-  subChoiceTimeCosts: 
+  mainChoiceFinancialCosts: 
+  mainChoiceTimeCosts: []
 --- !u!222 &1015980104872989060
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1603,7 +1603,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.5883, y: -117.99556}
+  m_AnchoredPosition: {x: -18, y: -117.99556}
   m_SizeDelta: {x: 398.2461, y: 335.9909}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1015980105255597701
@@ -1766,10 +1766,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e98c73d7ac7b9547a019eddbbf7eead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  continueButton: {fileID: 0}
+  continueButton: {fileID: 1015980104087104706}
   acceptButton: {fileID: 0}
   refuseButton: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 1015980104710347555}
   isMainTabText: 0
   finishedDialogue: 0
 --- !u!4 &1482558680441659434

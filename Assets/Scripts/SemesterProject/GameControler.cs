@@ -101,12 +101,6 @@ public class GameControler : MonoBehaviour
     static public int availableBalance = 1000; //set in unity and updated through code
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
-
-    //NOTE can have more then 3 subChoices per choice with this method!!! but that should be more then enough
-    //subChoiceIndex = mainChoiceId * 3 + subChoiceNum
-    public int[] subChoiceFinancialCosts; //Costs of each choice, set in unity
-    public float[] subChoiceTimeCosts; //timeCosts of each subchoice, set in Unity
-
     // -----------------------------------------------------------------------------
     void Start()
     {   //Set on MissionStatement scene set up MissionStatementDialogue
