@@ -188,6 +188,7 @@ public class GameControler : MonoBehaviour
     This is triggered any time a user lock's in a choice by clicking the "enter" button.
     */
     public void lockInChoice() {
+        
         //TODO cant lock in choice until finished previous choice.
         acceptedSubChoiceNumber = 0; //reset subChoice index
         //Get choice locked in choice id and text
@@ -234,7 +235,17 @@ public class GameControler : MonoBehaviour
         if(availableBalance <= 0 || remainingTime <= 0) {
             return;
         }
-         
+
+        if(latestChoiceId == (int)choices.DroneExpert){
+            if(acceptedSubChoiceNumber == 0){
+                for(int i = 0; i < colorList.Count; i++) {
+                    if(colorList[i] == "blue"){
+                        colorList.RemoveAt(i);
+                    }
+                }
+                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+            }
+        }
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             if(acceptedSubChoiceNumber == 0) {
@@ -249,24 +260,23 @@ public class GameControler : MonoBehaviour
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             }
         }
-        if(latestChoiceId == (int)choices.DroneExpert){
-             for(int i = 0; i < colorList.Count; i++) {
-                if(colorList[i] == "blue"){
-                    colorList.RemoveAt(i);
-                }
+        if(latestChoiceId == (int)choices.TestLocally){
+            if(acceptedSubChoiceNumber == 0) {
+                droneWeightRange[0] += 0.5;
+                droneWeightRange[1] = 10;
+                droneSizeRange[0] += 10;
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
             }
         }
-        if(latestChoiceId == (int)choices.TestLocally){
-            droneWeightRange[0] += 0.5;
-            droneWeightRange[1] = 10;
-            droneSizeRange[0] += 10;
-            //droneSizeRange[1] -= 20;
-            
-        }
         if(latestChoiceId == (int)choices.OnFieldTesting){
-            droneWeightRange[0] += 0.5;
-            droneSizeRange[0] += 10;
-            has_wetsuit = true;
+            if(acceptedSubChoiceNumber == 0) {
+                has_wetsuit = true;
+                updateAvailableBalanceAndTimeForSubChoices((float)1.5, 100);
+            } else if(acceptedSubChoiceNumber == 1) {
+                droneWeightRange[0] += 0.5;
+                droneSizeRange[0] += 10;
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
+            }
         }
 
         //display updates

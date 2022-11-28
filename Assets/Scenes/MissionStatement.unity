@@ -435,7 +435,7 @@ MonoBehaviour:
   continueButton: {fileID: 7965487334893722320}
   acceptButton: {fileID: 0}
   refuseButton: {fileID: 0}
-  gameController: {fileID: 0}
+  gameController: {fileID: 7965487335388429702}
   isMainTabText: 0
   finishedDialogue: 0
 --- !u!1 &1482558680290629247
@@ -1168,7 +1168,7 @@ MonoBehaviour:
       you are not sure yet on what steps would be necessary for the project and your
       current knowledge about birds and drones is still quite limited. \n\nIn this
       game you will attempt to put together the pieces of the puzzle and make the
-      correct design choices to complete the project!."
+      correct design choices to complete the project!.\n"
     - 'Your goal is to make a number of choices within your budget until you feel
       your drone is ready to be used on the field for the purpose of monitoring birds.
 
@@ -1185,7 +1185,9 @@ MonoBehaviour:
 
       You
       will be able to see the features, and spec ranges currently being considered
-      for your drone, on the right hand side.'
+      for your drone, on the right hand side.
+
+'
     - "After each choice you will receive textual feedback on the outcome of your
       choice and how it affected your considered drone specifications. \n\nYou will
       also be able to observe these specification changes on the right hand side
@@ -1229,10 +1231,16 @@ MonoBehaviour:
   - sentences:
     - choice_id = 7,  Sentence 1
     - choice_id = 7,  Sentence 2
+  numSubChoices: 
+  latestChoiceId: 0
   acceptButton: {fileID: 0}
   refuseButton: {fileID: 0}
   availableBalanceText: {fileID: 0}
-  costs: 00000000c8000000c800000064000000e80300000000000000000000
+  remainingTimeText: {fileID: 0}
+  mainChoiceFinancialCosts: 
+  mainChoiceTimeCosts: []
+  subChoiceFinancialCosts: 
+  subChoiceTimeCosts: []
 --- !u!114 &7965487335388429703
 MonoBehaviour:
   m_ObjectHideFlags: 0

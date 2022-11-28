@@ -5665,9 +5665,11 @@ MonoBehaviour:
 
       Unfortunately
       it seems the battery life is too short.'
-    - "Outcome: \nAfter some research you learn that you will have to make your drone
-      bigger to accomodate a bigger battery.\n\nThe minimum weight and size of your
-      drone are thus increased in the range specs of your drone"
+    - "Outcome: \nAfter some research you learn that you would have to make your
+      drone bigger if you like to accomodate a bigger battery for longer flight times.\n\nYou
+      would thus have to increase the minimum weight and size if your drone.\n\nDo
+      you accept these changes?\n\n"
+    - Please make your next choice.
   - sentences:
     - "You pack your bag and head on a trip to Scotland!. \n\nOnce you arrive you
       get a good night sleep and prepare to meet with a local birdwatcher the next
@@ -5688,14 +5690,23 @@ MonoBehaviour:
       was soo short.
 
 '
-    - "Outcome: \nReturning from your trip you decide to learn from this experience
-      and build a wetsuit for your drone, however this will cost your to loose another
-      week of your development time but you believe if you have the time then this
-      wetsuit is definitely worth it.\n"
-    - 'Furthermore, to increase the flight time of your drone, and decide that to
-      further increase its weight and size to accomodate an even bigger battey.
+    - "Outcome: \nReturning from your trip you do some research and discover that
+      \"wetsuits\" a good solution to waterproof drones.\n\nHowever making a wetsuit
+      for your drone would take 2 weeks of your time and a cost of 100$ for the materials
+      \n\nDo you accept to make these changes?\n\n"
+    - 'Outcome:
 
-'
+      You also think perhaps further increasing the flight time
+      for your drone could be beneficial.
+
+
+      This however would incur an extra
+      cost of 50$ for a better battery and 1 week of your time
+
+
+      Do you accept
+      to make these changes?'
+    - Please make your next choice.
   - sentences:
     - choice_id = 5,  Sentence 1
     - choice_id = 5,  Sentence 2

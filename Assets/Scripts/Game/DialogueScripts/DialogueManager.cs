@@ -55,7 +55,7 @@ public class DialogueManager : MonoBehaviour
         
         //If have reached the the texts with possible subchoices and we are in the mainTabText
         //Then spawn accept and refuse buttons to make the subChoices
-        if(sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1 && isMainTabText) {
+        if(isMainTabText && sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1) {
             if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
                 spawnRefuseAcceptButtons();
         }
