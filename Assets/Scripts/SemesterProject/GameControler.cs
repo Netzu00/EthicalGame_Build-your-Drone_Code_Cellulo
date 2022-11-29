@@ -133,25 +133,31 @@ public class GameControler : MonoBehaviour
         //int[] droneSizeRange = {20, 150}; //min and max size range
         //double[] droneWeightRange = {0.5, 10};
         //One if for each var and set 1 of lets say 3 premade texts per var
-        finalOutcomeDialogueSentences[0] =  "Your drone was donated to the the Scottish government go help monitor seabirdshelp\n\n" +
-        "Press continue to receive feedback on your drone.";
+        finalOutcomeDialogueSentences[0] =  "FeedbackTextVAR1.";
         //IF worse case => program it here
         if(has_wetsuit) {   
             finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
-            + " to now be able to conduct our bird observation even in the rough ScottiSsh weather";
+            + " to now be able to conduct our bird observation even in the rough Scottish weather";
         } else {
-            finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
-            + " to now be able to conduct our bird observation even in the rough Scottish weather";            
-        }
+            finalOutcomeDialogueSentences[1] = "Unfortunate that just our the previous drone we had, we are not able to use" + 
+            " it under rainy conditions.";            
+        } 
         //Color: 
         if(colorList.Contains("blue")) {
+             finalOutcomeDialogueSentences[1] = "The color of drone is unfortunate because its color blends in with that of" + 
+             " the sky, i often lose some time trying to find it in the sky.";
 
         } else if(colorList.Contains("white")) {
-
+             finalOutcomeDialogueSentences[1] = "The white color of the drone is easy to spot in the sky however some birds" + 
+             " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
         }
 
         if(droneSizeRange[0] <= 30) {
-            finalOutcomeDialogueSentences[2] = "";
+            finalOutcomeDialogueSentences[2] = "The size of the drone is small and easy to carry!, however on windy days it" 
+            + "its not as stable as previous drones.";
+        } else if(droneSizeRange[0] >= 30) {
+            finalOutcomeDialogueSentences[2] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
+            "would be usefull";
         }
         //Weight
         if(droneWeightRange[0] < 1.0) {
