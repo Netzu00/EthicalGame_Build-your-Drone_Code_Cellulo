@@ -58,6 +58,11 @@ public class GameControler : MonoBehaviour
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
 
     //Drone Specs
+    private static int protoDroneSize = 20;
+    private static double protoDroneWeight = 0.5;
+    private static string protoDroneColor = "white";
+    //TODO: Rename me
+    private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
     private static bool has_wetsuit = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
@@ -137,33 +142,33 @@ public class GameControler : MonoBehaviour
         //IF worse case => program it here
         if(has_wetsuit) {   
             finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
-            + " to now be able to conduct our bird observation even in the rough Scottish weather";
+            + " to now we are able to conduct our bird observation even in the rough Scottish weather";
         } else {
-            finalOutcomeDialogueSentences[1] = "Unfortunate that just our the previous drone we had, we are not able to use" + 
+            finalOutcomeDialogueSentences[1] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
             " it under rainy conditions.";            
         } 
         //Color: 
-        if(colorList.Contains("blue")) {
+        if(protoDroneColor.Equals("Blue")) {
              finalOutcomeDialogueSentences[1] = "The color of drone is unfortunate because its color blends in with that of" + 
              " the sky, i often lose some time trying to find it in the sky.";
 
-        } else if(colorList.Contains("white")) {
+        } else if(protoDroneColor.Equals("White")) {
              finalOutcomeDialogueSentences[1] = "The white color of the drone is easy to spot in the sky however some birds" + 
              " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
         }
 
-        if(droneSizeRange[0] <= 30) {
+        if(protoDroneSize <= 30) {
             finalOutcomeDialogueSentences[2] = "The size of the drone is small and easy to carry!, however on windy days it" 
             + "its not as stable as previous drones.";
-        } else if(droneSizeRange[0] >= 30) {
+        } else if(protoDroneSize >= 30) {
             finalOutcomeDialogueSentences[2] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be usefull";
         }
         //Weight
-        if(droneWeightRange[0] < 1.0) {
+        if(protoDroneWeight < 1.0) {
             finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing the birds however "+
         "its autonomy is only of 10-15 minutes, it remains a valuable tool but to be used sparingly\n";
-        }else if(droneWeightRange[0] > 1.5) {
+        }else if(protoDroneWeight > 1.5) {
             finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing birds for over 40 minutes\n" +
             "I am impressed considering other drones usualy die out after about 30 minutes, also its very easy to drive and stable" + 
             "probably due to its weight being slightly above that of the average drone"; 
@@ -171,9 +176,6 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[3] = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
         }
-
-        //
-
         //Camera
 
         //Size
@@ -188,7 +190,6 @@ public class GameControler : MonoBehaviour
     This is triggered any time a user lock's in a choice by clicking the "enter" button.
     */
     public void lockInChoice() {
-        
         //TODO cant lock in choice until finished previous choice.
         acceptedSubChoiceNumber = 0; //reset subChoice index
         //Get choice locked in choice id and text
@@ -228,6 +229,12 @@ public class GameControler : MonoBehaviour
     Updates drone ranges according to accepted subChoice
     Called whenever choice is accepted
     */
+
+
+
+
+    //TODO should change outcome texts for example: 
+    //Do you wish to reduce the current size of your drone ? yes.., no..
     public void updateDroneRangesAndResources(){
         //Debug.Log("Calls updateDronRanges");
         Debug.Log(latestChoiceId);
@@ -236,6 +243,8 @@ public class GameControler : MonoBehaviour
             return;
         }
 
+        //TODO now drone expert feedback changes, from
+        //dont make it white, to "Because of this issue.... i suggest this color"
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){
                 for(int i = 0; i < colorList.Count; i++) {
@@ -256,15 +265,14 @@ public class GameControler : MonoBehaviour
                 }
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             } else if(acceptedSubChoiceNumber == 1) {
-                droneSizeRange[1] -= 30;
+                protoDroneSize -= 30;
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             }
         }
         if(latestChoiceId == (int)choices.TestLocally){
             if(acceptedSubChoiceNumber == 0) {
-                droneWeightRange[0] += 0.5;
-                droneWeightRange[1] = 10;
-                droneSizeRange[0] += 10;
+                protoDroneWeight += 0.5;
+                protoDroneSize += 10;
                 updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
             }
         }
@@ -273,8 +281,8 @@ public class GameControler : MonoBehaviour
                 has_wetsuit = true;
                 updateAvailableBalanceAndTimeForSubChoices((float)1.5, 100);
             } else if(acceptedSubChoiceNumber == 1) {
-                droneWeightRange[0] += 0.5;
-                droneSizeRange[0] += 10;
+                protoDroneWeight += 0.5;
+                protoDroneSize += 10;
                 updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
             }
         }
@@ -293,34 +301,14 @@ public class GameControler : MonoBehaviour
     //updates the interface showing teh drone specs 
     private void refreshDroneSpecs(){
         StringBuilder sb = new StringBuilder("", 400);
-        sb.AppendFormat("Potential Drone specs: \n");
-        
-        //COLOR RANGE
-        sb.AppendFormat("Color: [");
-        for(int i = 0; i < colorList.Count; i++) {
-            sb.AppendFormat(colorList[i]);
-            if(i < colorList.Count -1) {
-                sb.AppendFormat(", ");
-            }
-        }
-        sb.AppendFormat("]\n");
-
-        //SIZE RANGE
-        sb.AppendFormat("Size [cm]: [" + droneSizeRange[0].ToString() + " " + droneSizeRange[1].ToString() + "]\n");
-        sb.AppendFormat("Weight [kg]: [" + string.Format("{0:F1}",droneWeightRange[0]) + " - " + 
-                                        string.Format("{0:F1}",droneWeightRange[1]) + "]\n");
-        sb.AppendFormat("Material: [");
-        for(int i = 0; i < materialList.Count; i++) {
-            sb.AppendFormat(materialList[i]);
-            if(i < materialList.Count -1) {
-                sb.AppendFormat(", ");
-            }
-        }
-        sb.AppendFormat("]\n");
+        sb.AppendFormat("Prototype drone specs: \n");
+        sb.AppendFormat("Color: " + protoDroneColor + " \n");
+        sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
+        sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
+        sb.AppendFormat("Material: " + protoMaterial + " \n");
         if(has_wetsuit){
-            sb.AppendFormat("Wet suit available\n"); //Surpirse this taxed you an extra week or 2.
-        }
-       
+            sb.AppendFormat("Wet suit available\n"); 
+        } 
         droneSpecsText.text = sb.ToString();
     }
 
