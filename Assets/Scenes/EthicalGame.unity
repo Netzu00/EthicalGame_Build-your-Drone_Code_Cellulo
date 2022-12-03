@@ -5633,14 +5633,14 @@ MonoBehaviour:
     - 
     - 
   - sentences:
-    - As you embark on your project to build your first drone you decide to consult
-      a drone expert who has spent many years building drone's.
-    - You discuss many aspects about the processes and technicalities of building
-      your own drone. In particular one thing stands out, the expert says to definitely
-      not make your drone blue as he has learnt from experience that blue drones
-      easily get lost in the sky.
+    - "A professor whose research involves drones agrees to meet with you to talk
+      about your drone. He points out that blue coloured drones are hard to see against
+      the sky. \r\nHe also says that people unfamiliar with drones are often hesitant
+      to start using one, so he recommends providing a complete user manual for the
+      drone. \r\n"
     - "Outcome: \nAfter the meeting you decide to take the advice, and thus decide
       to remove the color blue from the considered choices for your drone."
+    - Please make your next choice.
   - sentences:
     - Not knowing much about birds you decide to meet with an ornithologist.
     - 'Upon learning about your drone project the ornithologist suggests that perhaps

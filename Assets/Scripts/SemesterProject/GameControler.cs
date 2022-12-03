@@ -60,7 +60,7 @@ public class GameControler : MonoBehaviour
     //Drone Specs
     private static int protoDroneSize = 20;
     private static double protoDroneWeight = 0.5;
-    private static string protoDroneColor = "white";
+    private static string protoDroneColor = "Blue";
     //TODO: Rename me
     private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
     private static bool has_wetsuit = false;
@@ -155,6 +155,8 @@ public class GameControler : MonoBehaviour
         } else if(protoDroneColor.Equals("White")) {
              finalOutcomeDialogueSentences[1] = "The white color of the drone is easy to spot in the sky however some birds" + 
              " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
+        } else if(protoDroneColor.Equals("Purple")){
+             finalOutcomeDialogueSentences[1] = "TODO: write text for purple drone colo" ;  
         }
 
         if(protoDroneSize <= 30) {
@@ -224,17 +226,14 @@ public class GameControler : MonoBehaviour
     public void incrementSubChoiceNum() {
         acceptedSubChoiceNumber++;
     }
+
+    //TODO should change outcome texts for example: 
+    //Do you wish to reduce the current size of your drone ? yes.., no..
     /**
     This method is called whenever a subChoice is accepted
     Updates drone ranges according to accepted subChoice
     Called whenever choice is accepted
     */
-
-
-
-
-    //TODO should change outcome texts for example: 
-    //Do you wish to reduce the current size of your drone ? yes.., no..
     public void updateDroneRangesAndResources(){
         //Debug.Log("Calls updateDronRanges");
         Debug.Log(latestChoiceId);
@@ -247,22 +246,13 @@ public class GameControler : MonoBehaviour
         //dont make it white, to "Because of this issue.... i suggest this color"
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){
-                for(int i = 0; i < colorList.Count; i++) {
-                    if(colorList[i] == "blue"){
-                        colorList.RemoveAt(i);
-                    }
-                }
+                protoDroneColor = "White"; //TODO how to let user make this choice?
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             }
         }
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             if(acceptedSubChoiceNumber == 0) {
-                for(int i = 0; i < colorList.Count; i++) {
-                    if(colorList[i] == "white"){
-                    colorList.RemoveAt(i);
-                    }
-                }
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
             } else if(acceptedSubChoiceNumber == 1) {
                 protoDroneSize -= 30;

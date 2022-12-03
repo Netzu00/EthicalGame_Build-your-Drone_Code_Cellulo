@@ -1151,49 +1151,37 @@ MonoBehaviour:
   MissionStatementTriggerButton: {fileID: 7965487334893722320}
   MissionStatementDialogue:
     sentences:
-    - 'Surveying bird populations allows governments to take action more accurately
-      and protect bird populations as well as monitor some effects of larger phenomenon
-      such as climate change.
-
-
-
-      As an engineering student, you are tasked
-      to create a drone geared towards solving a particular task.
-
-      It so happens
-      that monitoring bird populations is one of the key applications of drones,
-      as the drone''s allow to reduce human disturbance, and also allow to observe
-      birds at a distance and in hard to access areas.'
-    - "You are thus very excited of the idea about developing this drone, however
-      you are not sure yet on what steps would be necessary for the project and your
-      current knowledge about birds and drones is still quite limited. \n\nIn this
-      game you will attempt to put together the pieces of the puzzle and make the
-      correct design choices to complete the project!.\n"
-    - 'Your goal is to make a number of choices within your budget until you feel
-      your drone is ready to be used on the field for the purpose of monitoring birds.
-
-
-      You
-      are presented with a budget for the project and several choices, each having
-      a dedicated cost.
-
-
-      You are also presented with a drone prototype previously
-      developed by another student, which however is very basic and will need to
-      be modified to fit certain specifications that you must decide upon.
-
-
-      You
-      will be able to see the features, and spec ranges currently being considered
-      for your drone, on the right hand side.
-
-'
-    - "After each choice you will receive textual feedback on the outcome of your
-      choice and how it affected your considered drone specifications. \n\nYou will
-      also be able to observe these specification changes on the right hand side
-      of the screen.\n\nOnce you feel your drone specifications are good you can
-      lock in the \"Ship it\" choice to finalize your drone and donate it for real
-      world use on the field!.\n\nHere we go! please enjoy."
+    - "Surveying bird populations allows scientists to monitor migrations, feeding
+      patterns and hatchlings as well as the effects of larger phenomena such as
+      climate change. This enables them to make recommendations for how to better
+      protect bird populations.\r\n\n\nAs an engineering student, your project this
+      semester involves designing  a drone geared towards solving a particular task.
+      \r\nIt so happens that monitoring bird populations is one of the key applications
+      of drones, due to their capacity to observe birds at a distance, access hard
+      to reach areas and reduce human disturbance in the environment.\r\n"
+    - "You are thus very excited about the idea of developing this drone, while also
+      recognising that your current knowledge about birds and drones is still quite
+      limited. \r\n\nIn this game you will attempt to put together the pieces of
+      the puzzle and make design choices that produce a drone well suited to the
+      researchers who will use it for bird observations.\r\n\n"
+    - "Your goal is to make a number of choices within your budget until you feel
+      your drone is ready to be used by researchers in the field for the purpose
+      of monitoring birds.\r\n\nYou have 14 weeks (a semester) and a 300 chf budget. 
+      The teacher provides you with a basic drone prototype that will serve as a
+      starting point for your project.  \n\nThroughout the game you will strive to
+      update this prototype to fit certain specifications that you must will develop..\r\n\nThe
+      current specs of your drone are visibile on the right hand side of the game
+      screen. \n"
+    - "You will be presented with different actions, each requiring a certain investment
+      of time or money, to gather information and develop your drone design.\n\nAfter
+      each choice, you will receive information about the outcome of your action 
+      and decide whether you should adapt your drone prototype\u2019s specifications.\n\nAny
+      changes you make will be visible in the drone specifications shown on the right
+      hand side of the screen.\r\n\n"
+    - "Once you feel your drone design is sufficient (or you run out of time), choose
+      the \u201CShip it\u201D choice to finalize your drone and send it to the ornithologists
+      (bird researchers) who will use it in the field!\r\n\r\nHere we go! And have
+      fun.\r\n"
   MissionStatementDialogueTextBox: {fileID: 7965487335813916936}
   finalDialogueTriggerButton: {fileID: 0}
   finalOutcomeDialogue:
@@ -1239,8 +1227,6 @@ MonoBehaviour:
   remainingTimeText: {fileID: 0}
   mainChoiceFinancialCosts: 
   mainChoiceTimeCosts: []
-  subChoiceFinancialCosts: 
-  subChoiceTimeCosts: []
 --- !u!114 &7965487335388429703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,8 +1573,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.3807, y: 6.361}
-  m_SizeDelta: {x: 377.7079, y: 331.77}
+  m_AnchoredPosition: {x: -5.3807, y: 16.4917}
+  m_SizeDelta: {x: 377.7079, y: 287.1948}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7965487335888609016
 GameObject:
