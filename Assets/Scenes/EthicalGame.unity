@@ -5652,21 +5652,33 @@ MonoBehaviour:
     - Please make your next choice.
   - sentences:
     - Not knowing much about birds you decide to meet with an ornithologist.
-    - 'Upon learning about your drone project the ornithologist suggests that perhaps
-      making the drone white as many drones currently on the market may not be the
-      best idea, since some birds perceive white as an aggressive color and might
-      feel threatened and even attack!
+    - "Upon learning about your drone project, the ornithologist says that while
+      many drones currently on the market are white, this may not be the best idea
+      since some birds perceive white as an aggressive color. This may increase the
+      chances that the birds  feel threatened and some could even attack the drone!
+      Apparently purple is a more acceptable color for birds. \n"
+    - She also suggests not making the drone too noisy, because that might also increase
+      the chance of frightening birds and inciting aggressive or abnormal behaviors.
+    - "Decision1 :\n\nAfter the meeting with the ornithologist, you consider her
+      advice about the color of drones. \r\n\nBuying purple paint and repainting
+      would cost you 50  CHFand 0.5 weeks of your time.\n\n\n"
+    - 'Decision 2:
+
+
+      You are also considering the ornithologist''s advice about
+      the noise of your drone. You dont want to scare away the birds.
+
+
+      This
+      would cost you 25$ and 0.25 weeks
+
+
+      Do you accept the advice and reduce
+      the considered size range for your drone?
+
+
 
 '
-    - He also suggest not making the drone too big, because as that might also increase
-      the chance of frightening birds and inciting aggressive or abnormal behaviors.
-    - "Outcome: \nAfter the meeting with the ornithologist you consider his advice
-      about removing the color white from you considered drone choices.\n\nThis would
-      cost you 25$ and 0.25 weeks of your time to paint the drone.\n\n\n"
-    - "Outcome: \nYou are also considering the ornithologist's advice about the size
-      of your drone. You dont want to scare away the birds.\n\nThis would cost you
-      25$ and 0.25 weeks\n\nDo you accept the advice and reduce the considered size
-      range for your drone?\n\n\n"
     - 'Please make your next choice.
 
 
