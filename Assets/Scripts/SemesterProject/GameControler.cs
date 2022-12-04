@@ -64,6 +64,7 @@ public class GameControler : MonoBehaviour
     //TODO: Rename me
     private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
     private static bool has_wetsuit = false;
+    private static bool has_manual = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
@@ -140,13 +141,6 @@ public class GameControler : MonoBehaviour
         //One if for each var and set 1 of lets say 3 premade texts per var
         finalOutcomeDialogueSentences[0] =  "FeedbackTextVAR1.";
         //IF worse case => program it here
-        if(has_wetsuit) {   
-            finalOutcomeDialogueSentences[1] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
-            + " to now we are able to conduct our bird observation even in the rough Scottish weather";
-        } else {
-            finalOutcomeDialogueSentences[1] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
-            " it under rainy conditions.";            
-        } 
         //Color: 
         if(protoDroneColor.Equals("Blue")) {
              finalOutcomeDialogueSentences[1] = "The color of drone is unfortunate because its color blends in with that of" + 
@@ -178,6 +172,22 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[3] = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
         }
+
+        if(has_wetsuit) {   
+            finalOutcomeDialogueSentences[4] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
+            + " to now we are able to conduct our bird observation even in the rough Scottish weather";
+        } else {
+            finalOutcomeDialogueSentences[4] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
+            " it under rainy conditions.";            
+        }
+
+        if(has_manual) {   
+            finalOutcomeDialogueSentences[5] = "Researchers say “Manuel was super useful, allowing new people to pick it up quickly. " 
+            + "Although terminology was a bit technical, so they added in some of their own definitions to make it more accessible";
+        } else {
+            finalOutcomeDialogueSentences[5] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
+            + "we will see if those starting next year also will.";            
+        } 
         //Camera
 
         //Size
@@ -242,12 +252,14 @@ public class GameControler : MonoBehaviour
             return;
         }
 
-        //TODO now drone expert feedback changes, from
-        //dont make it white, to "Because of this issue.... i suggest this color"
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){
                 protoDroneColor = "White"; //TODO how to let user make this choice?
                 updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+            }
+            if(acceptedSubChoiceNumber == 1){
+                has_manual = true;
+                updateAvailableBalanceAndTimeForSubChoices((float)2, 0);
             }
         }
         if(latestChoiceId == (int)choices.BirdExpert){
@@ -298,6 +310,9 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Material: " + protoMaterial + " \n");
         if(has_wetsuit){
             sb.AppendFormat("Wet suit available\n"); 
+        } 
+        if(has_manual){
+            sb.AppendFormat("Drone Manual available\n"); 
         } 
         droneSpecsText.text = sb.ToString();
     }

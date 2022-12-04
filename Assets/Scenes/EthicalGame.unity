@@ -5638,8 +5638,17 @@ MonoBehaviour:
       the sky. \r\nHe also says that people unfamiliar with drones are often hesitant
       to start using one, so he recommends providing a complete user manual for the
       drone. \r\n"
-    - "Outcome: \nAfter the meeting you decide to take the advice, and thus decide
-      to remove the color blue from the considered choices for your drone."
+    - 'Decisions 1:
+
+      After the meeting you wonder if you should take the experts
+      advice and perhaps repaint the drone to white?'
+    - 'Decision 2:
+
+      The expert suggested making a manual for your drone.
+
+
+      Do
+      you spend 2 weeks writing a comprehensive manual for your drone?'
     - Please make your next choice.
   - sentences:
     - Not knowing much about birds you decide to meet with an ornithologist.
@@ -5725,7 +5734,7 @@ MonoBehaviour:
   - sentences:
     - choice_id = 7,  Sentence 1
     - choice_id = 7,  Sentence 2
-  numSubChoices: 00000000010000000200000001000000020000000100000001000000010000000100000001000000
+  numSubChoices: 00000000020000000200000001000000020000000100000001000000010000000100000001000000
   latestChoiceId: 0
   acceptButton: {fileID: 0}
   refuseButton: {fileID: 0}
