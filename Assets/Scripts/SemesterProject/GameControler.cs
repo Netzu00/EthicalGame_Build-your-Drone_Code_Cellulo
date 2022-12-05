@@ -194,14 +194,16 @@ public class GameControler : MonoBehaviour
         } 
 
         if(protoPropellerMaterial == "Plastic"){
-            finalOutcomeDialogueSentences[6] = "The propellers of the drone make alot of noise, and on occasion seems to scare off" + 
-            " or disturb some of the birds, however the flexibility of the propellers is great as they would'nt hurt wildlife in case of" +
-            " a collision or crash.";
+            finalOutcomeDialogueSentences[6] = "The plastic propellers of the drone make alot of noise, and on occasion seems to scare off" + 
+            " or disturb some of the birds, however the flexibility of the propellers makes the drone less dangerous in case of a collision"
+            +" with a bird.";
         } else if(protoPropellerMaterial == "Carbon Fiber"){
             finalOutcomeDialogueSentences[6] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
-            " plastic ones, and we need to be really careful flaying it too close, as they could easily seriously injure a bird who decides to" +
+            " plastic ones, and we need to be really careful flying it too close, as they could easily seriously injure a bird who decides to" +
             " attack or fly too close to the drone.";            
-        }    
+        } else if(protoPropellerMaterial == "Wood"){
+            finalOutcomeDialogueSentences[6] = "Wood propeller"; 
+        }
         
         //TODO
         if(has_foldable_propellers) {
@@ -318,10 +320,10 @@ public class GameControler : MonoBehaviour
         }
 
         if(latestChoiceId == (int)choices.resevoirDirector){
-            if(acceptedSubChoiceNumber == 0) { 
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 1);
-            } else if(acceptedSubChoiceNumber == 1) { //Make drone ligher for transportability?
-                //TODO
+            if(acceptedSubChoiceNumber == 0) { //take director insight and use wood propeller
+                protoPropellerMaterial = "Wood";
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 50);
+            } else if(acceptedSubChoiceNumber == 1) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
                 updateAvailableBalanceAndTimeForSubChoices((float)0.0, 1);
             }
         }

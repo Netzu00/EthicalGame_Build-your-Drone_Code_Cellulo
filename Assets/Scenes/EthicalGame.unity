@@ -5896,7 +5896,7 @@ MonoBehaviour:
 
       Do
       you spend 2 weeks writing a comprehensive manual for your drone?'
-    - Please make your next choice.
+    - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - Not knowing much about birds you decide to meet with an ornithologist.
     - "Upon learning about your drone project, the ornithologist says that while
@@ -5914,8 +5914,7 @@ MonoBehaviour:
       produce much less noise. They would cost you 50 CHF and would take you 0.5
       weeks in the lab. \r\n\nDo you accept to get carbon fiber propellers for your
       drone?\r\n\n\n\n\n\n\n"
-    - 'Please make your next choice.
-
+    - 'Please make your next choice, or lock in "Ship it!" to finalize your project.
 
 
 '
@@ -5937,7 +5936,7 @@ MonoBehaviour:
       The heavier drone would also be more stable.\n\nIt would cost 100 chf for the
       materials and 2 weeks to make your drone bigger and get a better battery, would
       you like to make these changes?\r\n\n"
-    - Please make your next choice.
+    - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - 'You pack your bag and head on a trip to Scotland! After a good night''s sleep,
       you rise before dawn to meet with a local birdwatcher to test out your drone
@@ -5973,7 +5972,7 @@ MonoBehaviour:
 
       Do you accept
       to make these changes?'
-    - Please make your next choice.
+    - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - 'You decide to lend your drone to a friend for a ski trip, so he can test it
       and give you feedback.
@@ -5994,18 +5993,36 @@ MonoBehaviour:
     - 'Further considering his complaints you wonder if your drone should be made
       lighter?
 
-      This would however come at the cost of lower autonomy due
-      to a smaller battery and maybe some loss in stability due to its lighter weight.
+      This would however come at the cost of lower autonomy due to
+      a smaller battery and maybe some loss in stability due to its lighter weight.
 
 
       This
       would cost you 50 CHF and 1 week in the lab.
 
 '
-    - Please make your next choice.
+    - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
-    - choice_id = 6,  Sentence 1
-    - choice_id = 6,  Sentence 2
+    - 'Dr. Charlotte Sinclair, the director of the protected conservation area, agrees
+      to meet with you to explain how the park protects birds. She tells you that
+      plastic garbage has been identified as a major issue and that a rule banning
+      all plastic from the park will likely be introduced in the coming months.
+
+'
+    - 'Plastic propellers are less likely to injure birds, instead they bend and
+      may get damaged themselves, aswell as generate plastic waste in the park.
+
+
+      Would
+      you like to switch them out for wooden propellers who are bio-degradable and
+      have the added advantage of producing less noise the plastic ones.
+
+
+      This
+      would cost you an extra 50 CHF.
+
+'
+    - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - choice_id = 7,  Sentence 1
     - choice_id = 7,  Sentence 2
