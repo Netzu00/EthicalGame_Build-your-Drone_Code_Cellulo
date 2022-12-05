@@ -5641,7 +5641,11 @@ MonoBehaviour:
     - 'Decisions 1:
 
       After the meeting you wonder if you should take the experts
-      advice and perhaps repaint the drone to white?'
+      advice and perhaps repaint the drone to white?
+
+
+      This would cost you
+      50 CHF and take 0.5 weeks of your time.'
     - 'Decision 2:
 
       The expert suggested making a manual for your drone.
@@ -5661,24 +5665,12 @@ MonoBehaviour:
       the chance of frightening birds and inciting aggressive or abnormal behaviors.
     - "Decision1 :\n\nAfter the meeting with the ornithologist, you consider her
       advice about the color of drones. \r\n\nBuying purple paint and repainting
-      would cost you 50  CHFand 0.5 weeks of your time.\n\n\n"
-    - 'Decision 2:
-
-
-      You are also considering the ornithologist''s advice about
-      the noise of your drone. You dont want to scare away the birds.
-
-
-      This
-      would cost you 25$ and 0.25 weeks
-
-
-      Do you accept the advice and reduce
-      the considered size range for your drone?
-
-
-
-'
+      would cost you 50  CHF and 0.5 weeks of your time.\n\n\n"
+    - "Decision 2:\nYou don't want to scare away the birds. Using carbon fiber propellers
+      instead of plastic ones, would make the propellers much harder, durable and
+      produce much less noise. They would cost you 50 CHF and would take you 0.5
+      weeks in the lab. \r\n\nDo you accept to get carbon fiber propellers for your
+      drone?\r\n\n\n\n\n\n\n"
     - 'Please make your next choice.
 
 

@@ -63,11 +63,11 @@ public class GameControler : MonoBehaviour
     private static string protoDroneColor = "Blue";
     //TODO: Rename me
     private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
+    private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
-    public static List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
     public static int[] droneSizeRange = {20, 150}; //min and max size range
     public static double[] droneWeightRange = {0.5, 10};
 
@@ -104,7 +104,7 @@ public class GameControler : MonoBehaviour
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
     static public float remainingTime = 14; //number of weeks remaning till project deadline 
-    static public int availableBalance = 1000; //set in unity and updated through code
+    static public int availableBalance = 300; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
     // -----------------------------------------------------------------------------
@@ -188,11 +188,19 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[5] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
             + "we will see if those starting next year also will.";            
         } 
-        //Camera
 
-        //Size
+        if(protoPropellerMaterial == "Plastic"){
+            finalOutcomeDialogueSentences[6] = "The propellers of the drone make alot of noise, and on occasion seems to scare off" + 
+            " or disturb some of the birds, however the flexibility of the propellers is great as they would'nt hurt wildlife in case of" +
+            " a collision or crash.";
+        } else if(protoPropellerMaterial == "Carbon Fiber"){
+            finalOutcomeDialogueSentences[6] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
+            " plastic ones, and we need to be really careful flaying it too close, as they could easily seriously injure a bird who decides to" +
+            " attack or fly too close to the drone.";            
+        }         
 
         //at final summary (overall) eval paragraph based on all vars
+        //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
         return outcomeDialogue;
     }
@@ -255,7 +263,7 @@ public class GameControler : MonoBehaviour
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){
                 protoDroneColor = "White"; //TODO how to let user make this choice?
-                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
             }
             if(acceptedSubChoiceNumber == 1){
                 has_manual = true;
@@ -265,10 +273,12 @@ public class GameControler : MonoBehaviour
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             if(acceptedSubChoiceNumber == 0) {
-                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+                protoDroneColor = "Purple";
+                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
             } else if(acceptedSubChoiceNumber == 1) {
-                protoDroneSize -= 30;
-                updateAvailableBalanceAndTimeForSubChoices((float)0.25, 25);
+                //protoDroneSize -= 30;
+                protoPropellerMaterial = "Carbon Fiber";
+                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
             }
         }
         if(latestChoiceId == (int)choices.TestLocally){
@@ -308,6 +318,7 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
         sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
         sb.AppendFormat("Material: " + protoMaterial + " \n");
+        sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
         if(has_wetsuit){
             sb.AppendFormat("Wet suit available\n"); 
         } 
