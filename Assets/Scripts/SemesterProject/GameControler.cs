@@ -164,10 +164,10 @@ public class GameControler : MonoBehaviour
         if(protoDroneWeight < 1.0) {
             finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing the birds however "+
         "its autonomy is only of 10-15 minutes, it remains a valuable tool but to be used sparingly\n";
-        }else if(protoDroneWeight > 1.5) {
-            finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing birds for over 40 minutes\n" +
-            "I am impressed considering other drones usualy die out after about 30 minutes, also its very easy to drive and stable" + 
-            "probably due to its weight being slightly above that of the average drone"; 
+        }else if(protoDroneWeight > 1.5) {"Long flying time from the big battery was great improvement from our last drone,"
+        + " and the drone was stable in the wind."
+         + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
+         + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
         }else {
             finalOutcomeDialogueSentences[3] = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
@@ -285,7 +285,7 @@ public class GameControler : MonoBehaviour
             if(acceptedSubChoiceNumber == 0) {
                 protoDroneWeight += 0.5;
                 protoDroneSize += 10;
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
+                updateAvailableBalanceAndTimeForSubChoices((float)2.0, 100);
             }
         }
         if(latestChoiceId == (int)choices.OnFieldTesting){

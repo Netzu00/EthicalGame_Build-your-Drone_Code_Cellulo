@@ -5682,15 +5682,18 @@ MonoBehaviour:
       You head to the park and begin
       calibrating the drone for flight.'
     - 'It works! The prototype you have so far is able to fly around however after
-      10 minutes it begins lacking power and starts to descend.
+      10 minutes it begins lacking power and starts to descend.Unfortunately it seems
+      the battery life is too short.
 
+      The drone also seems to be having a
+      bit of difficulty staying stable with the wind gusts..
 
-      Unfortunately
-      it seems the battery life is too short.'
+'
     - "Outcome: \nAfter some research you learn that you would have to make your
-      drone bigger if you like to accomodate a bigger battery for longer flight times.\n\nYou
-      would thus have to increase the minimum weight and size if your drone.\n\nDo
-      you accept these changes?\n\n"
+      drone bigger if you like to accomodate a bigger battery for longer flight times.
+      The heavier drone would also be more stable.\n\nIt would cost 100 chf for the
+      materials and 2 weeks to make your drone bigger and get a better battery, would
+      you like to make these changes?\r\n\n"
     - Please make your next choice.
   - sentences:
     - "You pack your bag and head on a trip to Scotland!. \n\nOnce you arrive you
@@ -5749,7 +5752,7 @@ MonoBehaviour:
   - 0
   - 0.5
   - 0.5
-  - 1
+  - 0.5
   - 1
   - 1
   - 1
