@@ -41,8 +41,9 @@ public enum choices
     TestLocally, //test in backyard (choice id: 3)
     //OnSiteVisit, //nothern ireland lots of rain and WIND! in winter for example
     OnFieldTesting, //choice id: 4
-    macroTesting, //choice id: 5
-    shipIt, //choice id: 6
+    userTesting, //choice id: 5
+    resevoirDirector, //choice id: 6
+    shipIt, //choice id: 7
 }
 
 public class GameControler : MonoBehaviour
@@ -66,6 +67,8 @@ public class GameControler : MonoBehaviour
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
+
+    private static bool has_foldable_propellers = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     public static int[] droneSizeRange = {20, 150}; //min and max size range
@@ -126,7 +129,7 @@ public class GameControler : MonoBehaviour
       
         mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
-        remainingTimeText.text = "Remaining time: " +  remainingTime.ToString("F1") +" Weeks"; 
+        remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
@@ -198,7 +201,14 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[6] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
             " plastic ones, and we need to be really careful flaying it too close, as they could easily seriously injure a bird who decides to" +
             " attack or fly too close to the drone.";            
-        }         
+        }    
+        
+        //TODO
+        if(has_foldable_propellers) {
+     
+        } else {
+
+        }     
 
         //at final summary (overall) eval paragraph based on all vars
         //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
@@ -246,8 +256,6 @@ public class GameControler : MonoBehaviour
         acceptedSubChoiceNumber++;
     }
 
-    //TODO should change outcome texts for example: 
-    //Do you wish to reduce the current size of your drone ? yes.., no..
     /**
     This method is called whenever a subChoice is accepted
     Updates drone ranges according to accepted subChoice
@@ -292,14 +300,31 @@ public class GameControler : MonoBehaviour
         if(latestChoiceId == (int)choices.OnFieldTesting){
             if(acceptedSubChoiceNumber == 0) {
                 has_wetsuit = true;
-                updateAvailableBalanceAndTimeForSubChoices((float)1.5, 100);
+                updateAvailableBalanceAndTimeForSubChoices((float)2.0, 100);
             } else if(acceptedSubChoiceNumber == 1) {
                 protoDroneWeight += 0.5;
                 protoDroneSize += 10;
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 0);
+                updateAvailableBalanceAndTimeForSubChoices((float)1.0, 50);
             }
         }
 
+        if(latestChoiceId == (int)choices.userTesting){
+            if(acceptedSubChoiceNumber == 0) { //Foldable propellers
+                has_foldable_propellers = true;
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 50);
+            } else if(acceptedSubChoiceNumber == 1) {
+                updateAvailableBalanceAndTimeForSubChoices((float)1.0, 50);
+            }
+        }
+
+        if(latestChoiceId == (int)choices.resevoirDirector){
+            if(acceptedSubChoiceNumber == 0) { 
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 1);
+            } else if(acceptedSubChoiceNumber == 1) { //Make drone ligher for transportability?
+                //TODO
+                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 1);
+            }
+        }
         //display updates
         refreshDroneSpecs();
         
@@ -320,11 +345,15 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
         sb.AppendFormat("Material: " + protoMaterial + " \n");
         sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
+        sb.AppendFormat("-----Extra Features----- \n");
         if(has_wetsuit){
             sb.AppendFormat("Wet suit available\n"); 
         } 
         if(has_manual){
             sb.AppendFormat("Drone Manual available\n"); 
+        } 
+        if(has_foldable_propellers){
+            sb.AppendFormat("Foldable Propellers\n"); 
         } 
         droneSpecsText.text = sb.ToString();
     }
@@ -333,7 +362,7 @@ public class GameControler : MonoBehaviour
     private void updateAvailableBalanceAndTimeForSubChoices(float timeCost, int financialCost) {
         remainingTime-= timeCost;
         availableBalance -= financialCost;
-        remainingTimeText.text = "Remaining time: " + remainingTime.ToString("F1") +" Weeks"; 
+        remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         
     }
@@ -343,7 +372,7 @@ public class GameControler : MonoBehaviour
         Debug.Log("cost of choice" + mainChoiceFinancialCosts[locked_choice_id].ToString());
         remainingTime-= mainChoiceTimeCosts[locked_choice_id];
         availableBalance -= mainChoiceFinancialCosts[locked_choice_id];
-        remainingTimeText.text = "Remaining time: " + remainingTime.ToString("F1") +" Weeks"; 
+        remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         
     }
