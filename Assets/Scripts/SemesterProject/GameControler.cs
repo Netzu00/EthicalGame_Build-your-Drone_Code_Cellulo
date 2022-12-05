@@ -133,8 +133,8 @@ public class GameControler : MonoBehaviour
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         refreshDroneSpecs();
     }
-    //TODO SET SPECS OF FINAL DRONE CHOICES ON THE FINAL DRONE OF THE RIGHT HAND SIDE!!!!!!!!!!!!!!!!!!
-    //TODO THAT NEED TO DECIDE WHICH SPECS WILL KEEP SO CAN DO THAT PROBABLY NEXT WEEK.
+    
+    //TODO could merge several of these outcomes "per spec" into one feedback from a researcher.
     private Dialogue computeOutcomeDialogue(){
         Dialogue outcomeDialogue = new Dialogue();
         //has_wetsuit//colorList = new List<string>{"white", "purple", "blue"};
@@ -207,7 +207,7 @@ public class GameControler : MonoBehaviour
         
         //TODO
         if(has_foldable_propellers) {
-     
+            
         } else {
 
         }     
