@@ -59,7 +59,7 @@ public class GameControler : MonoBehaviour
 
     //Drone Specs
     private static int protoDroneSize = 20;
-    private static double protoDroneWeight = 0.5;
+    private static double protoDroneWeight = 1.0;
     private static string protoDroneColor = "Blue";
     //TODO: Rename me
     private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
@@ -164,7 +164,8 @@ public class GameControler : MonoBehaviour
         if(protoDroneWeight < 1.0) {
             finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing the birds however "+
         "its autonomy is only of 10-15 minutes, it remains a valuable tool but to be used sparingly\n";
-        }else if(protoDroneWeight > 1.5) {"Long flying time from the big battery was great improvement from our last drone,"
+        }else if(protoDroneWeight > 1.5) {
+            finalOutcomeDialogueSentences[3] = "Long flying time from the big battery was great improvement from our last drone,"
         + " and the drone was stable in the wind."
          + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
          + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
