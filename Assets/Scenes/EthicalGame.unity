@@ -3134,7 +3134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 2108076382}
   rectTransform: {fileID: 0}
-  choice_id: 6
+  choice_id: 7
   original_position: {x: 0, y: 0, z: 0}
 --- !u!114 &1316818517
 MonoBehaviour:
@@ -6041,7 +6041,7 @@ MonoBehaviour:
   - 1
   - 1
   - 1
-  - 1
+  - 0
   - 1
   - 1
 --- !u!114 &2108076385

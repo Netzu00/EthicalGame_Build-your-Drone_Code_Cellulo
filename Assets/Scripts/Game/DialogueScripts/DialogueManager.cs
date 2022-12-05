@@ -6,8 +6,7 @@ using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    //public TextMeshProUGUI nameText; //Not using for now
-    public Button continueButton; //TODO make this button set upon startDialogue!!!!!!!!!!! now its always the main continue button
+    public Button continueButton; 
     public Button acceptButton; //Update drones ranges and and go to next sentence if there is one.
     public Button refuseButton; //same as accept but doesnt updateDroneRanges
     public GameControler gameController; //Needed to notify gameController that drone rangesAndBalance can be updated based on choice to accept or refuse.
@@ -90,25 +89,30 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void acceptChanges(){
-        refuseButton.gameObject.SetActive(false);
-        acceptButton.gameObject.SetActive(false);
-        if(sentences.Count > 0){
-            continueButton.onClick.Invoke(); //move to next sentence
-            //No need to make continueButton visible again.
+        //Wait till finish typing before activating the button
+        if(waitTillFinishTyping == false) {
+            refuseButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(false);
+            if(sentences.Count > 0){
+                continueButton.onClick.Invoke(); //move to next sentence
+                //No need to make continueButton visible again.
+            }
+            gameController.updateDroneRangesAndResources();  //update display of drone Ranges and balance
+            gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
         }
-        gameController.updateDroneRangesAndResources();  //update display of drone Ranges and balance
-        gameController.incrementSubChoiceNum(); //increment the index indicating what sub choice we are on
-        
+            
     }
 
     public void refuseChanges() {
-        if(sentences.Count > 0){
-            continueButton.onClick.Invoke();
-            continueButton.gameObject.SetActive(true);
-            gameController.incrementSubChoiceNum();
-        }
-        refuseButton.gameObject.SetActive(false);
-        acceptButton.gameObject.SetActive(false);
-        
+        //Wait till finish typing before activating the button
+        if(waitTillFinishTyping == false) {
+            if(sentences.Count > 0){
+                continueButton.onClick.Invoke();
+                continueButton.gameObject.SetActive(true);
+                gameController.incrementSubChoiceNum();
+            }
+            refuseButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(false);
+        }   
     }
 }
