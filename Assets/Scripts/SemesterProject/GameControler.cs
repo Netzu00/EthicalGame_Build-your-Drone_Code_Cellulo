@@ -85,6 +85,7 @@ public class GameControler : MonoBehaviour
 
     /* Tabs and dialogues -------------------------------------------------------*/
     //public DialogueManager dialogueManager;
+    public PopUpScript popUp;
     public Button mainTab;
     private int mainTabIndexInLayout; //Used to make sure the "main" tab is always to the right of all tabs
     public TabController tabController;
@@ -288,6 +289,7 @@ public class GameControler : MonoBehaviour
                     protoDroneColor = "White";
                 } else {
                     Debug.Log("Not enough resources, drone expert choice 0");
+                    popUp.display();
                     return;
                 }
                 
@@ -299,6 +301,7 @@ public class GameControler : MonoBehaviour
                     has_manual = true;
                 } else {
                     Debug.Log("Not enough resources, drone expert choice 0");
+                    popUp.display();
                     return;
                 }
             }
@@ -311,6 +314,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoDroneColor = "Purple";
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -320,6 +324,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoPropellerMaterial = "Carbon Fiber";
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -333,6 +338,7 @@ public class GameControler : MonoBehaviour
                     protoDroneWeight += 0.5;
                     protoDroneSize += 10;
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -345,6 +351,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost,financialCost)){
                     has_wetsuit = true;
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -355,6 +362,7 @@ public class GameControler : MonoBehaviour
                     protoDroneWeight += 0.5;
                     protoDroneSize += 10;
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -368,6 +376,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     has_foldable_propellers = true;
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -377,6 +386,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost,financialCost)){
 
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -390,6 +400,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoPropellerMaterial = "Wood";
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
@@ -399,6 +410,7 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     //Do what??
                 } else {
+                    popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
