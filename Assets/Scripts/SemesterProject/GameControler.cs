@@ -135,25 +135,19 @@ public class GameControler : MonoBehaviour
     }
     
     //TODO could merge several of these outcomes "per spec" into one feedback from a researcher.
+    
     private Dialogue computeOutcomeDialogue(){
-        Dialogue outcomeDialogue = new Dialogue();
-        //has_wetsuit//colorList = new List<string>{"white", "purple", "blue"};
-        //List<string> materialList = new List<string>{"carbon fiber", "mat2", "mat3"};
-        //int[] droneSizeRange = {20, 150}; //min and max size range
-        //double[] droneWeightRange = {0.5, 10};
-        //One if for each var and set 1 of lets say 3 premade texts per var
         finalOutcomeDialogueSentences[0] =  "FeedbackTextVAR1.";
-        //IF worse case => program it here
-        //Color: 
+         
         if(protoDroneColor.Equals("Blue")) {
              finalOutcomeDialogueSentences[1] = "The color of drone is unfortunate because its color blends in with that of" + 
              " the sky, i often lose some time trying to find it in the sky.";
-
         } else if(protoDroneColor.Equals("White")) {
              finalOutcomeDialogueSentences[1] = "The white color of the drone is easy to spot in the sky however some birds" + 
              " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
         } else if(protoDroneColor.Equals("Purple")){
-             finalOutcomeDialogueSentences[1] = "TODO: write text for purple drone colo" ;  
+             finalOutcomeDialogueSentences[1] = "I like that you made the drone purple, most birds are not threatened "
+             + "by this color and the drone remains clearly visible to the operator." ;  
         }
 
         if(protoDroneSize <= 30) {
@@ -163,10 +157,10 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[2] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be usefull";
         }
-        //Weight
+        
         if(protoDroneWeight < 1.0) {
-            finalOutcomeDialogueSentences[3] = "The drone is capable of flying and observing the birds however "+
-        "its autonomy is only of 10-15 minutes, it remains a valuable tool but to be used sparingly\n";
+            finalOutcomeDialogueSentences[3] = "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
+            "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!\n";
         }else if(protoDroneWeight > 1.5) {
             finalOutcomeDialogueSentences[3] = "Long flying time from the big battery was great improvement from our last drone,"
         + " and the drone was stable in the wind."
@@ -186,7 +180,7 @@ public class GameControler : MonoBehaviour
         }
 
         if(has_manual) {   
-            finalOutcomeDialogueSentences[5] = "Researchers say “Manuel was super useful, allowing new people to pick it up quickly. " 
+            finalOutcomeDialogueSentences[5] = "Including the drone manual was super useful, allowing new people to pick it up quickly. " 
             + "Although terminology was a bit technical, so they added in some of their own definitions to make it more accessible";
         } else {
             finalOutcomeDialogueSentences[5] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
@@ -195,25 +189,27 @@ public class GameControler : MonoBehaviour
 
         if(protoPropellerMaterial == "Plastic"){
             finalOutcomeDialogueSentences[6] = "The plastic propellers of the drone make alot of noise, and on occasion seems to scare off" + 
-            " or disturb some of the birds, however the flexibility of the propellers makes the drone less dangerous in case of a collision"
+            " or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision"
             +" with a bird.";
         } else if(protoPropellerMaterial == "Carbon Fiber"){
             finalOutcomeDialogueSentences[6] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
-            " plastic ones, and we need to be really careful flying it too close, as they could easily seriously injure a bird who decides to" +
-            " attack or fly too close to the drone.";            
+            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injur a curious or aggressive bird.";            
         } else if(protoPropellerMaterial == "Wood"){
-            finalOutcomeDialogueSentences[6] = "Wood propeller"; 
+            finalOutcomeDialogueSentences[6] = "The wooden propellers are very silent and appear not to bother birds at all, "+
+            " however they are harder then plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
         }
         
-        //TODO
         if(has_foldable_propellers) {
-            
+            finalOutcomeDialogueSentences[7] = "The foldable propellers were a nice upgrade, the drone is ";
         } else {
-
+            finalOutcomeDialogueSentences[7] = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
+            " using foldable propellers would made it easier to carry in a smaller bag.";
         }     
 
+        //TODO FIRST: AUTO-STOP if run out of cash or time....
         //at final summary (overall) eval paragraph based on all vars
         //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
+        Dialogue outcomeDialogue = new Dialogue();
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
         return outcomeDialogue;
     }
@@ -258,6 +254,17 @@ public class GameControler : MonoBehaviour
         acceptedSubChoiceNumber++;
     }
 
+    ///
+    /// Input: cost of currently selected subchoice
+    /// Output: Boolean indicating if have enough resources
+    ///
+    private bool checkIfEnoughResources(float timeCost, int financialCost){
+        //if not enough resources return false
+        if(availableBalance < financialCost || remainingTime < timeCost){
+            return false;
+        }
+        return true;
+    }
     /**
     This method is called whenever a subChoice is accepted
     Updates drone ranges according to accepted subChoice
@@ -265,69 +272,140 @@ public class GameControler : MonoBehaviour
     */
     public void updateDroneRangesAndResources(){
         //Debug.Log("Calls updateDronRanges");
-        Debug.Log(latestChoiceId);
-        //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice!
-        if(availableBalance <= 0 || remainingTime <= 0) {
-            return;
-        }
+        //Debug.Log(latestChoiceId);
+        //TODO here check if availableBalance and RemaningTime is sufficient for this subchoice
+        //Once we know what choice was made, need to check if have enough funs before executing changes.
+        //If not enough DONT EXECUTE!! + inform user somehow that not enough funds!
+
+        float timeCost= (float)0.0;
+        int financialCost = 0;
 
         if(latestChoiceId == (int)choices.DroneExpert){
             if(acceptedSubChoiceNumber == 0){
-                protoDroneColor = "White"; //TODO how to let user make this choice?
-                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
+                timeCost= (float)0.5;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    protoDroneColor = "White";
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
+                
             }
             if(acceptedSubChoiceNumber == 1){
-                has_manual = true;
-                updateAvailableBalanceAndTimeForSubChoices((float)2, 0);
+                timeCost =(float)2.0;
+                financialCost = 0;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    has_manual = true;
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
             if(acceptedSubChoiceNumber == 0) {
-                protoDroneColor = "Purple";
-                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
+                timeCost = (float)0.5;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    protoDroneColor = "Purple";
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             } else if(acceptedSubChoiceNumber == 1) {
-                //protoDroneSize -= 30;
-                protoPropellerMaterial = "Carbon Fiber";
-                updateAvailableBalanceAndTimeForSubChoices((float)0.5, 50);
+                timeCost = (float)0.5;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    protoPropellerMaterial = "Carbon Fiber";
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
         if(latestChoiceId == (int)choices.TestLocally){
             if(acceptedSubChoiceNumber == 0) {
-                protoDroneWeight += 0.5;
-                protoDroneSize += 10;
-                updateAvailableBalanceAndTimeForSubChoices((float)2.0, 100);
+                timeCost = (float)2.0;
+                financialCost = 100;
+                if(checkIfEnoughResources(timeCost,financialCost)){
+                    protoDroneWeight += 0.5;
+                    protoDroneSize += 10;
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
         if(latestChoiceId == (int)choices.OnFieldTesting){
             if(acceptedSubChoiceNumber == 0) {
-                has_wetsuit = true;
-                updateAvailableBalanceAndTimeForSubChoices((float)2.0, 100);
+                timeCost = (float)2.0;
+                financialCost = 100;
+                if(checkIfEnoughResources(timeCost,financialCost)){
+                    has_wetsuit = true;
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             } else if(acceptedSubChoiceNumber == 1) {
-                protoDroneWeight += 0.5;
-                protoDroneSize += 10;
-                updateAvailableBalanceAndTimeForSubChoices((float)1.0, 50);
+                timeCost = (float)1.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost,financialCost)){
+                    protoDroneWeight += 0.5;
+                    protoDroneSize += 10;
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
 
         if(latestChoiceId == (int)choices.userTesting){
             if(acceptedSubChoiceNumber == 0) { //Foldable propellers
-                has_foldable_propellers = true;
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 50);
-            } else if(acceptedSubChoiceNumber == 1) {
-                updateAvailableBalanceAndTimeForSubChoices((float)1.0, 50);
+                timeCost = (float)0.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    has_foldable_propellers = true;
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
+            } else if(acceptedSubChoiceNumber == 1) { // WHAT IS THIS?
+                timeCost = (float)1.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost,financialCost)){
+
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
 
         if(latestChoiceId == (int)choices.resevoirDirector){
             if(acceptedSubChoiceNumber == 0) { //take director insight and use wood propeller
-                protoPropellerMaterial = "Wood";
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 50);
+                timeCost = (float)0.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    protoPropellerMaterial = "Wood";
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             } else if(acceptedSubChoiceNumber == 1) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
-                updateAvailableBalanceAndTimeForSubChoices((float)0.0, 1);
+                timeCost = (float)0.0;
+                financialCost = 1;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    //Do what??
+                } else {
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
             }
         }
         //display updates
+        updateAvailableBalanceAndTimeForSubChoices(timeCost, financialCost);
         refreshDroneSpecs();
         
     }
@@ -378,6 +456,4 @@ public class GameControler : MonoBehaviour
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
         
     }
-
-
 }
