@@ -107,7 +107,7 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public float remainingTime = 14; //number of weeks remaning till project deadline 
+    static public float remainingTime = 1; //number of weeks remaning till project deadline 
     static public int availableBalance = 300; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
@@ -230,18 +230,27 @@ public class GameControler : MonoBehaviour
         //reset choice card to its original location
         lastChoice.transform.position = lastChoice.original_position;
 
-        locked_choices.Add(latestChoiceId); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
+        //Get cost of choice and check if have avaible funds
+        float mainChoiceTimeCost = mainChoiceTimeCosts[latestChoiceId];
+        int mainChoiceFinancialCost = mainChoiceFinancialCosts[latestChoiceId];
+        //If sufficient resources
+        if(checkIfEnoughResources(mainChoiceTimeCost, mainChoiceFinancialCost)){
+            
+            locked_choices.Add(latestChoiceId); // Add to List of locked choices TODO CAN REMOVE THIS PROBABLY LATER
 
-        tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
-        //Main Tab always displayed the to the right of all other tabs
-        mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
+            tabController.spawnTab(latestChoiceId, choiceCardText, choiceFeedbackDialogues[latestChoiceId]);
+            //Main Tab always displayed the to the right of all other tabs
+            mainTab.transform.SetSiblingIndex(++mainTabIndexInLayout);
 
-        //Update game paramaters and UI
-        updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
+            //Update game paramaters and UI
+            updateMainTabText(choiceFeedbackDialogues[latestChoiceId]); //update text in main tab
+            EnterButton.TriggerDialogueMainTab(); //trigger dialogue in MainTab
 
-        //update available time and balance due to locking in this main choice
-        updateAvailableBalanceAndTimeForMainChoice(latestChoiceId);
-
+            //update available time and balance due to locking in this main choice
+            updateAvailableBalanceAndTimeForMainChoice(latestChoiceId);
+        } else {
+            popUp.display();
+        }
         //Check if game ended, then activate final scene.
         if(latestChoiceId == (int)choices.shipIt){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+ 1);
