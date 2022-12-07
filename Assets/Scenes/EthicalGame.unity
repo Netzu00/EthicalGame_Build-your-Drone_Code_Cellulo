@@ -6315,11 +6315,11 @@ MonoBehaviour:
 
 
       This however would incur an extra
-      cost of 50$ for a better battery and 1 week of your time
+      cost of 50$ for a better and bigger battery and 1 week of your time
 
 
-      Do you accept
-      to make these changes?'
+      Do
+      you accept to make these changes?'
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - 'You decide to lend your drone to a friend for a ski trip, so he can test it
@@ -6339,14 +6339,15 @@ MonoBehaviour:
 
 '
     - 'Further considering his complaints you wonder if your drone should be made
-      lighter?
+      lighter by using a smaller frame and battery?
 
-      This would however come at the cost of lower autonomy due to
-      a smaller battery and maybe some loss in stability due to its lighter weight.
+      This would however come
+      at the cost of lower autonomy due to a smaller battery and maybe some loss
+      in stability due to its lighter weight.
 
 
-      This
-      would cost you 50 CHF and 1 week in the lab.
+      This would cost you 50 CHF
+      and 1 week in the lab.
 
 '
     - Please make your next choice, or lock in "Ship it!" to finalize your project.

@@ -80,7 +80,7 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public float remainingTime = 1; //number of weeks remaning till project deadline 
+    static public float remainingTime = 14; //number of weeks remaning till project deadline 
     static public int availableBalance = 300; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
@@ -180,10 +180,14 @@ public class GameControler : MonoBehaviour
             " using foldable propellers would made it easier to carry in a smaller bag.";
         }     
 
-        //TODO FIRST: AUTO-STOP if run out of cash or time....
+       
         //at final summary (overall) eval paragraph based on all vars
         //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
         Dialogue outcomeDialogue = new Dialogue();
+
+        //TODO last slide should you be
+        //You have reached the end, thank you for playing! or something like that
+        
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
         return outcomeDialogue;
     }
