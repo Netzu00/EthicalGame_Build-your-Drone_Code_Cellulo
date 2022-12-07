@@ -36,7 +36,8 @@ public class GameControler : MonoBehaviour
     private static double protoDroneWeight = 1.0;
     private static string protoDroneColor = "Blue";
     //TODO: Rename me
-    private static string protoMaterial; //this is the 'skeleton' material, name of this thing tbd
+    private static string protoFrameMaterial; //this is the 'skeleton' material, name of this thing tbd
+    private static int protoBatteryLifespan = 10;
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
@@ -80,8 +81,8 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public float remainingTime = 14; //number of weeks remaning till project deadline 
-    static public int availableBalance = 300; //Starting budget
+    static public float remainingTime = 1; //number of weeks remaning till project deadline 
+    static public int availableBalance = 0; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
     // -----------------------------------------------------------------------------
@@ -421,7 +422,8 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Color: " + protoDroneColor + " \n");
         sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
         sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
-        sb.AppendFormat("Material: " + protoMaterial + " \n");
+        sb.AppendFormat("Drone Frame Material: " + protoFrameMaterial + " \n");
+        sb.AppendFormat("Battery lifespan: " + protoBatteryLifespan.ToString() + " \n");
         sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
         sb.AppendFormat("-----Extra Features----- \n");
         if(has_wetsuit){
