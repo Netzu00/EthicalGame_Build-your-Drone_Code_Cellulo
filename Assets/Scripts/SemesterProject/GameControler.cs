@@ -6,33 +6,6 @@ using System.Text;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//TODO
-
-/*
-W10-11
-4)Work on Story, thats it..
-=> Make more choices and (tweak) how they affect drone specs
-=> Map drone specs to final outcome text, maybe each var gets 1 small paragraph + 1 overall evaluation
-W12
-5)Test with a few players and take notes(1 week) + tweak game a little more
-W13-14
-6)
-=> Program cellulo's to make choices
-=> Make cellulo map and extend cellulo's with light effects
-Xmas holidays
-7)Write report and document code
-*/
-
-//General ideas: 
-/*
-    Most birds dont care about color, except birds of pray will attack
-    Could include video of birds attack drone or something during testing! or just a picture
-    multi-colored reflective tape/ or lights discourage bird attacks, aswell as loud sounds(or maybe cat?xd)
-    //Googly eyes seem to work aswell..juju
-*/
-
-//TODO use the choices enum instead of ints
-
 public enum choices
 {
 	None, 
@@ -71,8 +44,8 @@ public class GameControler : MonoBehaviour
     private static bool has_foldable_propellers = false;
     public TextMeshProUGUI droneSpecsText;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
-    public static int[] droneSizeRange = {20, 150}; //min and max size range
-    public static double[] droneWeightRange = {0.5, 10};
+    //public static int[] droneSizeRange = {20, 150}; //min and max size range
+    //public static double[] droneWeightRange = {0.5, 10};
 
     //Main Tab Feedback text
     public DialogueTrigger EnterButton;

@@ -1169,9 +1169,9 @@ MonoBehaviour:
       of monitoring birds.\r\n\nYou have 14 weeks (a semester) and a 300 chf budget. 
       The teacher provides you with a basic drone prototype that will serve as a
       starting point for your project.  \n\nThroughout the game you will strive to
-      update this prototype to fit certain specifications that you must will develop..\r\n\nThe
-      current specs of your drone are visibile on the right hand side of the game
-      screen. \n"
+      update this prototype to fit certain specifications that you must decide upon.\n\nDuring
+      the game, you will see the current specs for your drone on the right hand side
+      of the game screen. \n"
     - "You will be presented with different actions, each requiring a certain investment
       of time or money, to gather information and develop your drone design.\n\nAfter
       each choice, you will receive information about the outcome of your action 
@@ -1192,6 +1192,7 @@ MonoBehaviour:
   dialogueTextBox: {fileID: 7965487335813916936}
   scrollBarText: {fileID: 0}
   slot: {fileID: 0}
+  popUp: {fileID: 0}
   mainTab: {fileID: 0}
   tabController: {fileID: 7965487335388429703}
   choiceFeedbackDialogues:
