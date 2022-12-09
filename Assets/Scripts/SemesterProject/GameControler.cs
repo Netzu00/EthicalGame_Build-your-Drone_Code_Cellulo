@@ -32,11 +32,11 @@ public class GameControler : MonoBehaviour
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
 
     //Drone Specs
-    private static int protoDroneSize = 20;
+    private static int protoDroneSize = 25;
     private static double protoDroneWeight = 1.0;
     private static string protoDroneColor = "Blue";
     //TODO: Rename me
-    private static string protoFrameMaterial; //this is the 'skeleton' material, name of this thing tbd
+    private static string protoFrameMaterial = "Aluminium";
     private static int protoBatteryLifespan = 10;
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
@@ -81,8 +81,8 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public float remainingTime = 1; //number of weeks remaning till project deadline 
-    static public int availableBalance = 0; //Starting budget
+    static public float remainingTime = 14; //number of weeks remaning till project deadline 
+    static public int availableBalance = 300; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
     // -----------------------------------------------------------------------------
@@ -105,83 +105,111 @@ public class GameControler : MonoBehaviour
         mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
         remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
-        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         refreshDroneSpecs();
     }
     
     //TODO could merge several of these outcomes "per spec" into one feedback from a researcher.
     
     private Dialogue computeOutcomeDialogue(){
-        finalOutcomeDialogueSentences[0] =  "FeedbackTextVAR1.";
+        int outcomeNum = 0;
          
         if(protoDroneColor.Equals("Blue")) {
-             finalOutcomeDialogueSentences[1] = "The color of drone is unfortunate because its color blends in with that of" + 
+             finalOutcomeDialogueSentences[outcomeNum] = "The color of drone is unfortunate because its color blends in with that of" + 
              " the sky, i often lose some time trying to find it in the sky.";
         } else if(protoDroneColor.Equals("White")) {
-             finalOutcomeDialogueSentences[1] = "The white color of the drone is easy to spot in the sky however some birds" + 
+             finalOutcomeDialogueSentences[outcomeNum] = "The white color of the drone is easy to spot in the sky however some birds" + 
              " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
         } else if(protoDroneColor.Equals("Purple")){
-             finalOutcomeDialogueSentences[1] = "I like that you made the drone purple, most birds are not threatened "
+             finalOutcomeDialogueSentences[outcomeNum] = "I like that you made the drone purple, most birds are not threatened "
              + "by this color and the drone remains clearly visible to the operator." ;  
         }
+        outcomeNum++;
 
         if(protoDroneSize <= 30) {
-            finalOutcomeDialogueSentences[2] = "The size of the drone is small and easy to carry!, however on windy days it" 
+            finalOutcomeDialogueSentences[outcomeNum] = "The size of the drone is small and easy to carry!, however on windy days it" 
             + "its not as stable as previous drones.";
         } else if(protoDroneSize >= 30) {
-            finalOutcomeDialogueSentences[2] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
+            finalOutcomeDialogueSentences[outcomeNum] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be usefull";
         }
         
+        outcomeNum++;
+
         if(protoDroneWeight < 1.0) {
-            finalOutcomeDialogueSentences[3] = "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
+            finalOutcomeDialogueSentences[outcomeNum] = "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
             "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!\n";
         }else if(protoDroneWeight > 1.5) {
-            finalOutcomeDialogueSentences[3] = "Long flying time from the big battery was great improvement from our last drone,"
+            finalOutcomeDialogueSentences[outcomeNum] = "Long flying time from the big battery was great improvement from our last drone,"
         + " and the drone was stable in the wind."
          + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
          + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
         }else {
-            finalOutcomeDialogueSentences[3] = "This drone is capable of flying and observing birds for about 30 minutes, "+
+            finalOutcomeDialogueSentences[outcomeNum] = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
         }
 
+        outcomeNum++;
+
         if(has_wetsuit) {   
-            finalOutcomeDialogueSentences[4] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
+            finalOutcomeDialogueSentences[outcomeNum] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
             + " to now we are able to conduct our bird observation even in the rough Scottish weather";
         } else {
-            finalOutcomeDialogueSentences[4] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
+            finalOutcomeDialogueSentences[outcomeNum] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
             " it under rainy conditions.";            
         }
 
+        outcomeNum++;
+
         if(has_manual) {   
-            finalOutcomeDialogueSentences[5] = "Including the drone manual was super useful, allowing new people to pick it up quickly. " 
+            finalOutcomeDialogueSentences[outcomeNum] = "Including the drone manual was super useful, allowing new people to pick it up quickly. " 
             + "Although terminology was a bit technical, so they added in some of their own definitions to make it more accessible";
         } else {
-            finalOutcomeDialogueSentences[5] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
+            finalOutcomeDialogueSentences[outcomeNum] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
             + "we will see if those starting next year also will.";            
         } 
 
+        outcomeNum++;
+
         if(protoPropellerMaterial == "Plastic"){
-            finalOutcomeDialogueSentences[6] = "The plastic propellers of the drone make alot of noise, and on occasion seems to scare off" + 
+            finalOutcomeDialogueSentences[outcomeNum] = "The plastic propellers of the drone make alot of noise, and on occasion seems to scare off" + 
             " or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision"
             +" with a bird.";
         } else if(protoPropellerMaterial == "Carbon Fiber"){
-            finalOutcomeDialogueSentences[6] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
+            finalOutcomeDialogueSentences[outcomeNum] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
             " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injur a curious or aggressive bird.";            
         } else if(protoPropellerMaterial == "Wood"){
-            finalOutcomeDialogueSentences[6] = "The wooden propellers are very silent and appear not to bother birds at all, "+
+            finalOutcomeDialogueSentences[outcomeNum] = "The wooden propellers are very silent and appear not to bother birds at all, "+
             " however they are harder then plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
         }
+
+        outcomeNum++;
         
         if(has_foldable_propellers) {
-            finalOutcomeDialogueSentences[7] = "The foldable propellers were a nice upgrade, the drone is ";
+            finalOutcomeDialogueSentences[outcomeNum] = "The foldable propellers were a nice upgrade, the drone is ";
         } else {
-            finalOutcomeDialogueSentences[7] = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
+            finalOutcomeDialogueSentences[outcomeNum] = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
             " using foldable propellers would made it easier to carry in a smaller bag.";
-        }     
+        }    
 
-       
+        outcomeNum++; 
+
+        if(protoFrameMaterial == "Wood") {
+            finalOutcomeDialogueSentences[outcomeNum] = "Using wood";
+        } else if(protoFrameMaterial == "Carbon Fiber") {
+            finalOutcomeDialogueSentences[outcomeNum] = "Using Carbon Fiber";
+        } else if(protoFrameMaterial == "Aluminium") {
+            finalOutcomeDialogueSentences[outcomeNum] = "Using Aluminium";
+        }
+
+        outcomeNum++;
+
+        finalOutcomeDialogueSentences[outcomeNum] = "Thank you for playing!";
+        
+        //Name of researchers and feedback in quotations
+
+        //REPLAY BUTTON HERE
+
         //at final summary (overall) eval paragraph based on all vars
         //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
         Dialogue outcomeDialogue = new Dialogue();
@@ -342,12 +370,26 @@ public class GameControler : MonoBehaviour
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 1) {
+            } else if(acceptedSubChoiceNumber == 1) { //get bigger battery
                 timeCost = (float)1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost,financialCost)){
                     protoDroneWeight += 0.5;
                     protoDroneSize += 10;
+                } else {
+                    popUp.display();
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
+            } else if(acceptedSubChoiceNumber == 2) {
+                timeCost = (float)1.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost,financialCost)){
+                    if(protoFrameMaterial == "Wood") {
+                        protoDroneWeight -= 0.5;
+                    }
+                    protoFrameMaterial = "Carbon Fiber";
+                    
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -392,10 +434,22 @@ public class GameControler : MonoBehaviour
                     return;
                 }
             } else if(acceptedSubChoiceNumber == 1) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
-                timeCost = (float)0.0;
-                financialCost = 1;
+                timeCost = (float) 1.0;
+                financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
-                    //Do what??
+                    protoFrameMaterial = "Wood";
+                    protoDroneWeight += 0.5;
+                } else {
+                    popUp.display();
+                    Debug.Log("Not enough resources, drone expert choice 0");
+                    return;
+                }
+            } else if(acceptedSubChoiceNumber == 2) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
+                timeCost = (float) 1.0;
+                financialCost = 50;
+                if(checkIfEnoughResources(timeCost, financialCost)){
+                    protoDroneWeight -= 0.5;
+                    protoDroneSize -= 10;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -443,7 +497,7 @@ public class GameControler : MonoBehaviour
         remainingTime-= timeCost;
         availableBalance -= financialCost;
         remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
-        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         
     }
     //Update available balance and time for main choices
@@ -453,7 +507,7 @@ public class GameControler : MonoBehaviour
         remainingTime-= mainChoiceTimeCosts[locked_choice_id];
         availableBalance -= mainChoiceFinancialCosts[locked_choice_id];
         remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
-        availableBalanceText.text = "Balance: " + availableBalance.ToString() +"$"; 
+        availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         
     }
 }

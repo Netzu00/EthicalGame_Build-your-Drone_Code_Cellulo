@@ -6314,12 +6314,15 @@ MonoBehaviour:
       for your drone could be beneficial.
 
 
-      This however would incur an extra
-      cost of 50$ for a better and bigger battery and 1 week of your time
+      This would incur an extra cost
+      of 50$ for a better and bigger battery and 1 week of your time
 
 
-      Do
-      you accept to make these changes?'
+      Do you
+      accept to make these changes?'
+    - "Decison: \n\nSwitching to a lighter material could also help increase the
+      flight time of the drone. \n\nSwitching the drone's frame material to carbon
+      fiber would cost 100 CHF and 1 week in the lab.\n\n\n"
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - 'You decide to lend your drone to a friend for a ski trip, so he can test it
@@ -6358,7 +6361,7 @@ MonoBehaviour:
       all plastic from the park will likely be introduced in the coming months.
 
 '
-    - 'Decision:
+    - 'Decision 1:
 
       Plastic propellers are less likely to injure birds, instead
       they bend and may get damaged themselves, as well as generate plastic waste
@@ -6371,11 +6374,18 @@ MonoBehaviour:
       This would cost you an extra 50 CHF.
 
 '
+    - "Decision2: \n\nUnder the same considerations you are considering making the
+      frame of the drone out of wood.\nWood remains sturdy although not as light
+      as carbon fiber or plastic.\n\nThis would cost you 50 chf for the materials
+      and 1 week in the lab.\n\n\n"
+    - "Decision: \n\nConsidering the the director's concern's about disturbing wild
+      life, would you like to make your drone smaller and lighter? \n\nThis would
+      cost you 50chf and 1 week in the lab.\n\n"
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - choice_id = 7,  Sentence 1
     - choice_id = 7,  Sentence 2
-  numSubChoices: 00000000020000000200000001000000020000000200000001000000010000000100000001000000
+  numSubChoices: 00000000020000000200000001000000030000000200000003000000010000000100000001000000
   latestChoiceId: 0
   acceptButton: {fileID: 0}
   refuseButton: {fileID: 0}
