@@ -131,7 +131,7 @@ public class GameControler : MonoBehaviour
             + "its not as stable as previous drones.";
         } else if(protoDroneSize >= 30) {
             finalOutcomeDialogueSentences[outcomeNum] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
-            "would be usefull";
+            "would be useful";
         }
         
         outcomeNum++;
@@ -140,7 +140,7 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[outcomeNum] = "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
             "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!\n";
         }else if(protoDroneWeight > 1.5) {
-            finalOutcomeDialogueSentences[outcomeNum] = "Long flying time from the big battery was great improvement from our last drone,"
+            finalOutcomeDialogueSentences[outcomeNum] = "Long flying time from the big battery was a great improvement from our last drone,"
         + " and the drone was stable in the wind."
          + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
          + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
@@ -155,7 +155,7 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[outcomeNum] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
             + " to now we are able to conduct our bird observation even in the rough Scottish weather";
         } else {
-            finalOutcomeDialogueSentences[outcomeNum] = "Unfortunately that just our the previous drone we had, we are not able to use" + 
+            finalOutcomeDialogueSentences[outcomeNum] = "Unfortunately that just our previous drone we had, we are not able to use" + 
             " it under rainy conditions.";            
         }
 
@@ -172,15 +172,15 @@ public class GameControler : MonoBehaviour
         outcomeNum++;
 
         if(protoPropellerMaterial == "Plastic"){
-            finalOutcomeDialogueSentences[outcomeNum] = "The plastic propellers of the drone make alot of noise, and on occasion seems to scare off" + 
+            finalOutcomeDialogueSentences[outcomeNum] = "The plastic propellers of the drone make a lot of noise, and on occasion seems to scare off" + 
             " or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision"
             +" with a bird.";
         } else if(protoPropellerMaterial == "Carbon Fiber"){
             finalOutcomeDialogueSentences[outcomeNum] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
-            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injur a curious or aggressive bird.";            
+            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injure a curious or aggressive bird.";            
         } else if(protoPropellerMaterial == "Wood"){
             finalOutcomeDialogueSentences[outcomeNum] = "The wooden propellers are very silent and appear not to bother birds at all, "+
-            " however they are harder then plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
+            " however they are harder than plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
         }
 
         outcomeNum++;
@@ -189,7 +189,7 @@ public class GameControler : MonoBehaviour
             finalOutcomeDialogueSentences[outcomeNum] = "The foldable propellers were a nice upgrade, the drone is ";
         } else {
             finalOutcomeDialogueSentences[outcomeNum] = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
-            " using foldable propellers would made it easier to carry in a smaller bag.";
+            " using foldable propellers would make it easier to carry in a smaller bag.";
         }    
 
         outcomeNum++; 

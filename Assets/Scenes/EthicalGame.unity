@@ -6279,11 +6279,19 @@ MonoBehaviour:
       of difficulty staying stable with the wind gusts..
 
 '
-    - "Outcome: \nAfter some research you learn that you would have to make your
-      drone bigger if you like to accomodate a bigger battery for longer flight times.
-      The heavier drone would also be more stable.\n\nIt would cost 100 chf for the
-      materials and 2 weeks to make your drone bigger and get a better battery, would
-      you like to make these changes?\r\n\n"
+    - 'Decision1:
+
+      After some research you learn that you would have to make
+      your drone bigger if you like to accomodate a bigger battery for longer flight
+      times. The heavier drone would also be more stable.
+
+
+      It would cost 100
+      chf for the materials and 2 weeks to make your drone bigger and get a better
+      battery, would you like to make these changes?
+
+
+'
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
   - sentences:
     - 'You pack your bag and head on a trip to Scotland! After a good night''s sleep,
@@ -6304,7 +6312,7 @@ MonoBehaviour:
       launch the drone. The bird watcher is delighted with the increased visibility
       afforded by the drone, although a bit disappointed that the battery was depleted
       after a fairly short time. \n"
-    - "Decision: \nReturning from your trip you do some research and discover that
+    - "Decision1: \nReturning from your trip you do some research and discover that
       \"wetsuits\" are a good solution to waterproof drones.\n\nMaking a wetsuit
       for your drone would take 2 weeks of your time and a cost of 100$ for the materials
       \n\nDo you accept to make these changes?\n\n"
@@ -6378,7 +6386,7 @@ MonoBehaviour:
       frame of the drone out of wood.\nWood remains sturdy although not as light
       as carbon fiber or plastic.\n\nThis would cost you 50 chf for the materials
       and 1 week in the lab.\n\n\n"
-    - "Decision: \n\nConsidering the the director's concern's about disturbing wild
+    - "Decision3: \n\nConsidering the the director's concern's about disturbing wild
       life, would you like to make your drone smaller and lighter? \n\nThis would
       cost you 50chf and 1 week in the lab.\n\n"
     - Please make your next choice, or lock in "Ship it!" to finalize your project.
