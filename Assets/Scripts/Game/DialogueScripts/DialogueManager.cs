@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences; //Load sentences as read through dialog
 
     private bool waitTillFinishTyping = false; //Equals true when sentence finished typing out on screen, else false.
+    private bool acceptRefuseButtonsAreDisplayed = false;
 
     void Start() {
         sentences = new Queue<string>();
@@ -55,6 +56,7 @@ public class DialogueManager : MonoBehaviour
         //Can only display next sentence if finished typing out the previous sentence
         if(waitTillFinishTyping == false) {
             UnspawnRefuseAcceptButtons();//Remove old refuse/accept buttons if they are still there
+            continueButton.gameObject.SetActive(false);
             //If have reached the the texts with possible subchoices and we are in the mainTabText
             //Then spawn accept and refuse buttons to make the subChoices
             if(isMainTabText && sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1) {
@@ -75,6 +77,9 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.005f);
         }
+        if(acceptRefuseButtonsAreDisplayed == false && sentences.Count > 0){
+            continueButton.gameObject.SetActive(true); //show continue button when finished typing
+        }
         waitTillFinishTyping = false;
     }
 
@@ -84,12 +89,14 @@ public class DialogueManager : MonoBehaviour
     }
 
     void spawnRefuseAcceptButtons(){
+        acceptRefuseButtonsAreDisplayed = true;
         refuseButton.gameObject.SetActive(true);
         acceptButton.gameObject.SetActive(true);
         continueButton.gameObject.SetActive(false);
     }
 
     void UnspawnRefuseAcceptButtons() {
+        acceptRefuseButtonsAreDisplayed = false;
         refuseButton.gameObject.SetActive(false);
         acceptButton.gameObject.SetActive(false);
         //continueButton.gameObject.SetActive(true);
