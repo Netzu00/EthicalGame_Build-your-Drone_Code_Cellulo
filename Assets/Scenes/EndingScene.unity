@@ -1030,12 +1030,9 @@ MonoBehaviour:
 
 
 
-
-
     Press
     continue to receive feedback from the researchers on the performance of your
     drone.
-
 
 
 
@@ -1091,7 +1088,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -1109,7 +1106,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10.225616, y: 10.225586, z: 0, w: 0}
+  m_margin: {x: 12.503723, y: 15.542526, z: 12.757889, w: 22.331375}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1131,8 +1128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00053406, y: 0.00063181}
-  m_SizeDelta: {x: 398.25, y: 335.99}
+  m_AnchoredPosition: {x: -0.00071626, y: 13.4285}
+  m_SizeDelta: {x: 398.25, y: 309.1391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1015980104694843886
 GameObject:

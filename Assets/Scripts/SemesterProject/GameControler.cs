@@ -6,6 +6,7 @@ using System.Text;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+//Blake Hill
 public enum choices
 {
 	None, 
@@ -81,7 +82,7 @@ public class GameControler : MonoBehaviour
     /*Money and Time System ---------------------------------------------------------------*/
     public TextMeshProUGUI availableBalanceText;
     public TextMeshProUGUI remainingTimeText;
-    static public float remainingTime = 14; //number of weeks remaning till project deadline 
+    static public float remainingTime = 11; //number of weeks remaning till project deadline 
     static public int availableBalance = 300; //Starting budget
     public int[] mainChoiceFinancialCosts; //Costs of each main choice, set in unity
     public float[] mainChoiceTimeCosts; //timeCosts of each main choice, set in unity
@@ -519,5 +520,19 @@ public class GameControler : MonoBehaviour
         
         outcomeDialogue.sentences = finalOutcomeDialogueSentences;
         return outcomeDialogue;
+    }
+
+    public void resetStaticVariables(){
+        protoDroneSize = 25;
+        protoDroneWeight = 1.0;
+        protoDroneColor = "Blue";
+        protoFrameMaterial = "Aluminium";
+        protoBatteryLifespan = 10;
+        protoPropellerMaterial = "Plastic";
+        has_wetsuit = false;
+        has_manual = false;
+        has_foldable_propellers = false;
+        remainingTime = 11; 
+        availableBalance = 300; 
     }
 }
