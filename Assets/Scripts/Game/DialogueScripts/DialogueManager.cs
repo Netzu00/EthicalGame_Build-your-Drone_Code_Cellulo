@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     public bool finishedDialogue = false;
     private Queue<string> sentences; //Load sentences as read through dialog
 
-    private bool waitTillFinishTyping = false;
+    private bool waitTillFinishTyping = false; //Equals true when sentence finished typing out on screen, else false.
 
     void Start() {
         sentences = new Queue<string>();
@@ -52,17 +52,18 @@ public class DialogueManager : MonoBehaviour
             return;
         } 
         
-        //If have reached the the texts with possible subchoices and we are in the mainTabText
-        //Then spawn accept and refuse buttons to make the subChoices
-        if(isMainTabText && sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1) {
-            if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
-                spawnRefuseAcceptButtons();
-        }
-        //Debug.Log(sentence);
+        //Can only display next sentence if finished typing out the previous sentence
         if(waitTillFinishTyping == false) {
+            UnspawnRefuseAcceptButtons();//Remove old refuse/accept buttons if they are still there
+            //If have reached the the texts with possible subchoices and we are in the mainTabText
+            //Then spawn accept and refuse buttons to make the subChoices
+            if(isMainTabText && sentences.Count <= gameController.numSubChoices[gameController.latestChoiceId] + 1) {
+                if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
+                    spawnRefuseAcceptButtons();
+            }
             waitTillFinishTyping = true;
             string sentence = sentences.Dequeue();
-            StopAllCoroutines();//Stop if click continue before last coroutine ended
+            //StopAllCoroutines();//Stop if click continue before last coroutine ended
             StartCoroutine(TypeSentence(sentence));
         }
     }
@@ -86,6 +87,12 @@ public class DialogueManager : MonoBehaviour
         refuseButton.gameObject.SetActive(true);
         acceptButton.gameObject.SetActive(true);
         continueButton.gameObject.SetActive(false);
+    }
+
+    void UnspawnRefuseAcceptButtons() {
+        refuseButton.gameObject.SetActive(false);
+        acceptButton.gameObject.SetActive(false);
+        //continueButton.gameObject.SetActive(true);
     }
 
     public void acceptChanges(){
