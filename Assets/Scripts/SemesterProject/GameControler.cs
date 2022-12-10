@@ -522,7 +522,12 @@ public class GameControler : MonoBehaviour
         return outcomeDialogue;
     }
 
-    public void resetStaticVariables(){
+    public void restartGame(){
+        resetStaticVariables();
+        SceneManager.LoadScene(0);
+        
+    }
+    private void resetStaticVariables(){
         protoDroneSize = 25;
         protoDroneWeight = 1.0;
         protoDroneColor = "Blue";

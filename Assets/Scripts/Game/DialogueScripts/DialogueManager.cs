@@ -77,7 +77,7 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.005f);
         }
-        if(acceptRefuseButtonsAreDisplayed == false && sentences.Count > 0){
+        if(acceptRefuseButtonsAreDisplayed == false){
             continueButton.gameObject.SetActive(true); //show continue button when finished typing
         }
         waitTillFinishTyping = false;
