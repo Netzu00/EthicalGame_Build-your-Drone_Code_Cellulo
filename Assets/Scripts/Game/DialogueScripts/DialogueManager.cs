@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool waitTillFinishTyping = false; //Equals true when sentence finished typing out on screen, else false.
     private bool acceptRefuseButtonsAreDisplayed = false;
+
+    public Button replayButton;
 
     void Start() {
         sentences = new Queue<string>();
@@ -63,6 +66,10 @@ public class DialogueManager : MonoBehaviour
                 if(sentences.Count != 0 && sentences.Count != 1) //last sentence is "Please select next choice"(so dont want to spawn buttons here)
                     spawnRefuseAcceptButtons();
             }
+            if(SceneManager.GetActiveScene().name == "EndingScene" && sentences.Count == 1) {
+                replayButton.gameObject.SetActive(true);
+            }
+            
             waitTillFinishTyping = true;
             string sentence = sentences.Dequeue();
             //StopAllCoroutines();//Stop if click continue before last coroutine ended
@@ -77,8 +84,13 @@ public class DialogueManager : MonoBehaviour
             dialogueText.text += letter;
             yield return new WaitForSeconds(0.005f);
         }
+      
         if(acceptRefuseButtonsAreDisplayed == false){
             continueButton.gameObject.SetActive(true); //show continue button when finished typing
+        }
+          //Exceptiong for end scene, dont spawn, we spawn the replay button instead
+        if(SceneManager.GetActiveScene().name == "EndingScene" && sentences.Count == 0){
+            continueButton.gameObject.SetActive(false);
         }
         waitTillFinishTyping = false;
     }
@@ -123,13 +135,13 @@ public class DialogueManager : MonoBehaviour
     public void refuseChanges() {
         //Wait till finish typing before activating the button
         if(waitTillFinishTyping == false) {
+            refuseButton.gameObject.SetActive(false);
+            acceptButton.gameObject.SetActive(false);
             if(sentences.Count > 0){
                 continueButton.onClick.Invoke();
                 continueButton.gameObject.SetActive(true);
-                gameController.incrementSubChoiceNum();
             }
-            refuseButton.gameObject.SetActive(false);
-            acceptButton.gameObject.SetActive(false);
+            gameController.incrementSubChoiceNum();//increment the index indicating what sub choice we are on
         }   
     }
 }
