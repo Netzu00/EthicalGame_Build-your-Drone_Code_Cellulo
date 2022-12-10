@@ -89,7 +89,7 @@ public class DialogueManager : MonoBehaviour
             continueButton.gameObject.SetActive(true); //show continue button when finished typing
         }
           //Exceptiong for end scene, dont spawn, we spawn the replay button instead
-        if(SceneManager.GetActiveScene().name == "EndingScene" && sentences.Count == 0){
+        if(SceneManager.GetActiveScene().name != "MissionStatement" && sentences.Count == 0){
             continueButton.gameObject.SetActive(false);
         }
         waitTillFinishTyping = false;
