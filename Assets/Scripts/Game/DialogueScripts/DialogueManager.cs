@@ -96,6 +96,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     void UnspawnRefuseAcceptButtons() {
+        if(acceptButton == null){
+            return;
+        }
         acceptRefuseButtonsAreDisplayed = false;
         refuseButton.gameObject.SetActive(false);
         acceptButton.gameObject.SetActive(false);

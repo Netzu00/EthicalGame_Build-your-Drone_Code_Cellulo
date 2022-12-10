@@ -2731,7 +2731,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 138, y: -92}
+  m_AnchoredPosition: {x: 379, y: -154.8447}
   m_SizeDelta: {x: 211.4752, y: 88.6213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1235908967
@@ -3105,7 +3105,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 376.99997, y: -154.84468}
+  m_AnchoredPosition: {x: 376.99997, y: -89}
   m_SizeDelta: {x: 211.4752, y: 88.6213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1316818515
@@ -6312,23 +6312,23 @@ MonoBehaviour:
       launch the drone. The bird watcher is delighted with the increased visibility
       afforded by the drone, although a bit disappointed that the battery was depleted
       after a fairly short time. \n"
-    - "Decision1: \nReturning from your trip you do some research and discover that
+    - "Decision 1: \nReturning from your trip you do some research and discover that
       \"wetsuits\" are a good solution to waterproof drones.\n\nMaking a wetsuit
-      for your drone would take 2 weeks of your time and a cost of 100$ for the materials
-      \n\nDo you accept to make these changes?\n\n"
-    - 'Decision:
+      for your drone would take 2 weeks of your time and a cost of 100 CHF for the
+      materials \n\nDo you accept to make these changes?\n\n"
+    - 'Decision 2:
 
       You also think perhaps further increasing the flight time
       for your drone could be beneficial.
 
 
       This would incur an extra cost
-      of 50$ for a better and bigger battery and 1 week of your time
+      of 50 CHF for a better and bigger battery and 1 week of your time
 
 
-      Do you
-      accept to make these changes?'
-    - "Decison: \n\nSwitching to a lighter material could also help increase the
+      Do
+      you accept to make these changes?'
+    - "Decison 3: \n\nSwitching to a lighter material could also help increase the
       flight time of the drone. \n\nSwitching the drone's frame material to carbon
       fiber would cost 100 CHF and 1 week in the lab.\n\n\n"
     - Please make your next choice, or lock in "Ship it!" to finalize your project.

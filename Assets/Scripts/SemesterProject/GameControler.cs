@@ -109,118 +109,6 @@ public class GameControler : MonoBehaviour
         refreshDroneSpecs();
     }
     
-    //TODO could merge several of these outcomes "per spec" into one feedback from a researcher.
-    
-    private Dialogue computeOutcomeDialogue(){
-        int outcomeNum = 0;
-         
-        if(protoDroneColor.Equals("Blue")) {
-             finalOutcomeDialogueSentences[outcomeNum] = "The color of drone is unfortunate because its color blends in with that of" + 
-             " the sky, i often lose some time trying to find it in the sky.";
-        } else if(protoDroneColor.Equals("White")) {
-             finalOutcomeDialogueSentences[outcomeNum] = "The white color of the drone is easy to spot in the sky however some birds" + 
-             " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
-        } else if(protoDroneColor.Equals("Purple")){
-             finalOutcomeDialogueSentences[outcomeNum] = "I like that you made the drone purple, most birds are not threatened "
-             + "by this color and the drone remains clearly visible to the operator." ;  
-        }
-        outcomeNum++;
-
-        if(protoDroneSize <= 30) {
-            finalOutcomeDialogueSentences[outcomeNum] = "The size of the drone is small and easy to carry!, however on windy days it" 
-            + "its not as stable as previous drones.";
-        } else if(protoDroneSize >= 30) {
-            finalOutcomeDialogueSentences[outcomeNum] = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
-            "would be useful";
-        }
-        
-        outcomeNum++;
-
-        if(protoDroneWeight < 1.0) {
-            finalOutcomeDialogueSentences[outcomeNum] = "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
-            "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!\n";
-        }else if(protoDroneWeight > 1.5) {
-            finalOutcomeDialogueSentences[outcomeNum] = "Long flying time from the big battery was a great improvement from our last drone,"
-        + " and the drone was stable in the wind."
-         + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
-         + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
-        }else {
-            finalOutcomeDialogueSentences[outcomeNum] = "This drone is capable of flying and observing birds for about 30 minutes, "+
-            "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
-        }
-
-        outcomeNum++;
-
-        if(has_wetsuit) {   
-            finalOutcomeDialogueSentences[outcomeNum] = "The previous drone we used did not have a wet suit, so we are very satisfied" 
-            + " to now we are able to conduct our bird observation even in the rough Scottish weather";
-        } else {
-            finalOutcomeDialogueSentences[outcomeNum] = "Unfortunately that just our previous drone we had, we are not able to use" + 
-            " it under rainy conditions.";            
-        }
-
-        outcomeNum++;
-
-        if(has_manual) {   
-            finalOutcomeDialogueSentences[outcomeNum] = "Including the drone manual was super useful, allowing new people to pick it up quickly. " 
-            + "Although terminology was a bit technical, so they added in some of their own definitions to make it more accessible";
-        } else {
-            finalOutcomeDialogueSentences[outcomeNum] = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
-            + "we will see if those starting next year also will.";            
-        } 
-
-        outcomeNum++;
-
-        if(protoPropellerMaterial == "Plastic"){
-            finalOutcomeDialogueSentences[outcomeNum] = "The plastic propellers of the drone make a lot of noise, and on occasion seems to scare off" + 
-            " or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision"
-            +" with a bird.";
-        } else if(protoPropellerMaterial == "Carbon Fiber"){
-            finalOutcomeDialogueSentences[outcomeNum] = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
-            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injure a curious or aggressive bird.";            
-        } else if(protoPropellerMaterial == "Wood"){
-            finalOutcomeDialogueSentences[outcomeNum] = "The wooden propellers are very silent and appear not to bother birds at all, "+
-            " however they are harder than plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
-        }
-
-        outcomeNum++;
-        
-        if(has_foldable_propellers) {
-            finalOutcomeDialogueSentences[outcomeNum] = "The foldable propellers were a nice upgrade, the drone is ";
-        } else {
-            finalOutcomeDialogueSentences[outcomeNum] = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
-            " using foldable propellers would make it easier to carry in a smaller bag.";
-        }    
-
-        outcomeNum++; 
-
-        if(protoFrameMaterial == "Wood") {
-            finalOutcomeDialogueSentences[outcomeNum] = "Using wood";
-        } else if(protoFrameMaterial == "Carbon Fiber") {
-            finalOutcomeDialogueSentences[outcomeNum] = "Using Carbon Fiber";
-        } else if(protoFrameMaterial == "Aluminium") {
-            finalOutcomeDialogueSentences[outcomeNum] = "Using Aluminium";
-        }
-
-        outcomeNum++;
-
-        finalOutcomeDialogueSentences[outcomeNum] = "Thank you for playing!";
-        
-        //Name of researchers and feedback in quotations
-
-        //REPLAY BUTTON HERE
-
-        //at final summary (overall) eval paragraph based on all vars
-        //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
-        Dialogue outcomeDialogue = new Dialogue();
-
-        //TODO last slide should you be
-        //You have reached the end, thank you for playing! or something like that
-        
-        outcomeDialogue.sentences = finalOutcomeDialogueSentences;
-        return outcomeDialogue;
-    }
-    
     /**
     Manages what happens any time a user lock's in a choice.
     This is triggered any time a user lock's in a choice by clicking the "enter" button.
@@ -509,5 +397,127 @@ public class GameControler : MonoBehaviour
         remainingTimeText.text = "Time Left: \n" + remainingTime.ToString("F1") +" Weeks"; 
         availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
         
+    }
+
+    private Dialogue computeOutcomeDialogue(){
+        int outcomeNum = 0;
+ 
+
+        StringBuilder sb = new StringBuilder("", 500);
+        string sentence = "";
+        sb.AppendFormat("Ansley Smith: \n\n");
+
+        sb.AppendFormat("\"");
+        if(protoDroneColor.Equals("Blue")) {
+             sentence = "The color of drone is unfortunate because its color blends in with that of" + 
+             " the sky, i often lose some time trying to find it in the sky.";
+        } else if(protoDroneColor.Equals("White")) {
+             sentence = "The white color of the drone is easy to spot in the sky however some birds" + 
+             " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
+        } else if(protoDroneColor.Equals("Purple")){
+             sentence = "I like that you made the drone purple, most birds are not threatened "
+             + "by this color and the drone remains clearly visible to the operator." ;  
+        }
+        sb.AppendFormat(sentence + "\n\n");
+        
+        if(protoDroneSize <= 30) {
+            sentence = "The size of the drone is small and easy to carry!, however on windy days it" 
+            + "its not as stable as previous drones.";
+        } else if(protoDroneSize > 30) {
+            sentence  = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
+            "would be useful";
+        }
+        sb.AppendFormat(sentence + "\n\n");
+
+        if(protoDroneWeight < 1.0) {
+            sentence =  "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
+            "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!";
+        }else if(protoDroneWeight > 1.5) {
+            sentence = "Long flying time from the big battery was a great improvement from our last drone,"
+        + " and the drone was stable in the wind."
+         + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
+         + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
+        }else {
+            sentence = "This drone is capable of flying and observing birds for about 30 minutes, "+
+            "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
+        }
+        sb.AppendFormat(sentence);
+        sb.AppendFormat("\"");
+        finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
+        sb.Clear();
+
+        sb.AppendFormat("Davina Murphy: \n\n");
+        sb.AppendFormat("\"");
+        if(has_wetsuit) {   
+            sentence = "The previous drone we used did not have a wet suit, so we are very satisfied" 
+            + " to now we are able to conduct our bird observation even in the rough Scottish weather";
+        } else {
+            sentence = "Unfortunately that just our previous drone we had, we are not able to use" + 
+            " it under rainy conditions.";            
+        }
+        sb.AppendFormat(sentence + "\n\n");
+
+        if(has_manual) {   
+            sentence = "Including the drone manual was super useful, allowing new people to pick it up quickly. " 
+            + "Although terminology was a bit technical, so they added in some of their own definitions to make it more accessible";
+        } else {
+            sentence = "Hard to get started using the drone. Mostly only the 2 PhD student researchers were willing to invest time getting competent, "
+            + "we will see if those starting next year also will.";            
+        } 
+        sb.AppendFormat(sentence + "\n\n");
+        
+
+        if(protoPropellerMaterial == "Plastic"){
+            sentence = "The plastic propellers of the drone make a lot of noise, and on occasion seems to scare off" + 
+            " or disturb some of the birds, however the flexibility of the propellers makes the drone less harmful in case of a collision"
+            +" with a bird.";
+        } else if(protoPropellerMaterial == "Carbon Fiber"){
+            sentence = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
+            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injure a curious or aggressive bird.";            
+        } else if(protoPropellerMaterial == "Wood"){
+            sentence = "The wooden propellers are very silent and appear not to bother birds at all, "+
+            " however they are harder than plastic ones, so i am always afraid of injuring a bird who might fly to close."; 
+        }
+        sb.AppendFormat(sentence + "\"");
+        finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
+        sb.Clear();
+
+        sb.AppendFormat("Fiona Wattson: \n\n");
+        sb.AppendFormat("\"");
+        if(has_foldable_propellers) {
+            sentence = "The foldable propellers were a nice upgrade, the drone is ";
+        } else {
+            sentence = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
+            " using foldable propellers would make it easier to carry in a smaller bag.";
+        }    
+        sb.AppendFormat(sentence);
+        sb.AppendFormat("\n\n");
+
+        if(protoFrameMaterial == "Wood") {
+            sentence = "Using wood";
+        } else if(protoFrameMaterial == "Carbon Fiber") {
+            sentence = "Using Carbon Fiber";
+        } else if(protoFrameMaterial == "Aluminium") {
+            sentence = "Using Aluminium";
+        }
+        sb.AppendFormat(sentence);
+        sb.AppendFormat("\"");
+        finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
+        sb.Clear();
+        finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing!";
+        
+        //Name of researchers
+
+        //REPLAY BUTTON HERE
+
+        //at final summary (overall) eval paragraph based on all vars
+        //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
+        Dialogue outcomeDialogue = new Dialogue();
+
+        //TODO last slide should you be
+        //You have reached the end, thank you for playing! or something like that
+        
+        outcomeDialogue.sentences = finalOutcomeDialogueSentences;
+        return outcomeDialogue;
     }
 }
