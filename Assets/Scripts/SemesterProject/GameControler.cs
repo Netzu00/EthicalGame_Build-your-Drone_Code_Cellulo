@@ -36,15 +36,16 @@ public class GameControler : MonoBehaviour
     private static int protoDroneSize = 25;
     private static double protoDroneWeight = 1.0;
     private static string protoDroneColor = "Blue";
-    //TODO: Rename me
     private static string protoFrameMaterial = "Aluminium";
     private static int protoBatteryLifespan = 10;
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
-
     private static bool has_foldable_propellers = false;
     public TextMeshProUGUI droneSpecsText;
+    public Image droneImage;
+    public Sprite droneWhiteSpriteImage;
+    public Sprite dronePurpleSpriteImage;
     public static List<string> colorList = new List<string>{"white", "purple", "blue"};
     //public static int[] droneSizeRange = {20, 150}; //min and max size range
     //public static double[] droneWeightRange = {0.5, 10};
@@ -105,8 +106,11 @@ public class GameControler : MonoBehaviour
       
         mainTabIndexInLayout = 1; 
         //Print balance and drone specs 
-        remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
-        availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
+        if(SceneManager.GetActiveScene().name == "EthicalGame") {
+            remainingTimeText.text = "Time Left: \n" +  remainingTime.ToString("F1") +" Weeks"; 
+            availableBalanceText.text = "Balance: " + availableBalance.ToString() +" CHF"; 
+        }
+      
         refreshDroneSpecs();
     }
     
@@ -115,10 +119,16 @@ public class GameControler : MonoBehaviour
     This is triggered any time a user lock's in a choice by clicking the "enter" button.
     */
     public void lockInChoice() {
-        //TODO cant lock in choice until finished previous choice.
+        if(slot.isEmpty()){
+            return;
+        } else {
+            slot.emptyTheSlot();//reset slot to empty for next choice
+        }
+
         acceptedSubChoiceNumber = 0; //reset subChoice index
-        //Get choice locked in choice id and text
         DragDrop lastChoice = slot.droppedChoice;
+        
+                
         latestChoiceId = lastChoice.choice_id;
         string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
         
@@ -366,9 +376,9 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
         sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
         sb.AppendFormat("Drone Frame Material: " + protoFrameMaterial + " \n");
-        sb.AppendFormat("Battery lifespan: " + protoBatteryLifespan.ToString() + " \n");
+        sb.AppendFormat("Battery lifespan: " + protoBatteryLifespan.ToString() + " minutes \n");
         sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
-        sb.AppendFormat("-----Extra Features----- \n");
+        sb.AppendFormat("\n-----Extra Features----- \n");
         if(has_wetsuit){
             sb.AppendFormat("Wet suit available\n"); 
         } 
@@ -379,6 +389,14 @@ public class GameControler : MonoBehaviour
             sb.AppendFormat("Foldable Propellers\n"); 
         } 
         droneSpecsText.text = sb.ToString();
+
+        if(protoDroneColor == "White") {
+            droneImage.sprite = droneWhiteSpriteImage;
+        } else if(protoDroneColor == "Purple") {
+            droneImage.sprite = dronePurpleSpriteImage; 
+        } else {
+            //droneImage.sprite = 
+        }
     }
 
     //Update available time and balance for subchoices
@@ -474,7 +492,7 @@ public class GameControler : MonoBehaviour
             +" with a bird.";
         } else if(protoPropellerMaterial == "Carbon Fiber"){
             sentence = "Quiet drones appear not to bother birds at all, however the carbon fiber propellers are much harder than"+
-            " plastic ones, and we need to be really careful flying it too to the birds as the propeller could seriously injure a curious or aggressive bird.";            
+            " plastic ones, and we need to be really careful flying it too close to the birds as the propeller could seriously injure a curious or aggressive bird.";            
         } else if(protoPropellerMaterial == "Wood"){
             sentence = "The wooden propellers are very silent and appear not to bother birds at all, "+
             " however they are harder than plastic ones, so i am always afraid of injuring a bird who might fly to close."; 

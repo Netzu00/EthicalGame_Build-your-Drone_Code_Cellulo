@@ -11,7 +11,6 @@ IDragHandler, IEndDragHandler {
     public RectTransform rectTransform;
 
     public int choice_id = 0; //ID to identify choice, This ID is used to and index for dialogue texts
-
     public Vector3 original_position;
     private CanvasGroup canvasGroup;
 

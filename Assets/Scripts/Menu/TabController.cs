@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 using System.Text;
 using UnityEngine.UI;
 
@@ -39,7 +40,10 @@ public class TabController : MonoBehaviour
         GameObject spawnedTabBody; //new obj for spawned body
         //Spawn a button for the tab
         spawnedTabButton = GameObject.Instantiate(spawnButtonPrefab);
-        spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = locked_choice_text;
+        //set tex of tab button to same as the choice but without the "cost"
+        string substring = locked_choice_text.Substring(0, Math.Max(locked_choice_text.IndexOf(':'), 0));
+        spawnedTabButton.GetComponentInChildren<TextMeshProUGUI>().text = substring;
+
         spawnedTabButton.name = "spawnedTabButton_"+ choiceId.ToString();
         spawnedTabButton.transform.SetParent(parentOfSpawn.transform, false);
         spawnedTabButton.gameObject.SetActive(true);
@@ -64,4 +68,5 @@ public class TabController : MonoBehaviour
         tabs.Add(spawnedTabBody);
         
     }
+
 }

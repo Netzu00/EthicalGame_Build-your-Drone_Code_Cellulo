@@ -87,8 +87,8 @@ public class DialogueManager : MonoBehaviour
       
         if(acceptRefuseButtonsAreDisplayed == false){
             continueButton.gameObject.SetActive(true); //show continue button when finished typing
-        }
-          //Exceptiong for end scene, dont spawn, we spawn the replay button instead
+        } 
+        
         if(SceneManager.GetActiveScene().name != "MissionStatement" && sentences.Count == 0){
             continueButton.gameObject.SetActive(false);
         }
@@ -139,7 +139,9 @@ public class DialogueManager : MonoBehaviour
             acceptButton.gameObject.SetActive(false);
             if(sentences.Count > 0){
                 continueButton.onClick.Invoke();
-                continueButton.gameObject.SetActive(true);
+                if(acceptRefuseButtonsAreDisplayed == false && sentences.Count > 0){
+                    continueButton.gameObject.SetActive(true);
+                }
             }
             gameController.incrementSubChoiceNum();//increment the index indicating what sub choice we are on
         }   
