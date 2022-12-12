@@ -28,6 +28,9 @@ public class GameControler : MonoBehaviour
     public Dialogue MissionStatementDialogue;
     public TextMeshProUGUI MissionStatementDialogueTextBox;
     //Final outcome dialogue box
+    public Image scientistImageBox;
+    public Sprite[] scientistImages;
+    private int currentScientist = 0;
     public DialogueTrigger finalDialogueTriggerButton; 
     public Dialogue finalOutcomeDialogue;
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
@@ -424,8 +427,8 @@ public class GameControler : MonoBehaviour
 
         StringBuilder sb = new StringBuilder("", 500);
         string sentence = "";
-        sb.AppendFormat("Ansley Smith: \n\n");
-
+        sb.AppendFormat("\n\n\n\n          ");
+        sb.AppendFormat(" Ansley Smith: \n\n");
         sb.AppendFormat("\"");
         if(protoDroneColor.Equals("Blue")) {
              sentence = "The color of drone is unfortunate because its color blends in with that of" + 
@@ -441,7 +444,7 @@ public class GameControler : MonoBehaviour
         
         if(protoDroneSize <= 30) {
             sentence = "The size of the drone is small and easy to carry!, however on windy days it" 
-            + "its not as stable as previous drones.";
+            + "is not as stable as previous drones.";
         } else if(protoDroneSize > 30) {
             sentence  = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be useful";
@@ -465,6 +468,7 @@ public class GameControler : MonoBehaviour
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
 
+        sb.AppendFormat("\n\n\n\n          ");
         sb.AppendFormat("Davina Murphy: \n\n");
         sb.AppendFormat("\"");
         if(has_wetsuit) {   
@@ -501,10 +505,11 @@ public class GameControler : MonoBehaviour
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
 
+        sb.AppendFormat("\n\n\n\n          ");
         sb.AppendFormat("Fiona Wattson: \n\n");
         sb.AppendFormat("\"");
         if(has_foldable_propellers) {
-            sentence = "The foldable propellers were a nice upgrade, the drone is ";
+            sentence = "The foldable propellers were a nice upgrade, the drone fits much easier into my bag";
         } else {
             sentence = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
             " using foldable propellers would make it easier to carry in a smaller bag.";
@@ -557,5 +562,15 @@ public class GameControler : MonoBehaviour
         has_foldable_propellers = false;
         remainingTime = 11; 
         availableBalance = 300; 
+    }
+
+    public void updateScientistImage(){
+        scientistImageBox.gameObject.SetActive(true);
+        currentScientist++;
+        if(currentScientist < scientistImages.Length) {
+            scientistImageBox.sprite = scientistImages[currentScientist];
+        } else {
+            scientistImageBox.gameObject.SetActive(false);
+        }
     }
 }

@@ -69,6 +69,9 @@ public class DialogueManager : MonoBehaviour
             if(SceneManager.GetActiveScene().name == "EndingScene" && sentences.Count == 1) {
                 replayButton.gameObject.SetActive(true);
             }
+            if(SceneManager.GetActiveScene().name == "EndingScene") {
+                gameController.updateScientistImage();
+            }
             
             waitTillFinishTyping = true;
             string sentence = sentences.Dequeue();
