@@ -985,7 +985,7 @@ ScriptsOnlyBuild:
     className: ShadowGen
   - hash:
       serializedVersion: 2
-      Hash: d5eb85cd9c03c0bce681391c3679d1b2
+      Hash: 3575cfada7f1f7bb1b116825227be9d8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameControler
@@ -1145,4 +1145,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MissionStatement.unity
   - Assets/Scenes/EthicalGame.unity
   - Assets/Scenes/EndingScene.unity
-  playerPath: C:/Users/giann/Desktop/Prog/EthicalGameWebGLRepo/EthicalGame-BuildYourDrone/Build
+  playerPath: C:/Users/giann/Desktop/Prog/EthicalGameWebGLRepo/EthicalGame-BuildYourDrone
