@@ -1196,7 +1196,7 @@ MonoBehaviour:
       your drone is ready to be used by researchers in the field for the purpose
       of monitoring birds.\r\n\nThe teacher provides you with a basic drone prototype
       that will serve as a starting point for your project.  After familiarizing
-      yourself with the project and the drone learning to fly the prototype drone
+      yourself with the project and the drone learning to fly the prototype drone,
       you have 11 weeks left, and a 300 CHF budget to accomplish your project.\n\nThroughout
       the game you will strive to update this prototype to fit certain specifications
       that you must decide upon.\nDuring the game, you will see the current specs
@@ -1212,6 +1212,8 @@ MonoBehaviour:
       (bird researchers) who will use it in the field!\r\n\r\nHere we go! And have
       fun.\r\n"
   MissionStatementDialogueTextBox: {fileID: 7965487335813916936}
+  scientistImageBox: {fileID: 0}
+  scientistImages: []
   finalDialogueTriggerButton: {fileID: 0}
   finalOutcomeDialogue:
     sentences: []

@@ -35,12 +35,17 @@ public class GameControler : MonoBehaviour
     public Dialogue finalOutcomeDialogue;
     public TextMeshProUGUI finalOutcomeDialogueTextBox;
 
+    //If locked in ornythologist before drone expert then should i propose choice between two colors??
+    //could always propose choice between two colors maybe??
+    //private int locked_in_ornythologist:
+
     //Drone Specs
+    private static int protoNoiseLevel = 80; // [db]
     private static int protoDroneSize = 25;
     private static double protoDroneWeight = 1.0;
     private static string protoDroneColor = "Blue";
     private static string protoFrameMaterial = "Aluminium";
-    private static int protoBatteryLifespan = 10;
+    private static int protoDroneLifespan = 10;
     private static string protoPropellerMaterial = "Plastic";
     private static bool has_wetsuit = false;
     private static bool has_manual = false;
@@ -71,7 +76,7 @@ public class GameControler : MonoBehaviour
     //Array of dialogues 
     [SerializeField] private List<Dialogue> choiceFeedbackDialogues;//set in unity directly
     private string[] finalOutcomeDialogueSentences = {"var 0", "var 1", 
-    "var 2", "var 3"};
+    "var 2", "var 3", "var4"};
 
     /*ACCEPT/REFUSE------------------------------------------------------------------*/
     public int[] numSubChoices; //maps Choices => int representing number of subchoices for this main choice. 
@@ -130,7 +135,6 @@ public class GameControler : MonoBehaviour
 
         acceptedSubChoiceNumber = 0; //reset subChoice index
         DragDrop lastChoice = slot.droppedChoice;
-        
                 
         latestChoiceId = lastChoice.choice_id;
         string choiceCardText = lastChoice.GetComponentInChildren<TextMeshProUGUI>().text;
@@ -199,7 +203,7 @@ public class GameControler : MonoBehaviour
         int financialCost = 0;
 
         if(latestChoiceId == (int)choices.DroneExpert){
-            if(acceptedSubChoiceNumber == 0){
+            if(acceptedSubChoiceNumber == 0){ //repait drone white
                 timeCost= (float)0.5;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
@@ -211,7 +215,7 @@ public class GameControler : MonoBehaviour
                 }
                 
             }
-            if(acceptedSubChoiceNumber == 1){
+            if(acceptedSubChoiceNumber == 1){ //create manual
                 timeCost =(float)2.0;
                 financialCost = 0;
                 if(checkIfEnoughResources(timeCost, financialCost)){
@@ -225,7 +229,7 @@ public class GameControler : MonoBehaviour
         }
         if(latestChoiceId == (int)choices.BirdExpert){
             //Bird expert ultimately suggest not to make it white
-            if(acceptedSubChoiceNumber == 0) {
+            if(acceptedSubChoiceNumber == 0) { //Repaint drone purple
                 timeCost = (float)0.5;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
@@ -235,11 +239,12 @@ public class GameControler : MonoBehaviour
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 1) {
+            } else if(acceptedSubChoiceNumber == 1) { //Make drone out of carbon fiber
                 timeCost = (float)0.5;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoPropellerMaterial = "Carbon Fiber";
+                    protoNoiseLevel -= 10;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -248,12 +253,14 @@ public class GameControler : MonoBehaviour
             }
         }
         if(latestChoiceId == (int)choices.TestLocally){
-            if(acceptedSubChoiceNumber == 0) {
+            if(acceptedSubChoiceNumber == 0) { // Make bigger for bigger battery
                 timeCost = (float)2.0;
                 financialCost = 100;
                 if(checkIfEnoughResources(timeCost,financialCost)){
                     protoDroneWeight += 0.5;
                     protoDroneSize += 10;
+                    protoNoiseLevel += 10;
+                    protoDroneLifespan += 5;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -262,7 +269,7 @@ public class GameControler : MonoBehaviour
             }
         }
         if(latestChoiceId == (int)choices.OnFieldTesting){
-            if(acceptedSubChoiceNumber == 0) {
+            if(acceptedSubChoiceNumber == 0) { //wetsuit
                 timeCost = (float)2.0;
                 financialCost = 100;
                 if(checkIfEnoughResources(timeCost,financialCost)){
@@ -278,17 +285,22 @@ public class GameControler : MonoBehaviour
                 if(checkIfEnoughResources(timeCost,financialCost)){
                     protoDroneWeight += 0.5;
                     protoDroneSize += 10;
+                    protoNoiseLevel += 10;
+                    protoDroneLifespan += 3;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 2) {
+            } else if(acceptedSubChoiceNumber == 2) { //switch to carbon fiber
                 timeCost = (float)1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost,financialCost)){
-                    if(protoFrameMaterial == "Wood") {
+                    //If switching from a heavier material, battery lifespan increases
+                    if(protoFrameMaterial == "Wood" || protoFrameMaterial == "Aluminium") {
                         protoDroneWeight -= 0.5;
+                        protoNoiseLevel -= 10;
+                        protoDroneLifespan += 5;
                     }
                     protoFrameMaterial = "Carbon Fiber";
                     
@@ -311,11 +323,13 @@ public class GameControler : MonoBehaviour
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 1) { // WHAT IS THIS?
+            } else if(acceptedSubChoiceNumber == 1) { // Make drone lighter??
                 timeCost = (float)1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost,financialCost)){
-
+                    protoDroneWeight -= 0.25;
+                    protoNoiseLevel -= 5;
+                    protoDroneLifespan += 2;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -329,7 +343,11 @@ public class GameControler : MonoBehaviour
                 timeCost = (float)0.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
+                    if(protoPropellerMaterial == "Plastic") {
+                        protoNoiseLevel -= 10;
+                    }
                     protoPropellerMaterial = "Wood";
+                    
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -346,12 +364,13 @@ public class GameControler : MonoBehaviour
                     Debug.Log("Not enough resources, drone expert choice 0");
                     return;
                 }
-            } else if(acceptedSubChoiceNumber == 2) { //switch to carbon fiber if not already?(reapeat same pro&cons as last time)
+            } else if(acceptedSubChoiceNumber == 2) { //make drone smaller and lighter
                 timeCost = (float) 1.0;
                 financialCost = 50;
                 if(checkIfEnoughResources(timeCost, financialCost)){
                     protoDroneWeight -= 0.5;
                     protoDroneSize -= 10;
+                    protoNoiseLevel -= 5;
                 } else {
                     popUp.display();
                     Debug.Log("Not enough resources, drone expert choice 0");
@@ -379,8 +398,9 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("Weight [kg]: " + string.Format("{0:F1}", protoDroneWeight) + " \n");
         sb.AppendFormat("Size [cm]: " + string.Format("{0:F1}", protoDroneSize) + " \n");
         sb.AppendFormat("Drone Frame Material: " + protoFrameMaterial + " \n");
-        sb.AppendFormat("Battery lifespan: " + protoBatteryLifespan.ToString() + " minutes \n");
+        sb.AppendFormat("Battery lifespan: " + protoDroneLifespan.ToString() + " minutes \n");
         sb.AppendFormat("Propeller Material: " + protoPropellerMaterial + "\n");
+        sb.AppendFormat("Noise level: " + protoNoiseLevel + "\n");
         sb.AppendFormat("\n-----Extra Features----- \n");
         if(has_wetsuit){
             sb.AppendFormat("Wet suit available\n"); 
@@ -432,7 +452,7 @@ public class GameControler : MonoBehaviour
         sb.AppendFormat("\"");
         if(protoDroneColor.Equals("Blue")) {
              sentence = "The color of drone is unfortunate because its color blends in with that of" + 
-             " the sky, i often lose some time trying to find it in the sky.";
+             " the sky, i often lose track of it and then lose time trying to find it.";
         } else if(protoDroneColor.Equals("White")) {
              sentence = "The white color of the drone is easy to spot in the sky however some birds" + 
              " have attacked the drone, maybe because white is seen as aggressive by some birds." ;    
@@ -444,21 +464,21 @@ public class GameControler : MonoBehaviour
         
         if(protoDroneSize <= 30) {
             sentence = "The size of the drone is small and easy to carry!, however on windy days it" 
-            + "is not as stable as previous drones.";
+            + " is not as stable as previous drones.";
         } else if(protoDroneSize > 30) {
             sentence  = "The drone is pretty big and unable to fit in my bag, perhaps a carrying case " + 
             "would be useful";
         }
         sb.AppendFormat(sentence + "\n\n");
 
-        if(protoDroneWeight < 1.0) {
+        //flight time is influenced by WEIGHT AND BATTERY (baterry shouldnt be in minutes!! thats autonomy)
+        //use weight for stability and lfiespan for this
+        if(protoDroneLifespan <= 15) {
             sentence =  "Drone was light and easy to carry, but short flying time meant it felt like a lot of " + 
             "work for the brief footage. Although we did get some really great data we couldn’t have got otherwise!";
-        }else if(protoDroneWeight > 1.5) {
+        }else if(protoDroneLifespan > 15 && protoDroneLifespan <= 20) {
             sentence = "Long flying time from the big battery was a great improvement from our last drone,"
-        + " and the drone was stable in the wind."
-         + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
-         + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
+        + " and the drone was stable in the wind.";
         }else {
             sentence = "This drone is capable of flying and observing birds for about 30 minutes, "+
             "it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
@@ -514,28 +534,50 @@ public class GameControler : MonoBehaviour
             sentence = "The drone is quite big and cumbersome to carry over long distances, perhaps" +  
             " using foldable propellers would make it easier to carry in a smaller bag.";
         }    
-        sb.AppendFormat(sentence);
-        sb.AppendFormat("\n\n");
+        sb.AppendFormat(sentence + "\n\n");
 
-        if(protoFrameMaterial == "Wood") {
+        if(protoDroneWeight <= 1.0) {
+            sentence =  "Drone was light and easy to carry.";
+        }else if(protoDroneWeight >= 2.0) {
+            sentence = "Long flying time from the big battery was a great improvement from our last drone,"
+         + " and the drone was stable in the wind."
+         + " But overall the drone was too heavy to carry. Most of our researchers are under 160 cm, so the combined weight and size"
+         + " made it very difficult to hike with it over wild terrain for 3h. We didn’t take it out very often";
+        } else {
+            sentence = "In terms of weight, it is a slight improvement from our previous drone and the stability of the drone is about the same."; 
+        }
+        sb.AppendFormat(sentence);
+        /*if(protoFrameMaterial == "Wood") {
             sentence = "Using wood";
         } else if(protoFrameMaterial == "Carbon Fiber") {
             sentence = "Using Carbon Fiber";
         } else if(protoFrameMaterial == "Aluminium") {
             sentence = "Using Aluminium";
-        }
-        sb.AppendFormat(sentence);
+        }*/
         sb.AppendFormat("\"");
         finalOutcomeDialogueSentences[outcomeNum++] = sb.ToString();
         sb.Clear();
+
+        //SPECIFIC OUTCOMES AFTER 1 YEAR OF USE:
+        //TODO include link
+        //https://nanpa.org/2021/06/11/drone-crash-causes-birds-to-abandon-1500-eggs/#:~:text=A%20drone%2C%20flying%20over%20prohibited,AP%20and%20New%20York%20Times.
+        if(protoDroneWeight <= 1.0 && protoDroneLifespan <= 10) {
+            finalOutcomeDialogueSentences[outcomeNum++] = "Update after 1 year of use: \n"
+            + "The drone was used near a nesting colony of elegant terns and unfortunately due to the drones"
+            + " short lifespan and high winds that day, we were unable to return the drone in time and it crashed"
+            + ", scaring away the colony and abandoning their eggs!.";
+        } else if(protoNoiseLevel >= 95) {
+             finalOutcomeDialogueSentences[outcomeNum++] = "Update after 1 year of use: \n"
+             + "One of our researches flew the drone too close to"
+             +" a couple of bird nest's and the high noise levels scared away the parents, unfortunately they never"
+             +" returned, and their eggs were abandoned.";
+        } else {
+            finalOutcomeDialogueSentences[outcomeNum++] = "Update after 1 year of use: \n" 
+            + "Although not perfect the drone has been a great help!";
+        }
+
         finalOutcomeDialogueSentences[outcomeNum++] = "Thank you for playing!";
         
-        //Name of researchers
-
-        //REPLAY BUTTON HERE
-
-        //at final summary (overall) eval paragraph based on all vars
-        //IF RLY BAD => SCARE AWAY BIRDS WHO ABANDON EGGS.. I.E IF Heavy + carbon fiber proppellers
         Dialogue outcomeDialogue = new Dialogue();
 
         //TODO last slide should you be
@@ -555,7 +597,7 @@ public class GameControler : MonoBehaviour
         protoDroneWeight = 1.0;
         protoDroneColor = "Blue";
         protoFrameMaterial = "Aluminium";
-        protoBatteryLifespan = 10;
+        protoDroneLifespan = 10;
         protoPropellerMaterial = "Plastic";
         has_wetsuit = false;
         has_manual = false;

@@ -6231,11 +6231,10 @@ MonoBehaviour:
     - 
     - 
   - sentences:
-    - "A professor whose research involves drones agrees to meet with you to talk
-      about your drone. He points out that blue coloured drones are hard to see against
-      the sky. \r\nHe also says that people unfamiliar with drones are often hesitant
-      to start using one, so he recommends providing a complete user manual for the
-      drone. \r\n"
+    - "To get some advice about drone you decide to meet with the teaching assistant.
+      He points out that blue coloured drones are hard to see against the sky. \r\nHe
+      also says that people unfamiliar with drones are often hesitant to start using
+      one, so he recommends providing a complete user manual for the drone. \r\n"
     - 'Decisions 1:
 
       After the meeting you wonder if you should take the experts
