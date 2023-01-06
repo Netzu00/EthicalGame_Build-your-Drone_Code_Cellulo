@@ -1,4 +1,4 @@
-# EthicalGame_Build-your-Drone_Code
+# Ethical Game "Build your Drone"
 
 ### Link to where you play the game: 
 https://gianniii.github.io/EthicalGame-BuildYourDrone/
